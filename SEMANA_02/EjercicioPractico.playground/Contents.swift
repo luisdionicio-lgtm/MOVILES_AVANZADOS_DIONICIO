@@ -361,6 +361,34 @@ if diasAtraso > 0 {
 }
 
 
+// MARK: - ESTADO DEL PRÉSTAMO
+
+var estadoPrestamo = ""
+
+if diasAtraso == 0 {
+
+    estadoPrestamo = "Devuelto a tiempo"
+
+} else {
+
+    estadoPrestamo = "Devuelto con atraso"
+}
+
+
+// MARK: - SITUACIÓN DEL USUARIO
+
+var situacionUsuario = ""
+
+if diasAtraso >= 10 {
+
+    situacionUsuario = "Suspendido"
+
+} else {
+
+    situacionUsuario = "Habilitado"
+}
+
+
 // MARK: - CALENDARIO DE ATRASO
 
 if diasAtraso > 0 {
@@ -436,3 +464,60 @@ if diasAtraso > 0 {
     print("==============================================================")
 }
 
+
+// MARK: - RESUMEN FINAL
+
+print("")
+print("================================================")
+print("              RESUMEN DEL PRÉSTAMO")
+print("================================================")
+
+print("Libro: \(tituloLibro)")
+print("Tipo de usuario: \(tipoUsuario)")
+
+print("-----------------------------------------------")
+
+print("Fecha de préstamo: \(fechaPrestamoTexto)")
+print("Fecha prometida: \(fechaPrometidaTexto)")
+print("Fecha real de devolución: \(fechaDevolucionTexto)")
+
+print("-----------------------------------------------")
+
+print("Días máximos permitidos: \(diasPermitidos)")
+print("Días solicitados: \(diasSolicitados)")
+print("Días de atraso: \(diasAtraso)")
+
+print("-----------------------------------------------")
+
+print(
+    "Multa normal por día: S/ " +
+    String(format: "%.2f", multaPorDia)
+)
+
+print(
+    "Multa acumulada: S/ " +
+    String(format: "%.2f", multaTotal)
+)
+
+print("-----------------------------------------------")
+
+print("Estado del préstamo: \(estadoPrestamo)")
+print("Situación del usuario: \(situacionUsuario)")
+
+print("================================================")
+
+
+// MARK: - MENSAJE DE SUSPENSIÓN
+
+if diasAtraso >= 10 {
+
+    print("")
+    print("⚠️ =============================================")
+    print("              USUARIO SUSPENDIDO")
+    print("=============================================")
+
+    print("El usuario alcanzó \(diasAtraso) días de atraso.")
+    print("No puede realizar nuevos préstamos.")
+
+    print("=============================================")
+}
