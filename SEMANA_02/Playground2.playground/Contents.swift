@@ -22,3 +22,11 @@ let exFinal = Double(readLine() ?? "") ?? 0
 let promedio = (exParcial * parcial) +
                (notaTrabajo * trabajo) +
                (exFinal * final)
+
+// Mostrar los datos
+print("\n--- RESULTADO ---")
+print("Alumno: \(alumno)")
+print("Examen Parcial: \(exParcial)")
+print("Trabajo: \(notaTrabajo)")
+print("Examen Final: \(exFinal)")
+print(String(format: "Promedio Final: %.2f", promedio))
