@@ -313,3 +313,126 @@ while true {
     break
 }
 
+
+// MARK: - CALCULAR DÍAS DE ATRASO
+
+let componentesAtraso = calendario.dateComponents(
+    [.day],
+    from: fechaPrometida,
+    to: fechaDevolucion
+)
+
+let diasAtraso = max(
+    0,
+    componentesAtraso.day ?? 0
+)
+
+
+// MARK: - CALCULAR MULTA PROGRESIVA
+
+var multaTotal = 0.0
+
+if diasAtraso > 0 {
+
+    for dia in 1...diasAtraso {
+
+        if dia <= 3 {
+
+            // Día 1 al 3
+            // Multa normal - 100%
+
+            multaTotal += multaPorDia
+
+        } else if dia <= 6 {
+
+            // Día 4 al 6
+            // 50% adicional - 150%
+
+            multaTotal += multaPorDia * 1.50
+
+        } else {
+
+            // Día 7 en adelante
+            // 100% adicional - 200%
+
+            multaTotal += multaPorDia * 2.00
+        }
+    }
+}
+
+
+// MARK: - CALENDARIO DE ATRASO
+
+if diasAtraso > 0 {
+
+    print("")
+    print("==============================================================")
+    print("                  CALENDARIO DE ATRASO")
+    print("==============================================================")
+
+    print("Fecha        Atraso       Multa día       Acumulado")
+    print("--------------------------------------------------------------")
+
+    var multaAcumulada = 0.0
+
+
+    for dia in 1...diasAtraso {
+
+        let fechaAtraso = calendario.date(
+            byAdding: .day,
+            value: dia,
+            to: fechaPrometida
+        )!
+
+
+        let fechaTexto = formatoFecha.string(
+            from: fechaAtraso
+        )
+
+
+        var multaDia = 0.0
+        var porcentaje = ""
+
+
+        if dia <= 3 {
+
+            multaDia = multaPorDia
+            porcentaje = "100%"
+
+        } else if dia <= 6 {
+
+            multaDia = multaPorDia * 1.50
+            porcentaje = "150%"
+
+        } else {
+
+            multaDia = multaPorDia * 2.00
+            porcentaje = "200%"
+        }
+
+
+        multaAcumulada += multaDia
+
+
+        print(
+            "\(fechaTexto)    " +
+            "\(String(format: "%2d", dia))           " +
+            "S/ \(String(format: "%.2f", multaDia))    " +
+            "S/ \(String(format: "%.2f", multaAcumulada))"
+        )
+
+        print(
+            "             Multa aplicada: \(porcentaje)"
+        )
+    }
+
+    print("==============================================================")
+
+} else {
+
+    print("")
+    print("==============================================================")
+    print("              NO EXISTEN DÍAS DE ATRASO")
+    print("==============================================================")
+}
+
