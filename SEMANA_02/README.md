@@ -31,7 +31,115 @@ El código fuente se encuentra en [`EjercicioPractico.playground/Contents.swift`
 
 ## Prompt utilizado
 
-> Crear un programa en Swift para gestionar el préstamo de libros. El sistema debe solicitar el título del libro y permitir seleccionar el tipo de usuario: Alumno, Docente o Administrador. Cada usuario tendrá un máximo de días de préstamo y una multa diaria diferente: Alumno, 7 días y S/ 1.50; Docente, 15 días y S/ 2.00; Administrador, 10 días y S/ 3.00. El programa debe pedir y validar la fecha de préstamo, la fecha prometida y la fecha real de devolución usando el formato dd/MM/yyyy. La fecha de préstamo debe ser la fecha actual, la fecha prometida no puede ser anterior ni superar el máximo permitido y la fecha real no puede ser anterior al préstamo. Si existe atraso, calcular una multa progresiva: 100 % durante los días 1 al 3, 150 % durante los días 4 al 6 y 200 % desde el día 7. Mostrar un calendario con cada fecha de atraso, la multa del día y el monto acumulado. Finalmente, mostrar un resumen con las fechas, días solicitados, días de atraso, multa total, estado del préstamo y situación del usuario. Si el atraso es de 10 días o más, el usuario debe quedar suspendido.
+El ejercicio se desarrolló paso a paso mediante los siguientes mensajes:
+
+1. **Primer mensaje**
+
+   > Quiero hacer un ejercicio en Swift sobre un sistema de préstamo de libros. Necesito que me ayudes paso a paso y que el código sea sencillo para ejecutarlo en Terminal usando `nano` y luego `swift archivo.swift`.
+
+2. **Segundo mensaje**
+
+   > El sistema debe pedir el título del libro y el tipo de usuario. Tendremos tres tipos: Alumno, Docente y Administrador.
+
+3. **Tercer mensaje**
+
+   > Cada usuario debe tener una cantidad máxima de días de préstamo: Alumno 7 días, Docente 15 días y Administrador 10 días.
+
+4. **Cuarto mensaje**
+
+   > También cada usuario tendrá una multa normal por día de atraso: Alumno S/ 1.50, Docente S/ 2.00 y Administrador S/ 3.00.
+
+5. **Quinto mensaje**
+
+   > Ahora quiero trabajar con fechas. El sistema debe pedir la fecha de préstamo y la fecha prometida de devolución usando el formato `dd/MM/yyyy`.
+
+6. **Sexto mensaje**
+
+   > La fecha prometida no puede ser anterior a la fecha de préstamo. Si eso ocurre, debe mostrar error y volver a pedir los datos.
+
+7. **Séptimo mensaje**
+
+   > También quiero que se calcule cuántos días de préstamo está solicitando el usuario. Si supera su máximo permitido, debe aparecer “Préstamo no permitido”.
+
+8. **Octavo mensaje**
+
+   > Por ejemplo, si es Alumno y pide más de 7 días, no debe permitir el préstamo. Si es Docente, máximo 15 días. Si es Administrador, máximo 10 días.
+
+9. **Noveno mensaje**
+
+   > Si el préstamo sí cumple los días permitidos, debe mostrar “Préstamo permitido” y continuar con el proceso.
+
+10. **Décimo mensaje**
+
+    > Después quiero ingresar la fecha real de devolución del libro. Esa fecha no puede ser anterior a la fecha de préstamo.
+
+11. **Undécimo mensaje**
+
+    > Quiero calcular los días de atraso comparando la fecha prometida con la fecha real de devolución. Si devuelve antes o el mismo día, los días de atraso deben ser 0.
+
+12. **Duodécimo mensaje**
+
+    > Ahora agreguemos una multa progresiva. Del día 1 al 3 de atraso se cobra la multa normal de cada usuario.
+
+13. **Decimotercer mensaje**
+
+    > Del día 4 al 6 de atraso, quiero que la multa aumente un 50% adicional por cada día.
+
+14. **Decimocuarto mensaje**
+
+    > Desde el día 7 de atraso en adelante, quiero que la multa tenga un 100% adicional por cada día.
+
+15. **Decimoquinto mensaje**
+
+    > Quiero que la multa se calcule día por día y que se vaya acumulando.
+
+16. **Decimosexto mensaje**
+
+    > También quiero mostrar un calendario de atraso donde aparezca: fecha, número de día de atraso, multa del día y multa acumulada.
+
+17. **Decimoséptimo mensaje**
+
+    > Por ejemplo, para Alumno con multa de S/ 1.50: días 1 al 3 paga S/ 1.50, días 4 al 6 paga S/ 2.25 y desde el día 7 paga S/ 3.00.
+
+18. **Decimoctavo mensaje**
+
+    > Quiero agregar el estado del préstamo. Si no tiene atraso, debe mostrar “Devuelto a tiempo”. Si tiene atraso, “Devuelto con atraso”.
+
+19. **Decimonoveno mensaje**
+
+    > Ahora agreguemos la situación del usuario. Antes de llegar a 10 días de atraso debe estar “Habilitado”.
+
+20. **Vigésimo mensaje**
+
+    > Si llega a 10 días de atraso o más, el usuario debe quedar “Suspendido para nuevos préstamos”.
+
+21. **Vigésimo primer mensaje**
+
+    > La suspensión debe aplicar a cualquier usuario: Alumno, Docente o Administrador, no solamente a uno.
+
+22. **Vigésimo segundo mensaje**
+
+    > Quiero que aunque tenga 7, 8 o 9 días de atraso el sistema siga calculando su multa normalmente. Recién al llegar a 10 días debe quedar suspendido.
+
+23. **Vigésimo tercer mensaje**
+
+    > También quiero validar la fecha actual. La fecha de préstamo debe ser obligatoriamente la fecha del día en que se ejecuta el programa.
+
+24. **Vigésimo cuarto mensaje**
+
+    > Si ingreso una fecha de ayer o una fecha futura como fecha de préstamo, debe mostrar “Préstamo no válido” y volver a pedir la fecha.
+
+25. **Vigésimo quinto mensaje**
+
+    > Usa `Date()`, `Calendar` y `DateFormatter` para comprobar automáticamente la fecha actual, sin escribir la fecha manualmente en el código.
+
+26. **Vigésimo sexto mensaje**
+
+    > Al final quiero un resumen del préstamo que muestre: libro, tipo de usuario, fecha de préstamo, fecha prometida, fecha real de devolución, días permitidos, días solicitados, días de atraso, multa normal, multa total, estado del préstamo y situación del usuario.
+
+27. **Último mensaje**
+
+    > Ahora une todo en un solo código Swift, pero mantenlo sencillo y ordenado como lo hemos venido haciendo. Usa `Foundation`, `readLine()`, `while`, `switch`, `if/else`, `Calendar`, `DateFormatter` y comentarios con `// MARK:`. No uses cosas demasiado avanzadas. Debe poder ejecutarse con `nano prestamos.swift` y luego `swift prestamos.swift`.
 
 ## Evidencias de funcionamiento
 
