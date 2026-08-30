@@ -66,3 +66,54 @@ descuento adicional, el cupón `DESCUENTO20` aplicó el 20%, el envío fue gratu
 y se otorgaron 39 puntos de fidelidad. El total final fue **S/. 3945.33**.
 
 ![Ejecución del ejercicio 6 en Terminal](evidencias/ejercicio-6-carrito-mejorado-terminal.png)
+
+## Ejercicio 7 - Juego de adivinanza
+
+### Prompt (estructura CTRFE)
+
+```text
+CONTEXTO:
+Estoy aprendiendo Swift y en esta semana estoy practicando estructuras
+condicionales y bucles. Necesito realizar un juego sencillo de adivinanza
+como parte de mi laboratorio.
+
+TAREA:
+Ayúdame a crear un juego de adivinanza en Swift.
+El número secreto debe ser fijo, por ejemplo 42.
+Quiero simular 5 intentos usando variables.
+Debo usar un while para recorrer los intentos.
+En cada intento debe indicar si el número ingresado es "Muy alto",
+"Muy bajo" o "Correcto".
+También debe contar cuántos intentos se realizaron.
+Si después de los 5 intentos no se adivina, debe mostrar:
+"Perdiste. El número era 42".
+
+RESTRICCIONES:
+Usa solamente conceptos básicos de Swift que he aprendido hasta ahora,
+como variables, constantes, if, else, while y operadores de comparación.
+No uses arreglos porque todavía no los hemos estudiado.
+El código debe ser sencillo y fácil de entender.
+Cada línea del código debe tener un comentario específico explicando
+qué hace, porque es requisito del laboratorio.
+
+FORMATO:
+Dame el código completo en Swift.
+Coloca un comentario explicativo en cada línea.
+Mantén nombres de variables sencillos y en español.
+
+EJEMPLO:
+Si el número secreto es 42 y un intento es 30, debe mostrar "Muy bajo".
+Si el intento es 50, debe mostrar "Muy alto".
+Si el intento es 42, debe mostrar "Correcto" y terminar el juego.
+```
+
+### ¿Funcionó a la primera?
+
+Sí. El código compiló, procesó los intentos con un bucle `while` y terminó
+inmediatamente cuando el cuarto intento coincidió con el número secreto.
+
+### ¿La IA usó algo que no conocías?
+
+No. La solución utiliza solamente variables, constantes, `if`, `else`, `while`
+y operadores de comparación. Los cinco intentos se guardan en variables
+individuales y no se utilizan arreglos.
