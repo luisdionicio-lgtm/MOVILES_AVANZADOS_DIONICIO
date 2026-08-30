@@ -171,7 +171,7 @@ Las pruebas demuestran que el programa valida correctamente los límites de pré
 
 # Laboratorio 02 - Rama manual
 
-## Evidencias de los ejercicios 1, 2, 3 y 4
+## Evidencias de los ejercicios 1, 2, 3, 4 y 5
 
 Los ejercicios se probaron desde Terminal con el intérprete de Swift. Como los
 valores usados en el laboratorio son fijos, Swift muestra advertencias indicando
@@ -258,3 +258,22 @@ finales produjeron el valor `1`.
 
 El código del playground está en
 [`Ejercicio_4_While_Repeat_While.playground/Contents.swift`](Ejercicio_4_While_Repeat_While.playground/Contents.swift).
+
+### Ejercicio 5: Carrito de compras simplificado
+
+Comando ejecutado:
+
+```bash
+swift eje5.swift
+```
+
+El programa calculó el subtotal de los cinco productos y generó un ticket de
+compra utilizando condicionales, `switch` y un bucle `for`. El subtotal fue
+S/. 4646.00, por lo que se aplicó un descuento del 10% y el cliente fue
+clasificado como `VIP`. Después del descuento y de agregar el IGV del 18%, el
+total final fue **S/. 4934.05**.
+
+![Ejecución del ejercicio 5 en Terminal](evidencias/ejercicio-5-carrito-compras-terminal.png)
+
+El código del playground está en
+[`Ejercicio_5_Carrito_Compras.playground/Contents.swift`](Ejercicio_5_Carrito_Compras.playground/Contents.swift).
