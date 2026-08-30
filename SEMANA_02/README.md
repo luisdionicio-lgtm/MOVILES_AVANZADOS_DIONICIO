@@ -171,7 +171,7 @@ Las pruebas demuestran que el programa valida correctamente los límites de pré
 
 # Laboratorio 02 - Rama manual
 
-## Evidencias de los ejercicios 1, 2 y 3
+## Evidencias de los ejercicios 1, 2, 3 y 4
 
 Los ejercicios se probaron desde Terminal con el intérprete de Swift. Como los
 valores usados en el laboratorio son fijos, Swift muestra advertencias indicando
@@ -238,3 +238,23 @@ realizó la cuenta regresiva del 10 al 1 y comprobó las predicciones finales.
 
 El código del playground está en
 [`Ejercicio_3_For_In.playground/Contents.swift`](Ejercicio_3_For_In.playground/Contents.swift).
+
+### Ejercicio 4: Bucles `while` y `repeat-while`
+
+Comando ejecutado:
+
+```bash
+swift eje4.swift 2>/dev/null
+```
+
+El programa realizó la cuenta regresiva del 5 al 1, calculó que se necesitan
+`14 meses` para alcanzar una meta de S/. 2000 y dividió sucesivamente el número
+1000 entre 2 hasta obtener un valor menor que 1. La división terminó después de
+`10` iteraciones. Además, rechazó las notas `25` y `-3` y aceptó la nota `15`
+en el tercer intento mediante un bucle `repeat-while`. Las dos predicciones
+finales produjeron el valor `1`.
+
+![Ejecución del ejercicio 4 en Terminal](evidencias/ejercicio-4-while-repeat-while-terminal.png)
+
+El código del playground está en
+[`Ejercicio_4_While_Repeat_While.playground/Contents.swift`](Ejercicio_4_While_Repeat_While.playground/Contents.swift).
