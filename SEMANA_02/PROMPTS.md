@@ -52,3 +52,17 @@ el envío gratuito, los puntos de fidelidad y el total final.
 
 No. La solución utiliza variables, constantes, condicionales y un bucle `for`.
 No utiliza arreglos ni estructuras avanzadas.
+
+### Evidencia de ejecución
+
+Comando ejecutado:
+
+```bash
+swift eje6.swift
+```
+
+La ejecución confirma que las tres unidades de `USB Cable` recibieron el 5% de
+descuento adicional, el cupón `DESCUENTO20` aplicó el 20%, el envío fue gratuito
+y se otorgaron 39 puntos de fidelidad. El total final fue **S/. 3945.33**.
+
+![Ejecución del ejercicio 6 en Terminal](evidencias/ejercicio-6-carrito-mejorado-terminal.png)
