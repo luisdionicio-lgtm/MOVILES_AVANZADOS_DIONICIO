@@ -117,3 +117,18 @@ inmediatamente cuando el cuarto intento coincidió con el número secreto.
 No. La solución utiliza solamente variables, constantes, `if`, `else`, `while`
 y operadores de comparación. Los cinco intentos se guardan en variables
 individuales y no se utilizan arreglos.
+
+### Evidencia de ejecución
+
+Comando ejecutado:
+
+```bash
+swift eje7.swift
+```
+
+La ejecución muestra que `20` y `35` fueron identificados como valores muy
+bajos, mientras que `50` fue identificado como muy alto. El valor `42`
+coincidió con el número secreto y el juego terminó correctamente después de
+cuatro intentos.
+
+![Ejecución del ejercicio 7 en Terminal](evidencias/ejercicio-7-juego-adivinanza-terminal.png)
