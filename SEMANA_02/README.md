@@ -4,13 +4,14 @@
 
 Este ejercicio implementa en Swift un sistema de préstamo de libros ejecutado desde consola. El programa solicita el título del libro, el tipo de usuario y las fechas del préstamo para validar la operación y calcular posibles multas por atraso.
 
-Se contemplan tres tipos de usuario:
+Se contemplan cuatro tipos de usuario:
 
 | Usuario | Días máximos | Multa base por día |
 | --- | ---: | ---: |
 | Alumno | 7 días | S/ 1.50 |
 | Docente | 15 días | S/ 2.00 |
 | Administrador | 10 días | S/ 3.00 |
+| Contador | 15 días | S/ 4.00 |
 
 ## Funcionamiento
 
@@ -21,11 +22,12 @@ El programa realiza las siguientes operaciones:
 3. Comprueba que la fecha prometida no sea anterior al préstamo ni exceda los días permitidos para el usuario.
 4. Registra la fecha real de devolución y calcula los días de atraso.
 5. Aplica una multa progresiva:
-   - Días 1 al 3: 100 % de la multa base.
-   - Días 4 al 6: 150 % de la multa base.
-   - Día 7 en adelante: 200 % de la multa base.
+   - Días 1 al 3: sin multa.
+   - Días 4 al 6: 25 % de la multa base.
+   - Días 7 al 10: 50 % de la multa base.
+   - Día 11 en adelante: 100 % de la multa base.
 6. Muestra un calendario con la fecha, los días de atraso, la multa diaria y el monto acumulado.
-7. Presenta un resumen final. Si el atraso alcanza 10 días o más, el usuario queda suspendido.
+7. Presenta un resumen final. Si el atraso alcanza 20 días o más, el usuario queda suspendido.
 
 El código fuente se encuentra en [`EjercicioPractico.playground/Contents.swift`](EjercicioPractico.playground/Contents.swift).
 
@@ -141,7 +143,9 @@ El ejercicio se desarrolló paso a paso mediante los siguientes mensajes:
 
     > Ahora une todo en un solo código Swift, pero mantenlo sencillo y ordenado como lo hemos venido haciendo. Usa `Foundation`, `readLine()`, `while`, `switch`, `if/else`, `Calendar`, `DateFormatter` y comentarios con `// MARK:`. No uses cosas demasiado avanzadas. Debe poder ejecutarse con `nano prestamos.swift` y luego `swift prestamos.swift`.
 
-## Evidencias de funcionamiento
+## Evidencias de la versión inicial
+
+Las capturas siguientes corresponden a las reglas iniciales del ejercicio y se conservan como historial del desarrollo. Los importes y el umbral de suspensión fueron reemplazados por las reglas descritas al inicio de este documento.
 
 ### Caso 1: Alumno
 
@@ -163,6 +167,10 @@ La devolución se realiza el 30/09/2026 y genera 21 días de atraso. El sistema 
 
 ![Calendario y resultado final para Docente](evidencias/docente-resultado-multa.png)
 
-## Resultado
+## Resultado actual
 
-Las pruebas demuestran que el programa valida correctamente los límites de préstamo, calcula las multas progresivas, acumula los importes por fecha y determina el estado final del usuario.
+El programa valida los límites de préstamo, calcula las multas progresivas, acumula los importes por fecha y determina el estado final del usuario con las reglas actualizadas.
+
+## Actualización de reglas
+
+El sistema incorpora al usuario **Contador**, con un máximo de 15 días de préstamo y una multa base de S/ 4.00. Además, los tres primeros días de atraso quedan libres de multa y la suspensión se aplica desde los 20 días de atraso.
