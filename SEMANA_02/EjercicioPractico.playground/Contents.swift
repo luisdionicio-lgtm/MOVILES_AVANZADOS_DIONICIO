@@ -348,23 +348,30 @@ if diasAtraso > 0 {
         if dia <= 3 {
 
             // Día 1 al 3
-            // Multa normal - 100%
+            // No paga multa
 
-            multaTotal += multaPorDia
+            multaTotal += 0.0
 
         } else if dia <= 6 {
 
             // Día 4 al 6
-            // 50% adicional - 150%
+            // Paga el 25%
 
-            multaTotal += multaPorDia * 1.50
+            multaTotal += multaPorDia * 0.25
+
+        } else if dia <= 10 {
+
+            // Día 7 al 10
+            // Paga el 50%
+
+            multaTotal += multaPorDia * 0.50
 
         } else {
 
-            // Día 7 en adelante
-            // 100% adicional - 200%
+            // Día 11 en adelante
+            // Paga el 100%
 
-            multaTotal += multaPorDia * 2.00
+            multaTotal += multaPorDia
         }
     }
 }
@@ -388,7 +395,7 @@ if diasAtraso == 0 {
 
 var situacionUsuario = ""
 
-if diasAtraso >= 10 {
+if diasAtraso >= 20 {
 
     situacionUsuario = "Suspendido"
 
@@ -433,18 +440,23 @@ if diasAtraso > 0 {
 
         if dia <= 3 {
 
-            multaDia = multaPorDia
-            porcentaje = "100%"
+            multaDia = 0.0
+            porcentaje = "SIN MULTA"
 
         } else if dia <= 6 {
 
-            multaDia = multaPorDia * 1.50
-            porcentaje = "150%"
+            multaDia = multaPorDia * 0.25
+            porcentaje = "25%"
+
+        } else if dia <= 10 {
+
+            multaDia = multaPorDia * 0.50
+            porcentaje = "50%"
 
         } else {
 
-            multaDia = multaPorDia * 2.00
-            porcentaje = "200%"
+            multaDia = multaPorDia
+            porcentaje = "100%"
         }
 
 
@@ -518,7 +530,7 @@ print("================================================")
 
 // MARK: - MENSAJE DE SUSPENSIÓN
 
-if diasAtraso >= 10 {
+if diasAtraso >= 20 {
 
     print("")
     print("⚠️ =============================================")
