@@ -162,7 +162,7 @@ Guardar las imágenes en `SEMANA_03/evidencias/` con estos nombres:
 Estado de las evidencias:
 
 - [x] Ejercicio 1 - ejecución completada sin errores
-- [ ] Ejercicio 2 - captura pendiente
+- [x] Ejercicio 2 - ejecución completada sin errores
 - [ ] Ejercicio 3 - captura pendiente
 - [ ] Ejercicio 4 - captura pendiente
 - [ ] Ejercicio 5 - captura pendiente
@@ -175,5 +175,14 @@ el caso "no encontrado" porque el nombre registrado contenía un espacio final y
 la comparación de `String` requiere una coincidencia exacta.
 
 ![Ejecución del ejercicio 1 - Arrays](./evidencias/ejercicio-1-arrays-terminal.png)
+
+### Evidencia 2 - Diccionarios
+
+La ejecución registró cuatro productos, mostró el catálogo, calculó un valor total
+de `S/. 1170.0` y terminó sin errores. La búsqueda mostró el caso "no encontrado"
+porque el producto fue registrado como `Mouse` y se buscó como `mouse`; las claves
+de tipo `String` distinguen entre mayúsculas y minúsculas.
+
+![Ejecución del ejercicio 2 - Diccionarios](./evidencias/ejercicio-2-diccionarios-terminal.png)
 
 Las evidencias restantes se insertarán aquí cuando estén disponibles.
