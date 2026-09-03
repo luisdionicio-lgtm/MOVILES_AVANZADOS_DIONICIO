@@ -161,11 +161,19 @@ Guardar las imágenes en `SEMANA_03/evidencias/` con estos nombres:
 
 Estado de las evidencias:
 
-- [ ] Ejercicio 1 - captura pendiente
+- [x] Ejercicio 1 - ejecución completada sin errores
 - [ ] Ejercicio 2 - captura pendiente
 - [ ] Ejercicio 3 - captura pendiente
 - [ ] Ejercicio 4 - captura pendiente
 - [ ] Ejercicio 5 - captura pendiente
 
-Cuando las cinco capturas estén disponibles, se insertarán en esta sección para
-que la evidencia quede visible directamente en GitHub.
+### Evidencia 1 - Arrays
+
+La ejecución registró cinco alumnos y cinco notas. Obtuvo un promedio de `12.6`,
+con tres aprobados y dos desaprobados, y terminó sin errores. La búsqueda mostró
+el caso "no encontrado" porque el nombre registrado contenía un espacio final y
+la comparación de `String` requiere una coincidencia exacta.
+
+![Ejecución del ejercicio 1 - Arrays](./evidencias/ejercicio-1-arrays-terminal.png)
+
+Las evidencias restantes se insertarán aquí cuando estén disponibles.
