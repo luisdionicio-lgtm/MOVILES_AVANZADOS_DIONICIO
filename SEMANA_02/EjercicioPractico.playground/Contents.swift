@@ -6,6 +6,7 @@ import Foundation
 let diasAlumno = 7
 let diasDocente = 15
 let diasAdministrador = 10
+let diasContador = 15
 
 
 // MARK: - MULTA NORMAL POR DÍA
@@ -13,6 +14,7 @@ let diasAdministrador = 10
 let multaAlumno = 1.50
 let multaDocente = 2.00
 let multaAdministrador = 3.00
+let multaContador = 4.00
 
 
 // MARK: - INGRESO DE DATOS
@@ -39,6 +41,7 @@ while true {
     print("1. Alumno")
     print("2. Docente")
     print("3. Administrador")
+    print("4. Contador")
 
     print("")
     print("Ingrese el tipo de usuario:")
@@ -65,11 +68,17 @@ while true {
         multaPorDia = multaAdministrador
         tipoUsuario = "Administrador"
 
+    case "contador":
+
+        diasPermitidos = diasContador
+        multaPorDia = multaContador
+        tipoUsuario = "Contador"
+
     default:
 
         print("")
         print("❌ ERROR: Tipo de usuario no válido.")
-        print("Ingrese Alumno, Docente o Administrador.")
+        print("Ingrese Alumno, Docente, Administrador o Contador.")
 
         continue
     }
