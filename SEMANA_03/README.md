@@ -155,7 +155,8 @@ Guardar las imágenes en `SEMANA_03/evidencias/` con estos nombres:
 
 - `ejercicio-1-arrays-terminal.png`
 - `ejercicio-2-diccionarios-terminal.png`
-- `ejercicio-3-sets-terminal.png`
+- `ejercicio-3-sets-terminal-1.png`
+- `ejercicio-3-sets-terminal-2.png`
 - `ejercicio-4-combinacion-terminal.png`
 - `ejercicio-5-carrito-terminal.png`
 
@@ -163,7 +164,7 @@ Estado de las evidencias:
 
 - [x] Ejercicio 1 - ejecución completada sin errores
 - [x] Ejercicio 2 - ejecución completada sin errores
-- [ ] Ejercicio 3 - captura pendiente
+- [x] Ejercicio 3 - ejecución completada sin errores
 - [ ] Ejercicio 4 - captura pendiente
 - [ ] Ejercicio 5 - captura pendiente
 
@@ -184,5 +185,17 @@ porque el producto fue registrado como `Mouse` y se buscó como `mouse`; las cla
 de tipo `String` distinguen entre mayúsculas y minúsculas.
 
 ![Ejecución del ejercicio 2 - Diccionarios](./evidencias/ejercicio-2-diccionarios-terminal.png)
+
+### Evidencia 3 - Sets
+
+La ejecución recibió ocho números y eliminó correctamente el valor duplicado `2`.
+También comparó la asistencia de lunes y martes. Como se ingresaron nombres
+distintos en cada día, la intersección quedó vacía y todos los nombres aparecieron
+en su conjunto exclusivo. Finalmente, las cuatro predicciones produjeron los
+resultados esperados y el programa terminó sin errores.
+
+![Ejecución del ejercicio 3 - ingreso y lunes](./evidencias/ejercicio-3-sets-terminal-1.png)
+
+![Ejecución del ejercicio 3 - martes y resultados](./evidencias/ejercicio-3-sets-terminal-2.png)
 
 Las evidencias restantes se insertarán aquí cuando estén disponibles.
