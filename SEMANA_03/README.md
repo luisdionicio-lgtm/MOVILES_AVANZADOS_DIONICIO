@@ -166,7 +166,7 @@ Estado de las evidencias:
 - [x] Ejercicio 2 - ejecución completada sin errores
 - [x] Ejercicio 3 - ejecución completada sin errores
 - [x] Ejercicio 4 - ejecución completada sin errores
-- [ ] Ejercicio 5 - captura pendiente
+- [x] Ejercicio 5 - ejecución completada sin errores
 
 ### Evidencia 1 - Arrays
 
@@ -207,4 +207,13 @@ unidades. El programa terminó sin errores.
 
 ![Ejecución del ejercicio 4 - Combinación de colecciones](./evidencias/ejercicio-4-combinacion-terminal.png)
 
-Las evidencias restantes se insertarán aquí cuando estén disponibles.
+### Evidencia 5 - Carrito de compras 2.0
+
+La ejecución procesó dos productos y calculó un subtotal de `S/. 1990.00`. Aplicó
+correctamente el descuento del 5% (`S/. 99.50`), calculó `S/. 340.29` de IGV y
+obtuvo un total final de `S/. 2230.79`. El cliente fue clasificado como
+`Frecuente` y el ticket se imprimió completamente, sin errores.
+
+![Ejecución del ejercicio 5 - Carrito de compras 2.0](./evidencias/ejercicio-5-carrito-terminal.png)
+
+Las cinco evidencias de la rama `manual` están completas y documentadas.
