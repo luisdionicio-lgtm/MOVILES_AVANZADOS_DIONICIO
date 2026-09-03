@@ -148,17 +148,34 @@ retorno al prompt de Terminal sin errores. Guardarlas en `SEMANA_03/evidencias/`
 
 - `ejercicio-6-gestion-notas-terminal.png`
 - `ejercicio-7-inventario-menu-terminal-1.png`
-- `ejercicio-7-inventario-menu-terminal-2.png` si la salida requiere dos capturas.
+- `ejercicio-7-inventario-menu-terminal-2.png`
+- `ejercicio-7-inventario-menu-terminal-3.png`
+- `ejercicio-7-inventario-menu-terminal-4.png` para la salida final.
 
 Estado:
 
-- [ ] Ejercicio 6 - evidencia pendiente
-- [ ] Ejercicio 7 - evidencia pendiente
+- [x] Ejercicio 6 - ejecución completada sin errores
+- [ ] Ejercicio 7 - opciones 1 a 4 documentadas; salida final pendiente
 
 ### Evidencia 6 - Gestión de notas
 
-Pendiente de la captura enviada por el estudiante.
+La ejecución registró tres alumnos con tres notas cada uno. El reporte quedó
+ordenado por promedio, clasificó a Leon como `Bueno` y a Gabriel y Luis como
+`Desaprobado`. Calculó un promedio general de `12.78`, nota máxima de `20.00`,
+nota mínima de `1.00` y un porcentaje de aprobados de `33.33%`. El programa
+terminó sin errores y regresó al prompt de Terminal.
+
+![Ejecución del ejercicio 6 - Gestión de notas](./evidencias/ejercicio-6-gestion-notas-terminal.png)
 
 ### Evidencia 7 - Inventario con menú
 
-Pendiente de la captura o capturas enviadas por el estudiante.
+Las capturas muestran el registro de `mouse` y `teclado`, el inventario completo,
+la búsqueda exitosa de `teclado`, el filtro de stock bajo para `mouse` y el valor
+total correcto de `S/. 1847.00`. Falta documentar la opción 5 y el retorno al
+prompt de Terminal para cerrar la evidencia.
+
+![Ejecución del ejercicio 7 - Registro e inventario](./evidencias/ejercicio-7-inventario-menu-terminal-1.png)
+
+![Ejecución del ejercicio 7 - Búsqueda y stock bajo](./evidencias/ejercicio-7-inventario-menu-terminal-2.png)
+
+![Ejecución del ejercicio 7 - Valor total](./evidencias/ejercicio-7-inventario-menu-terminal-3.png)
