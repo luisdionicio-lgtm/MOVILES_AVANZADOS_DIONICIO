@@ -165,7 +165,7 @@ Estado de las evidencias:
 - [x] Ejercicio 1 - ejecución completada sin errores
 - [x] Ejercicio 2 - ejecución completada sin errores
 - [x] Ejercicio 3 - ejecución completada sin errores
-- [ ] Ejercicio 4 - captura pendiente
+- [x] Ejercicio 4 - ejecución completada sin errores
 - [ ] Ejercicio 5 - captura pendiente
 
 ### Evidencia 1 - Arrays
@@ -197,5 +197,14 @@ resultados esperados y el programa terminó sin errores.
 ![Ejecución del ejercicio 3 - ingreso y lunes](./evidencias/ejercicio-3-sets-terminal-1.png)
 
 ![Ejecución del ejercicio 3 - martes y resultados](./evidencias/ejercicio-3-sets-terminal-2.png)
+
+### Evidencia 4 - Combinación de colecciones
+
+La ejecución combinó los diccionarios de precios y stocks para tres productos.
+Calculó correctamente un valor total de inventario de `S/. 49300.0` y mostró
+`ipad`, `iphone` y `mouse` como stock bajo porque todos tienen menos de cinco
+unidades. El programa terminó sin errores.
+
+![Ejecución del ejercicio 4 - Combinación de colecciones](./evidencias/ejercicio-4-combinacion-terminal.png)
 
 Las evidencias restantes se insertarán aquí cuando estén disponibles.
