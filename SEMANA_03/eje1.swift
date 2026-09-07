@@ -424,3 +424,41 @@ func opcionRuta() {
         print("No se encontró una ruta.")
     }
 }
+
+func opcionServicio() {
+    print("Estación:")
+    guard let texto = readLine(), !normalizar(texto).isEmpty else {
+        print("Entrada inválida.")
+        return
+    }
+    let resultados = buscar(texto)
+    guard !resultados.isEmpty, let clave = elegir(resultados), let estacion = estaciones[clave] else {
+        print("Estación no encontrada.")
+        return
+    }
+    guard estacion.estado == .operativa else {
+        print("\(estacion.nombre): \(estacion.estado.rawValue). Aún no tiene servicio operativo.")
+        return
+    }
+
+    let frecuencia: Int
+    let tipoServicio: String
+    switch estacion.linea {
+    case .l1:
+        frecuencia = Int.random(in: 5...12)
+        tipoServicio = "tren"
+    case .l2:
+        frecuencia = Int.random(in: 5...9)
+        tipoServicio = "tren"
+    case .metropolitano:
+        frecuencia = Int.random(in: 3...7)
+        tipoServicio = "bus"
+    case .l4:
+        print("Ramal Línea 4 en construcción.")
+        return
+    }
+    let espera = Int.random(in: 1...frecuencia)
+    print("Próximo \(tipoServicio): ~\(espera) min")
+    print("Siguiente: ~\(espera + frecuencia) min | Frecuencia estimada: ~\(frecuencia) min")
+    print("SIMULACIÓN académica; no es una API oficial en tiempo real.")
+}
