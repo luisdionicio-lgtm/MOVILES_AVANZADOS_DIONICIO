@@ -311,3 +311,116 @@ func opcionDestino() {
         }
     }
 }
+
+typealias Grafo = [String: [String]]
+
+func unir(_ origen: String, _ destino: String, en grafo: inout Grafo) {
+    grafo[origen, default: []].append(destino)
+    grafo[destino, default: []].append(origen)
+}
+
+func crearGrafo(futuro: Bool) -> Grafo {
+    var grafo: Grafo = [:]
+    for indice in 0..<(nombresL1.count - 1) {
+        unir(nombresL1[indice], nombresL1[indice + 1], en: &grafo)
+    }
+    for indice in 0..<(nombresMetropolitano.count - 1) {
+        unir(claveMet(nombresMetropolitano[indice]), claveMet(nombresMetropolitano[indice + 1]), en: &grafo)
+    }
+    let enlacesSuperficie = [
+        ("Cabitos", claveMet("Benavides")),
+        ("Angamos", claveMet("Angamos")),
+        ("La Cultura", claveMet("Javier Prado"))
+    ]
+    for (origen, destino) in enlacesSuperficie { unir(origen, destino, en: &grafo) }
+    for indice in 0..<(nombresL2.count - 1) {
+        let origen = claveL2(nombresL2[indice])
+        let destino = claveL2(nombresL2[indice + 1])
+        if futuro || (estaciones[origen]?.estado == .operativa && estaciones[destino]?.estado == .operativa) {
+            unir(origen, destino, en: &grafo)
+        }
+    }
+    if futuro {
+        unir("Gamarra", "28 de Julio (L1 futura)", en: &grafo)
+        unir("28 de Julio (L1 futura)", "Grau", en: &grafo)
+        unir("28 de Julio (L1 futura)", claveL2("28 de Julio"), en: &grafo)
+        unir(claveL2("Estación Central"), claveMet("Central"), en: &grafo)
+        for indice in 0..<(nombresL4.count - 1) {
+            unir(claveL4(nombresL4[indice]), claveL4(nombresL4[indice + 1]), en: &grafo)
+        }
+        unir(claveL2("Carmen de la Legua"), claveL4("Carmen de la Legua"), en: &grafo)
+    }
+    return grafo
+}
+
+func bfs(origen: String, destino: String, grafo: Grafo) -> [String]? {
+    var cola = [origen]
+    var visitados: Set<String> = [origen]
+    var anterior: [String: String] = [:]
+    while !cola.isEmpty {
+        let actual = cola.removeFirst()
+        if actual == destino { break }
+        for vecino in grafo[actual, default: []] where !visitados.contains(vecino) {
+            visitados.insert(vecino)
+            anterior[vecino] = actual
+            cola.append(vecino)
+        }
+    }
+    guard visitados.contains(destino) else { return nil }
+    var camino = [destino]
+    var actual = destino
+    while let previo = anterior[actual] {
+        camino.append(previo)
+        actual = previo
+    }
+    return camino.reversed()
+}
+
+func claveRuta(_ texto: String) -> String? {
+    buscarDestino(texto)?.estacion ?? resolver(texto)
+}
+
+func minutosEntre(_ origen: String, _ destino: String) -> Int {
+    guard let primera = estaciones[origen], let segunda = estaciones[destino] else { return 4 }
+    if primera.linea != segunda.linea { return 7 }
+    switch primera.linea {
+    case .l1: return 3
+    case .l2: return 2
+    case .l4: return 3
+    case .metropolitano: return 4
+    }
+}
+
+func imprimirRuta(_ camino: [String], titulo: String) {
+    var total = 0
+    print("\n=== \(titulo) ===")
+    for indice in camino.indices {
+        guard let estacion = estaciones[camino[indice]] else { continue }
+        print("\(indice == 0 ? "INICIO" : indice == camino.count - 1 ? "DESTINO" : "↓") \(estacion.nombre) [\(estacion.linea.rawValue)]")
+        if indice < camino.count - 1 { total += minutosEntre(camino[indice], camino[indice + 1]) }
+    }
+    print("Tiempo estimado: ~\(total) min")
+    if camino.contains(where: { estaciones[$0]?.estado != .operativa }) {
+        print("ADVERTENCIA: ruta referencial con infraestructura no operativa.")
+    }
+}
+
+func opcionRuta() {
+    print("Origen (estación):")
+    guard let entradaOrigen = readLine(), let origen = claveRuta(entradaOrigen) else {
+        print("Origen no identificado.")
+        return
+    }
+    print("Destino (estación o lugar de Lima):")
+    guard let entradaDestino = readLine(), let destino = claveRuta(entradaDestino) else {
+        print("Destino no identificado.")
+        return
+    }
+    if let camino = bfs(origen: origen, destino: destino, grafo: crearGrafo(futuro: false)) {
+        imprimirRuta(camino, titulo: "RUTA ACTUAL")
+    } else if let camino = bfs(origen: origen, destino: destino, grafo: crearGrafo(futuro: true)) {
+        imprimirRuta(camino, titulo: "RUTA FUTURA / REFERENCIAL")
+    } else {
+        print("No se encontró una ruta.")
+    }
+}
