@@ -130,3 +130,69 @@ for (indice, nombre) in nombresL2.enumerated() {
         nota: operativa ? "Etapa 1A habilitada." : "Estación en construcción."
     ))
 }
+
+func textoSiNo(_ valor: Bool) -> String { valor ? "Sí" : "No" }
+
+func textoAscensor(_ valor: Bool?) -> String {
+    valor.map { $0 ? "Sí" : "No" } ?? "No verificado"
+}
+
+func buscar(_ texto: String) -> [(String, Estacion)] {
+    let consulta = normalizar(texto)
+    return estaciones.filter {
+        normalizar($0.key).contains(consulta)
+            || normalizar($0.value.nombre).contains(consulta)
+            || normalizar($0.value.codigo).contains(consulta)
+    }
+    .sorted { $0.value.nombre < $1.value.nombre }
+}
+
+func resolver(_ texto: String) -> String? {
+    let consulta = normalizar(texto)
+    if let clave = estaciones.keys.first(where: { normalizar($0) == consulta }) {
+        return clave
+    }
+    let coincidencias = buscar(texto)
+    return coincidencias.count == 1 ? coincidencias[0].0 : nil
+}
+
+func elegir(_ resultados: [(String, Estacion)]) -> String? {
+    if resultados.count == 1 { return resultados[0].0 }
+    for (indice, resultado) in resultados.enumerated() {
+        print("\(indice + 1). \(resultado.1.nombre) - \(resultado.1.linea.rawValue) - \(resultado.1.estado.rawValue)")
+    }
+    guard let entrada = readLine(), let opcion = Int(entrada),
+          resultados.indices.contains(opcion - 1) else { return nil }
+    return resultados[opcion - 1].0
+}
+
+func mostrar(_ clave: String) {
+    guard let estacion = estaciones[clave] else { return }
+    print("\n=== \(estacion.nombre) ===")
+    print("Código: \(estacion.codigo) | Sistema: \(estacion.linea.rawValue) | Estado: \(estacion.estado.rawValue)")
+    print("Accesible: \(textoSiNo(estacion.accesible)) | Ascensor: \(textoAscensor(estacion.ascensor))")
+    if let anio = estacion.anio { print("Operación prevista/referencial: \(anio)") }
+    print("Nota: \(estacion.nota)")
+}
+
+func opcionBuscar() {
+    print("Estación o parte del nombre:")
+    guard let texto = readLine(), !normalizar(texto).isEmpty else {
+        print("Entrada inválida.")
+        return
+    }
+    let resultados = buscar(texto)
+    guard !resultados.isEmpty else {
+        print("No se encontraron resultados.")
+        return
+    }
+    if let clave = elegir(resultados) { mostrar(clave) }
+}
+
+func listar(_ linea: Linea) {
+    let lista = estaciones.values.filter { $0.linea == linea }.sorted { $0.codigo < $1.codigo }
+    print("\n=== \(linea.rawValue) ===")
+    for estacion in lista {
+        print("\(estacion.codigo) | \(estacion.nombre) | \(estacion.estado.rawValue) | Ascensor: \(textoAscensor(estacion.ascensor))")
+    }
+}
