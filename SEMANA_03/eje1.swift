@@ -65,6 +65,12 @@ func guardar(_ clave: String, _ estacion: Estacion) {
     estaciones[clave] = estacion
 }
 
+func conectar(_ clave: String, _ conexion: Conexion) {
+    guard var estacion = estaciones[clave] else { return }
+    estacion.conexiones.append(conexion)
+    estaciones[clave] = estacion
+}
+
 let nombresL1 = [
     "Villa El Salvador", "Parque Industrial", "Pumacahua", "Villa María",
     "María Auxiliadora", "San Juan", "Atocongo", "Jorge Chávez", "Ayacucho",
@@ -131,6 +137,52 @@ for (indice, nombre) in nombresL2.enumerated() {
     ))
 }
 
+let nombresL4 = [
+    "Gambetta", "Canta Callao", "Bocanegra", "Aeropuerto", "El Olivar",
+    "Quilca", "Morales Duárez", "Carmen de la Legua"
+]
+
+for (indice, nombre) in nombresL4.enumerated() {
+    guardar(claveL4(nombre), Estacion(
+        codigo: "L4-R\(String(format: "%02d", indice + 1))",
+        nombre: nombre, linea: .l4, estado: .construccion,
+        ascensor: true, accesible: true, anio: 2030,
+        nota: "Ramal Línea 4 en construcción."
+    ))
+}
+
+let nombresMetropolitano = [
+    "Jirón de la Unión", "Central", "Estadio Nacional", "México", "Canadá",
+    "Javier Prado", "Canaval y Moreyra", "Aramburú", "Angamos",
+    "Ricardo Palma", "Benavides", "28 de Julio"
+]
+
+for (indice, nombre) in nombresMetropolitano.enumerated() {
+    guardar(claveMet(nombre), Estacion(
+        codigo: "MET-\(String(format: "%02d", indice + 1))",
+        nombre: nombre, linea: .metropolitano, estado: .operativa,
+        ascensor: nil, accesible: true, anio: nil,
+        nota: "Paradero estratégico del Metropolitano."
+    ))
+}
+
+conectar(claveL2("28 de Julio"), Conexion(
+    tipo: .intercambio, destino: "28 de Julio (L1 futura)", estado: .construccion,
+    detalle: "Intercambio L2-L1 todavía no operativo."
+))
+conectar("28 de Julio (L1 futura)", Conexion(
+    tipo: .intercambio, destino: claveL2("28 de Julio"), estado: .construccion,
+    detalle: "Intercambio L1-L2 todavía no operativo."
+))
+conectar(claveL2("Estación Central"), Conexion(
+    tipo: .metropolitano, destino: claveMet("Central"), estado: .construccion,
+    detalle: "Galería de conexión aún en construcción."
+))
+conectar(claveL2("Carmen de la Legua"), Conexion(
+    tipo: .intercambio, destino: claveL4("Carmen de la Legua"), estado: .construccion,
+    detalle: "Futuro intercambio Línea 2 - Ramal Línea 4."
+))
+
 func textoSiNo(_ valor: Bool) -> String { valor ? "Sí" : "No" }
 
 func textoAscensor(_ valor: Bool?) -> String {
@@ -173,6 +225,13 @@ func mostrar(_ clave: String) {
     print("Accesible: \(textoSiNo(estacion.accesible)) | Ascensor: \(textoAscensor(estacion.ascensor))")
     if let anio = estacion.anio { print("Operación prevista/referencial: \(anio)") }
     print("Nota: \(estacion.nota)")
+    if estacion.conexiones.isEmpty {
+        print("Conexiones especiales: ninguna registrada.")
+    }
+    for conexion in estacion.conexiones {
+        print("- \(conexion.tipo.rawValue) -> \(conexion.destino) [\(conexion.estado.rawValue)]")
+        print("  \(conexion.detalle)")
+    }
 }
 
 func opcionBuscar() {
@@ -195,4 +254,25 @@ func listar(_ linea: Linea) {
     for estacion in lista {
         print("\(estacion.codigo) | \(estacion.nombre) | \(estacion.estado.rawValue) | Ascensor: \(textoAscensor(estacion.ascensor))")
     }
+}
+
+func opcionLinea() {
+    print("1. Línea 1  2. Línea 2  3. Ramal L4  4. Metropolitano")
+    switch readLine() {
+    case "1": listar(.l1)
+    case "2": listar(.l2)
+    case "3": listar(.l4)
+    case "4": listar(.metropolitano)
+    default: print("Opción inválida.")
+    }
+}
+
+func mostrarCruces() {
+    print("""
+    \n=== CRUCES CLAVE ===
+    1. 28 de Julio: Línea 1 <-> Línea 2 | EN CONSTRUCCIÓN
+    2. Estación Central: Línea 2 <-> Metropolitano | EN CONSTRUCCIÓN
+    3. Carmen de la Legua: Línea 2 <-> Ramal Línea 4 | EN CONSTRUCCIÓN
+    4. Grau: no es un intercambio directo con Línea 2.
+    """)
 }
