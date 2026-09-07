@@ -276,3 +276,38 @@ func mostrarCruces() {
     4. Grau: no es un intercambio directo con Línea 2.
     """)
 }
+
+let destinos: [String: Destino] = [
+    "estadio nacional": Destino(nombre: "Estadio Nacional del Perú", estacion: claveMet("Estadio Nacional"), detalle: "Usa el Metropolitano y baja en Estadio Nacional."),
+    "miraflores": Destino(nombre: "Miraflores", estacion: claveMet("Ricardo Palma"), detalle: "Ricardo Palma es una opción práctica para Parque Kennedy y el centro de Miraflores."),
+    "parque kennedy": Destino(nombre: "Parque Kennedy", estacion: claveMet("Ricardo Palma"), detalle: "Baja en Ricardo Palma y continúa a pie."),
+    "centro de lima": Destino(nombre: "Centro Histórico de Lima", estacion: claveMet("Jirón de la Unión"), detalle: "Jirón de la Unión permite acceder al Centro Histórico."),
+    "centro historico": Destino(nombre: "Centro Histórico de Lima", estacion: claveMet("Jirón de la Unión"), detalle: "Jirón de la Unión permite acceder al Centro Histórico."),
+    "centro civico": Destino(nombre: "Centro Cívico", estacion: claveMet("Central"), detalle: "Central es la opción directa para el Centro Cívico."),
+    "san isidro": Destino(nombre: "Centro financiero de San Isidro", estacion: claveMet("Canaval y Moreyra"), detalle: "Canaval y Moreyra es un punto útil para el centro financiero."),
+    "gamarra": Destino(nombre: "Emporio Comercial de Gamarra", estacion: "Gamarra", detalle: "Usa Línea 1 y baja en Gamarra."),
+    "aeropuerto": Destino(nombre: "Aeropuerto Internacional Jorge Chávez", estacion: claveL4("Aeropuerto"), detalle: "La futura estación Aeropuerto aún está en construcción.")
+]
+
+func buscarDestino(_ texto: String) -> Destino? {
+    let consulta = normalizar(texto)
+    return destinos[consulta]
+        ?? destinos.first { consulta.contains($0.key) || $0.key.contains(consulta) }?.value
+}
+
+func opcionDestino() {
+    print("Destino (Estadio Nacional / Miraflores / Centro de Lima / San Isidro / Gamarra / Aeropuerto):")
+    guard let texto = readLine(), let destino = buscarDestino(texto) else {
+        print("Destino no registrado.")
+        return
+    }
+    print("Destino: \(destino.nombre)")
+    print("Estación/paradero: \(destino.estacion)")
+    print(destino.detalle)
+    if let estacion = estaciones[destino.estacion] {
+        print("Estado: \(estacion.estado.rawValue)")
+        if estacion.estado != .operativa {
+            print("ADVERTENCIA: infraestructura aún no operativa.")
+        }
+    }
+}
