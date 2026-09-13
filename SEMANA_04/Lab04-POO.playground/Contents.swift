@@ -80,3 +80,68 @@ class SucursalOutlet: Sucursal {
         return 0.0
     }
 }
+
+// TODO 18: prueba final del polimorfismo.
+class SucursalOnline: Sucursal {
+    override func costoEnvio(monto: Double) -> Double {
+        return 15.0
+    }
+}
+
+// TODO 17: recorrido polimorfico obligatorio.
+let refrigeradora = Electrodomestico(
+    nombre: "Refrigeradora",
+    marca: "Frost",
+    precioLista: 2000.0,
+    categoria: .lineaBlanca
+)
+let licuadora = Electrodomestico(
+    nombre: "Licuadora",
+    marca: "Mix",
+    precioLista: 250.0,
+    categoria: .pequenos
+)
+
+let sucursales: [Sucursal] = [
+    SucursalLima(nombre: "Lima Centro", ciudad: "Lima"),
+    SucursalProvincia(nombre: "Provincia Cusco", ciudad: "Cusco"),
+    SucursalOutlet(nombre: "Outlet Ate", ciudad: "Lima"),
+    SucursalOnline(nombre: "Tienda Online", ciudad: "Internet")
+]
+
+print("===== Refrigeradora (S/ 2000.0) =====")
+for sucursal in sucursales {
+    sucursal.cotizar(item: refrigeradora)
+}
+
+print("===== Licuadora (S/ 250.0) =====")
+for sucursal in sucursales {
+    sucursal.cotizar(item: licuadora)
+}
+
+// Para agregar SucursalOnline se necesitaron 6 lineas nuevas:
+// 5 para declarar la clase y 1 para agregar su instancia al array.
+
+// ===== FIX: Este codigo tenia 2 errores =====
+class SucursalMall: Sucursal {
+    override func descuento() -> Double { // FIX 7: falta override porque redefine un metodo heredado.
+        return 0.12
+    }
+}
+
+class SucursalExpress: Sucursal {
+    let radioKm: Int
+
+    init(nombre: String, ciudad: String, radioKm: Int) {
+        self.radioKm = radioKm
+        // FIX 8: se debe inicializar la clase base despues de radioKm.
+        super.init(nombre: nombre, ciudad: ciudad)
+    }
+}
+
+// ===== PREDICT: Que imprime? =====
+let misteriosa: Sucursal = SucursalLima(nombre: "Lima Centro", ciudad: "Lima")
+print(misteriosa.descuento()) // PREDICT 6: 0.1; se usa el metodo de la instancia real SucursalLima.
+
+let monto = 2000.0 * (1 - misteriosa.descuento())
+print(misteriosa.costoEnvio(monto: monto)) // PREDICT 7: 0.0; el monto es 1800 y el envio es gratis.
