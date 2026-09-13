@@ -2,7 +2,7 @@
 
 ## Herramienta de IA utilizada
 
-ChatGPT (Codex)
+ChatGPT 
 
 ## Caso 2B - Biblioteca
 
