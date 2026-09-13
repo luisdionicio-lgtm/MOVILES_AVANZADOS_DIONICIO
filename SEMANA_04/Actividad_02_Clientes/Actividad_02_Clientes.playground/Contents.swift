@@ -106,3 +106,38 @@ class ClienteJuridico: Cliente {
         super.mostrarDatos()
     }
 }
+
+// Crea una persona natural con los valores mostrados en el ejemplo.
+let clienteNatural = ClienteNatural(
+    nombreCompleto: "Juan Pérez",
+    dni: "12345678",
+    codigo: "C001",
+    direccion: "Av. Lima 123",
+    fechaDeRegistro: "2025-04-03",
+    numeroCuenta: "001-2025-000123",
+    montoMinimoApertura: 500.0
+)
+
+// Crea una empresa con sus datos legales y bancarios.
+let clienteJuridico = ClienteJuridico(
+    razonSocial: "Soluciones SAC",
+    ruc: "20123456789",
+    representanteLegal: "María León",
+    codigo: "C002",
+    direccion: "Jr. Empresas 456",
+    fechaDeRegistro: "2025-04-01",
+    numeroCuenta: "001-2025-000456",
+    montoMinimoApertura: 3000.0
+)
+
+// El array usa el tipo base para guardar objetos de ambas subclases.
+let clientes: [Cliente] = [clienteNatural, clienteJuridico]
+
+// Una misma llamada ejecuta la versión correcta según el tipo real del cliente.
+for i in 0..<clientes.count {
+    clientes[i].mostrarDatos()
+
+    if i < clientes.count - 1 {
+        print("----------------------------")
+    }
+}
