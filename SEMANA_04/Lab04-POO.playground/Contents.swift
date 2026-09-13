@@ -145,3 +145,24 @@ print(misteriosa.descuento()) // PREDICT 6: 0.1; se usa el metodo de la instanci
 
 let monto = 2000.0 * (1 - misteriosa.descuento())
 print(misteriosa.costoEnvio(monto: monto)) // PREDICT 7: 0.0; el monto es 1800 y el envio es gratis.
+
+// ===== CASO 2 - PARTE A: BIBLIOTECA (SIN IA) =====
+// Docente: Juan Leon
+
+enum EstadoLibro {
+    case disponible, prestado
+}
+
+struct Libro {
+    let titulo: String
+    let autor: String
+    var estado: EstadoLibro = .disponible
+}
+
+class Biblioteca {
+    var libros: [Libro] = []
+
+    func agregar(libro: Libro) {
+        libros.append(libro)
+    }
+}
