@@ -1,17 +1,6 @@
-# Móviles Avanzados
+# Requerimientos funcionales
 
-## Semana 04 — Programación orientada a objetos en Swift
-
-Este módulo contiene dos actividades desarrolladas en Swift Playgrounds para
-aplicar estructuras, clases, herencia, sobrescritura de métodos y polimorfismo.
-
-### Actividad 01: Matrícula de cursos
-
-La aplicación debe registrar los datos de un estudiante, administrar los cursos
-de su matrícula y generar una factura con los importes, impuestos y descuentos
-correspondientes.
-
-#### Requerimientos funcionales
+## Actividad 01: Matrícula de cursos
 
 - **RF-01 — Registrar al estudiante:** El sistema debe almacenar el nombre, el
   DNI y la condición que indica si el estudiante pertenece a Tecsup.
@@ -43,23 +32,7 @@ correspondientes.
   los descuentos aplicados y el total final por pagar. Todos los importes deben
   presentarse en soles con dos decimales.
 
-#### Reglas de cálculo
-
-```text
-Importe del curso = precio unitario × cantidad
-Subtotal          = suma de los importes
-IGV               = subtotal × 0.18
-Total con IGV     = subtotal + IGV
-Total final       = total con IGV − descuento por cantidad − descuento Tecsup
-```
-
-### Actividad 02: Gestión de clientes
-
-La aplicación debe representar clientes bancarios mediante una clase base y
-dos tipos especializados: cliente natural y cliente jurídico. Debe poder
-mostrar correctamente la información correspondiente a cada tipo de cliente.
-
-#### Requerimientos funcionales
+## Actividad 02: Gestión de clientes
 
 - **RF-01 — Registrar datos comunes:** El sistema debe almacenar para cada
   cliente su código, dirección, fecha de registro, número de cuenta y monto
@@ -88,10 +61,3 @@ mostrar correctamente la información correspondiente a cada tipo de cliente.
   debe mostrarse en soles con dos decimales.
 - **RF-10 — Listar todos los clientes:** El sistema debe recorrer la colección y
   mostrar la información completa de cada cliente de forma separada y legible.
-
-## Ejecución
-
-Abra los siguientes archivos con Xcode y ejecute cada playground:
-
-- `SEMANA_04/Actividad_01_Cursos/Actividad_01_Cursos.playground`
-- `SEMANA_04/Actividad_02_Clientes/Actividad_02_Clientes.playground`
