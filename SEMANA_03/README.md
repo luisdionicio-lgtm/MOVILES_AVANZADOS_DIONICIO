@@ -21,3 +21,5 @@
 - **RF-09:** Reutilizar posteriormente la lógica del sistema en una aplicación móvil.
 
 - **RF-10:** Gestionar una tarjeta de transporte simulada con consulta de saldo, recarga y pago.
+
+- **RF-11:** Permitir al administrador agregar estaciones entre dos puntos existentes o crear una línea simulada.
