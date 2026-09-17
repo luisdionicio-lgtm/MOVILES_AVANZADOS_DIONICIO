@@ -19,3 +19,5 @@
 - **RF-08:** Simular próximos servicios únicamente en estaciones operativas y validar las entradas del usuario.
 
 - **RF-09:** Reutilizar posteriormente la lógica del sistema en una aplicación móvil.
+
+- **RF-10:** Gestionar una tarjeta de transporte simulada con consulta de saldo, recarga y pago.

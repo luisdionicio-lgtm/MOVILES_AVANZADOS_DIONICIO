@@ -61,6 +61,7 @@ let recomendacionClave: [String: String] = [
     "Grau": "No es cruce directo. Como alternativa futura, Ositrán propuso Central (L2/Metropolitano) -> bus -> Grau (L1)."
 ]
 
+var saldoTarjeta = 10.00
 var estaciones: [String: Estacion] = [:]
 func guardar(_ clave: String, _ e: Estacion) { estaciones[clave] = e }
 func conectar(_ clave: String, _ c: Conexion) {
@@ -316,6 +317,7 @@ func imprimirRuta(_ c: [String], _ titulo: String) {
         }
     }
     print("Tiempo estimado: ~\(total) min")
+    print(String(format: "Saldo simulado de tarjeta: S/ %.2f", saldoTarjeta))
     if c.contains(where: { estaciones[$0]?.estado != .operativa }) { print("ADVERTENCIA: ruta referencial con infraestructura no operativa.") }
 }
 
@@ -346,6 +348,37 @@ func opcionServicio() {
     print("SIMULACIÓN realista para el prototipo; no es una API oficial en tiempo real.")
 }
 
+func menuTarjeta() {
+    while true {
+        print("\n=== TARJETA DE TRANSPORTE (SIMULADA) ===")
+        print("1. Ver saldo  2. Recargar  3. Simular pago  0. Volver")
+        switch readLine() {
+        case "1":
+            print(String(format: "Saldo actual: S/ %.2f", saldoTarjeta))
+        case "2":
+            print("Monto a recargar:")
+            guard let t = readLine(), let monto = Double(t.replacingOccurrences(of: ",", with: ".")), monto > 0 else {
+                print("Monto inválido."); continue
+            }
+            saldoTarjeta += monto
+            print(String(format: "Recarga exitosa. Nuevo saldo: S/ %.2f", saldoTarjeta))
+        case "3":
+            print("Monto del pasaje simulado:")
+            guard let t = readLine(), let monto = Double(t.replacingOccurrences(of: ",", with: ".")), monto > 0 else {
+                print("Monto inválido."); continue
+            }
+            if monto <= saldoTarjeta {
+                saldoTarjeta -= monto
+                print(String(format: "Pago simulado realizado. Saldo: S/ %.2f", saldoTarjeta))
+            } else {
+                print("Saldo insuficiente.")
+            }
+        case "0": return
+        default: print("Opción inválida.")
+        }
+    }
+}
+
 let requisitos = [
     "RF-01 Buscar una estación por nombre y mostrar su información de conectividad.",
     "RF-02 Mostrar línea, estado actual, ascensor, accesibilidad y referencia al Metropolitano cuando corresponda.",
@@ -355,7 +388,8 @@ let requisitos = [
     "RF-06 Recomendar estación/paradero para destinos como Estadio Nacional, Centro de Lima, Miraflores, San Isidro, Gamarra y Aeropuerto.",
     "RF-07 Calcular rutas actuales o futuras con BFS y tiempo estimado.",
     "RF-08 Simular próximos servicios solo en estaciones operativas y validar entradas.",
-    "RF-09 Reutilizar la lógica posteriormente en una app móvil."
+    "RF-09 Reutilizar la lógica posteriormente en una app móvil.",
+    "RF-10 Gestionar una tarjeta de transporte simulada con consulta de saldo, recarga y pago."
 ]
 func verRequisitos() { print("\n=== REQUERIMIENTOS FUNCIONALES ==="); requisitos.forEach { print("- \($0)") } }
 
@@ -369,6 +403,7 @@ func menu() {
     5. Calcular ruta
     6. Próximo servicio (SIMULADO)
     7. Requerimientos funcionales
+    8. Tarjeta de transporte (SIMULADA)
     0. Salir
     Red Básica del Metro de Lima: \(totalLineasMetro) líneas.
     Opción:
@@ -381,6 +416,7 @@ while activo {
     switch readLine() {
     case "1": opcionBuscar(); case "2": opcionLinea(); case "3": cruces(); case "4": opcionDestino()
     case "5": opcionRuta(); case "6": opcionServicio(); case "7": verRequisitos()
+    case "8": menuTarjeta()
     case "0": activo = false; print("Programa finalizado.")
     default: print("Opción inválida.")
     }
