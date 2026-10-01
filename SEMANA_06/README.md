@@ -8,3 +8,9 @@
 
 La navegacion usa un segue **Show** con identifier `showResultado`. Los datos calculados viajan en una instancia de `VentaModel` mediante `prepare(for:sender:)`.
 
+## Estructura necesaria del proyecto
+
+- `Semana06_04_VentaPlazos.xcodeproj` contiene la configuracion para abrir y compilar la app.
+- La carpeta interior `Semana06_04_VentaPlazos` contiene Swift, Storyboards y recursos.
+
+Ambos elementos son obligatorios y no son duplicados. Los datos locales de Xcode, como `xcuserdata` y `DerivedData`, no estan versionados.
