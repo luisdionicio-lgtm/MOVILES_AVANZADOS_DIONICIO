@@ -14,17 +14,104 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Calculadora de Préstamos" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TTL-lbl-001">
+                                <rect key="frame" x="42" y="137" width="309" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <color key="textColor" systemColor="systemBlueColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Cuota mensual y monto total" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SUB-lbl-001">
+                                <rect key="frame" x="42" y="179" width="309" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="STK-main-001">
+                                <rect key="frame" x="36" y="239" width="321" height="405"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Capital inicial (S/)" translatesAutoresizingMaskIntoConstraints="NO" id="CAP-lbl-001">
+                                        <rect key="frame" x="0.0" y="0.0" width="321" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="textColor"/><nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" borderStyle="roundedRect" placeholder="Ej. 10000" translatesAutoresizingMaskIntoConstraints="NO" id="CAP-txt-001">
+                                        <rect key="frame" x="0.0" y="34" width="321" height="44"/>
+                                        <constraints><constraint firstAttribute="height" constant="44" id="CAP-hgt-001"/></constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Tasa de interés anual (%)" translatesAutoresizingMaskIntoConstraints="NO" id="INT-lbl-001">
+                                        <rect key="frame" x="0.0" y="92" width="321" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="textColor"/><nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" borderStyle="roundedRect" placeholder="Ej. 12" translatesAutoresizingMaskIntoConstraints="NO" id="INT-txt-001">
+                                        <rect key="frame" x="0.0" y="126" width="321" height="44"/>
+                                        <constraints><constraint firstAttribute="height" constant="44" id="INT-hgt-001"/></constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Plazo del préstamo (años)" translatesAutoresizingMaskIntoConstraints="NO" id="YRS-lbl-001">
+                                        <rect key="frame" x="0.0" y="184" width="321" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="textColor"/><nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" borderStyle="roundedRect" placeholder="Ej. 2" translatesAutoresizingMaskIntoConstraints="NO" id="YRS-txt-001">
+                                        <rect key="frame" x="0.0" y="218" width="321" height="44"/>
+                                        <constraints><constraint firstAttribute="height" constant="44" id="YRS-hgt-001"/></constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" buttonType="system" translatesAutoresizingMaskIntoConstraints="NO" id="CAL-btn-001">
+                                        <rect key="frame" x="0.0" y="276" width="321" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                        <constraints><constraint firstAttribute="height" constant="50" id="CAL-hgt-001"/></constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                        <state key="normal" title="Calcular préstamo"/>
+                                        <connections><action selector="calcularPrestamo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CAL-act-001"/></connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Ingresa los datos del préstamo" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" translatesAutoresizingMaskIntoConstraints="NO" id="PAY-lbl-001">
+                                        <rect key="frame" x="0.0" y="340" width="321" height="28"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <nil key="textColor"/><nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" translatesAutoresizingMaskIntoConstraints="NO" id="TOT-lbl-001">
+                                        <rect key="frame" x="0.0" y="382" width="321" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <nil key="textColor"/><nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="TTL-lbl-001" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="TTL-top-001"/>
+                            <constraint firstItem="TTL-lbl-001" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="TTL-cen-001"/>
+                            <constraint firstItem="SUB-lbl-001" firstAttribute="top" secondItem="TTL-lbl-001" secondAttribute="bottom" constant="8" id="SUB-top-001"/>
+                            <constraint firstItem="SUB-lbl-001" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="SUB-cen-001"/>
+                            <constraint firstItem="STK-main-001" firstAttribute="top" secondItem="SUB-lbl-001" secondAttribute="bottom" constant="38" id="STK-top-001"/>
+                            <constraint firstItem="STK-main-001" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="36" id="STK-led-001"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="STK-main-001" secondAttribute="trailing" constant="36" id="STK-tra-001"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="annualRateTextField" destination="INT-txt-001" id="OUT-int-001"/>
+                        <outlet property="capitalTextField" destination="CAP-txt-001" id="OUT-cap-001"/>
+                        <outlet property="monthlyPaymentLabel" destination="PAY-lbl-001" id="OUT-pay-001"/>
+                        <outlet property="termYearsTextField" destination="YRS-txt-001" id="OUT-yrs-001"/>
+                        <outlet property="totalPaymentLabel" destination="TOT-lbl-001" id="OUT-tot-001"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <systemColor name="secondaryLabelColor"><color red="0.2352941176" green="0.2352941176" blue="0.262745098" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/></systemColor>
+        <systemColor name="systemBackgroundColor"><color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></systemColor>
+        <systemColor name="systemBlueColor"><color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/></systemColor>
     </resources>
 </document>
