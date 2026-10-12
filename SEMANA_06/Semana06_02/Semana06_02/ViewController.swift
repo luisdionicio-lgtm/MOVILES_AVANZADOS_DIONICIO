@@ -6,20 +6,19 @@ final class ViewController: UIViewController {
     @IBOutlet private weak var tfDni: UITextField!
 
     @IBAction private func btnContinuar(_ sender: Any) {
-        let cliente = ClienteModel(
+        performSegue(withIdentifier: "mostrarConfirmacion", sender: self)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "mostrarConfirmacion",
+              let confirmacion = segue.destination as? ViewControllerConfirmacion else { return }
+
+        confirmacion.pCliente = ClienteModel(
             codigo: 0,
             apellido: tfApellido.text ?? "",
             nombre: tfNombre.text ?? "",
             dni: tfDni.text ?? ""
         )
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let confirmacion = storyboard.instantiateViewController(
-            withIdentifier: "ViewControllerConfirmacion"
-        ) as? ViewControllerConfirmacion else { return }
-
-        confirmacion.pCliente = cliente
-        confirmacion.modalPresentationStyle = .pageSheet
-        present(confirmacion, animated: true)
     }
 }
