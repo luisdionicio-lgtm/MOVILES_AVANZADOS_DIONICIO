@@ -29,7 +29,7 @@ El segundo proyecto corresponde a la sección de personalización de la guía, p
 - Clase `PersonasTableViewCell`, subclase de `UITableViewCell`.
 - Imagen y label conectados a los outlets `PersonaImagen` y `personaNombre` de la celda.
 - `dataSource`, `delegate` y outlet de la tabla conectados al `ViewController`.
-- Arreglos de nombres e imágenes para los cinco docentes del ejemplo. Se reutilizan las fotos que proporcionaste, con sus nombres originales en Assets.
+- Arreglos de nombres e imágenes para los cinco docentes del ejemplo y Jaime Farfan, añadido a solicitud del estudiante. Se reutilizan las fotos que proporcionaste, con sus nombres originales en Assets.
 - Constraints de los cuatro bordes de la tabla a la Safe Area con constante 0. Los bordes de los controles de la celda también usan 0; la imagen tiene ancho 100 para reservar su columna.
 - `didSelectRowAt` muestra una alerta con el docente seleccionado y botón OK.
 

@@ -4,8 +4,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
 
     // Nombres del ejemplo; las fotografías son las que se agregaron a Assets.
-    let personasArreglo = ["Jaime Gomez", "Juan León", "Silvia Montoya", "Theo Diaz", "Elliot Garamendi"]
-    let personasImagenarreglo = ["jaime", "leon", "montoya", "Teobaldo-Diaz-Espinoza", "garamendi"]
+    let personasArreglo = ["Jaime Gomez", "Jaime Farfan", "Juan León", "Silvia Montoya", "Theo Diaz", "Elliot Garamendi"]
+    let personasImagenarreglo = ["jaime", "farfan", "leon", "montoya", "Teobaldo-Diaz-Espinoza", "garamendi"]
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return personasArreglo.count
