@@ -6,9 +6,13 @@ class CatalogoViewController: UIViewController {
         Producto(nombre: "Refrigeradora", precio: 2000, stock: 5),
         Producto(nombre: "Licuadora", precio: 250, stock: 10),
         Producto(nombre: "Laptop", precio: 3500, stock: 3),
-        Producto(nombre: "Cocina", precio: 1200, stock: 4)
+        Producto(nombre: "Cocina", precio: 1200, stock: 4),
+        Producto(nombre: "Microondas", precio: 450, stock: 6)
     ]
     let carrito = CarritoModel()
+    // Prueba final: 1 archivo Storyboard (nuevo botón tag 4, misma acción y
+    // outlet collection) y 1 archivo Swift (una entrada en productos).
+    // No fue necesario agregar otro segue ni modificar los demás modelos.
     @IBOutlet weak var verCarritoButton: UIButton!
     @IBOutlet var productoButtons: [UIButton]!
 
