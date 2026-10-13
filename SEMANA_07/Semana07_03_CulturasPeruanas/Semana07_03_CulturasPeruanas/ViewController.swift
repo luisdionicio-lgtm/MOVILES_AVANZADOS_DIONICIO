@@ -23,4 +23,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             tableView.deselectRow(at: seleccion, animated: true)
         }
     }
+
+    // El segue Show sale de la celda seleccionada en Main.storyboard.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "mostrarDetalleCultura",
+              let detalle = segue.destination as? DetalleCulturaViewController,
+              let cell = sender as? UITableViewCell,
+              let indexPath = tableView.indexPath(for: cell) else { return }
+        detalle.cultura = culturas[indexPath.row]
+    }
 }
