@@ -105,4 +105,10 @@ La prueba también verifica límites de descuento/categoría, DNI, compra repeti
 ![Stock después de comprar](evidencias/07_stock_actualizado.png)
 ![Alerta de stock](evidencias/08_stock_insuficiente.png)
 
+### Estructura de segues en Xcode
+
+Captura proporcionada por el estudiante del Storyboard abierto en Xcode, con las escenas y conexiones de navegación del integrador.
+
+![Estructura de escenas y segues en Xcode](evidencias/09_estructura_segues_xcode.png)
+
 Consulta [PROMPTS.md](PROMPTS.md) para la documentación de la asistencia.
