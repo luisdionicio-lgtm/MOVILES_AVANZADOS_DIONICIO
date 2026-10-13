@@ -23,7 +23,7 @@ Crea el proyecto Semana07_03_CulturasPeruanas dentro de SEMANA_07 de mi portafol
 7. Usar una celda reutilizable y constraints superior, inferior, izquierdo y derecho de la tabla a 0 respecto de la Safe Area.
 8. Guardar las imágenes en Assets para que la app funcione sin internet.
 
-Usa como ejemplos Inca, Nazca y Chavín. Obtén imágenes representativas con licencia reutilizable y documenta su autor, fuente y licencia.
+Usa como ejemplos Inca, Nazca, Chavín y Paracas. Obtén imágenes representativas con licencia reutilizable y documenta su autor, fuente y licencia.
 
 ## Formato esperado
 
@@ -32,7 +32,7 @@ Entrega el proyecto editable en Xcode con el modelo, los controladores, la clase
 ## Criterios de revisión
 
 - Compila y se ejecuta en iPhone 16.
-- Las tres culturas muestran su propia imagen.
+- Las cuatro culturas muestran su propia imagen.
 - El detalle corresponde a la fila seleccionada.
 - El botón de volver permite regresar y elegir otra cultura.
 - Ningún outlet queda desconectado.

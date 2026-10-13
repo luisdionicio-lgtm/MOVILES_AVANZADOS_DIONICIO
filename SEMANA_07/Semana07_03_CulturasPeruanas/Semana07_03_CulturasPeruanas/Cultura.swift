@@ -24,6 +24,12 @@ struct Cultura {
             region: "Áncash, sierra norte del Perú",
             descripcion: "Chavín de Huántar fue un importante centro ceremonial de los Andes. Su arquitectura y sus esculturas de piedra reflejan una tradición religiosa de gran influencia. Las cabezas clavas son una de sus expresiones más representativas.",
             imagen: "chavin"
+        ),
+        Cultura(
+            nombre: "Paracas",
+            region: "Ica, costa sur del Perú",
+            descripcion: "La cultura Paracas destacó por la calidad de sus textiles, elaborados con algodón y fibras de camélidos. Sus tejidos presentan figuras y colores que expresan su tradición artística. La península de Paracas, en Ica, conserva importantes testimonios de esta cultura.",
+            imagen: "paracas"
         )
     ]
 }

@@ -6,7 +6,7 @@ Caso a desarrollar de la guía GLAB-S07-JLEONS-2026-2, implementado en la rama `
 
 `Semana07_03_CulturasPeruanas/Semana07_03_CulturasPeruanas.xcodeproj`
 
-Aplicación UIKit con Storyboard, UITableView y UINavigationController. Presenta las culturas Inca, Nazca y Chavín, con imágenes locales y una pantalla de detalle.
+Aplicación UIKit con Storyboard, UITableView y UINavigationController. Presenta las culturas Inca, Nazca, Chavín y Paracas, con imágenes locales y una pantalla de detalle.
 
 ## Funcionamiento
 
@@ -45,3 +45,4 @@ Las imágenes están incluidas en Assets. No se necesitan paquetes externos ni c
 ![Detalle Inca](evidencias/02_detalle_inca_iphone16.png)
 ![Detalle Nazca](evidencias/03_detalle_nazca_iphone16.png)
 ![Detalle Chavín](evidencias/04_detalle_chavin_iphone16.png)
+![Detalle Paracas](evidencias/05_detalle_paracas_iphone16.png)
