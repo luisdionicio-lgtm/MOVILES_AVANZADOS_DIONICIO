@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="personas-vc">
+<device id="retina6_12" orientation="portrait" appearance="light"/>
+<dependencies><plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/><capability name="Safe area layout guides" minToolsVersion="9.0"/><capability name="System colors in document resources" minToolsVersion="11.0"/></dependencies>
+<scenes><scene sceneID="personas-scene"><objects>
+<viewController id="personas-vc" customClass="ViewController" customModule="Semana07_02_Personas" customModuleProvider="target" sceneMemberID="viewController">
+<view key="view" contentMode="scaleToFill" id="personas-view">
+<rect key="frame" x="0" y="0" width="393" height="852"/>
+<autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+<subviews>
+<tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="personas-table">
+<rect key="frame" x="0" y="59" width="393" height="759"/>
+<color key="backgroundColor" systemColor="systemBackgroundColor"/>
+<prototypes>
+<tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="miCell" rowHeight="100" id="persona-cell" customClass="PersonasTableViewCell" customModule="Semana07_02_Personas" customModuleProvider="target">
+<rect key="frame" x="0" y="50" width="393" height="100"/><autoresizingMask key="autoresizingMask"/>
+<tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="persona-cell" id="persona-content">
+<rect key="frame" x="0" y="0" width="393" height="100"/><autoresizingMask key="autoresizingMask"/>
+<subviews>
+<imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="persona-imagen">
+<rect key="frame" x="0" y="0" width="100" height="100"/>
+<constraints><constraint firstAttribute="width" constant="100" id="imagen-width"/></constraints>
+</imageView>
+<label opaque="NO" contentMode="left" text="Nombre" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="persona-nombre">
+<rect key="frame" x="100" y="0" width="293" height="100"/>
+<fontDescription key="fontDescription" type="system" pointSize="20"/><nil key="textColor"/><nil key="highlightedColor"/>
+</label>
+</subviews>
+<constraints>
+<constraint firstItem="persona-imagen" firstAttribute="leading" secondItem="persona-content" secondAttribute="leading" constant="0" id="imagen-leading"/>
+<constraint firstItem="persona-imagen" firstAttribute="top" secondItem="persona-content" secondAttribute="top" constant="0" id="imagen-top"/>
+<constraint firstAttribute="bottom" secondItem="persona-imagen" secondAttribute="bottom" constant="0" id="imagen-bottom"/>
+<constraint firstItem="persona-nombre" firstAttribute="leading" secondItem="persona-imagen" secondAttribute="trailing" constant="0" id="nombre-leading"/>
+<constraint firstItem="persona-nombre" firstAttribute="top" secondItem="persona-content" secondAttribute="top" constant="0" id="nombre-top"/>
+<constraint firstAttribute="bottom" secondItem="persona-nombre" secondAttribute="bottom" constant="0" id="nombre-bottom"/>
+<constraint firstAttribute="trailing" secondItem="persona-nombre" secondAttribute="trailing" constant="0" id="nombre-trailing"/>
+</constraints>
+</tableViewCellContentView>
+<connections><outlet property="personaNombre" destination="persona-nombre" id="cell-nombre"/><outlet property="PersonaImagen" destination="persona-imagen" id="cell-imagen"/></connections>
+</tableViewCell>
+</prototypes>
+<connections><outlet property="dataSource" destination="personas-vc" id="personas-source"/><outlet property="delegate" destination="personas-vc" id="personas-delegate"/></connections>
+</tableView>
+</subviews>
+<viewLayoutGuide key="safeArea" id="personas-safe"/><color key="backgroundColor" systemColor="systemBackgroundColor"/>
+<constraints>
+<constraint firstItem="personas-table" firstAttribute="top" secondItem="personas-safe" secondAttribute="top" constant="0" id="table-top"/>
+<constraint firstItem="personas-table" firstAttribute="leading" secondItem="personas-safe" secondAttribute="leading" constant="0" id="table-leading"/>
+<constraint firstItem="personas-safe" firstAttribute="trailing" secondItem="personas-table" secondAttribute="trailing" constant="0" id="table-trailing"/>
+<constraint firstItem="personas-safe" firstAttribute="bottom" secondItem="personas-table" secondAttribute="bottom" constant="0" id="table-bottom"/>
+</constraints>
+</view>
+<connections><outlet property="tableView" destination="personas-table" id="personas-outlet"/></connections>
+</viewController><placeholder placeholderIdentifier="IBFirstResponder" id="personas-first" sceneMemberID="firstResponder"/>
+</objects></scene></scenes><resources><systemColor name="systemBackgroundColor"><color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></systemColor></resources></document>
