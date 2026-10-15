@@ -1,5 +1,11 @@
 # Prompt simulado para el caso de culturas peruanas
 
+## Ampliación: dos lecturas por cultura
+
+Prompt simulado: «Conserva las cuatro culturas principales. Dentro de cada detalle incluye el subtítulo Otras culturas para explorar y dos opciones: Inca → Wari y Tiwanaku; Nazca → Chincha y Lima; Chavín → Cupisnique y Moche; Paracas → Chimú y Chancay. Cada selección debe abrir su imagen local, región y texto breve. Usa constraints y segues Show en el Storyboard, pasando el modelo en prepare(for:sender:). Permite regresar para elegir la otra lectura. Verifica en iPhone 16 y entrega exactamente dos commits de esta ampliación».
+
+Esta sección también es una reconstrucción didáctica, no una transcripción literal.
+
 Este prompt es una reconstrucción didáctica para documentar cómo se podría solicitar el caso a una IA. No es una transcripción literal de una consulta realizada.
 
 ## Contexto
