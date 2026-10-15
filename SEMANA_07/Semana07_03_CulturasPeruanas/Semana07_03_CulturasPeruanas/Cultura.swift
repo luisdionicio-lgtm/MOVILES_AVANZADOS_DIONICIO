@@ -6,6 +6,9 @@ struct Cultura {
     let descripcion: String
     let imagen: String
 
+    // El contenido se completa en el siguiente checkpoint.
+    var relacionadas: [Cultura] { [] }
+
     static let ejemplos = [
         Cultura(
             nombre: "Inca",
