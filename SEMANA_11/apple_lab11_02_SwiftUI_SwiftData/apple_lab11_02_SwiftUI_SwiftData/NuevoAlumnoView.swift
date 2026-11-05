@@ -13,13 +13,12 @@ struct NuevoAlumnoView: View {
         NavigationStack {
             Form {
                 Section(header: Text("Datos del Alumno")) {
-                    TextField("Apellido", text: $apellido)
-                    TextField("Nombre", text: $nombre)
-                    TextField("DNI", text: $dni)
-                        .keyboardType(.numberPad)
+                    Label { TextField("Apellido", text: $apellido) } icon: { Image(systemName: "person") }
+                    Label { TextField("Nombre", text: $nombre) } icon: { Image(systemName: "person.fill") }
+                    Label { TextField("DNI", text: $dni).keyboardType(.numberPad) } icon: { Image(systemName: "person.text.rectangle") }
                 }
 
-                Button("Guardar Alumno") {
+                Button {
                     // CREATE: crear el objeto e insertarlo en el contexto
                     let nuevoAlumno = Alumno(apellido: apellido, nombre: nombre, dni: dni)
                     modelContext.insert(nuevoAlumno)
@@ -32,10 +31,14 @@ struct NuevoAlumnoView: View {
                     }
 
                     dismiss() // Cierra el formulario
+                } label: {
+                    Label("Guardar Alumno", systemImage: "checkmark.circle.fill")
+                        .frame(maxWidth: .infinity)
                 }
                 .disabled(apellido.isEmpty || nombre.isEmpty || dni.isEmpty) // Desactiva si hay campos vacíos
             }
             .navigationTitle("Nuevo Alumno")
+            .tint(.indigo)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancelar") {
@@ -45,4 +48,8 @@ struct NuevoAlumnoView: View {
             }
         }
     }
+}
+
+#Preview {
+    NuevoAlumnoView().modelContainer(for: [Alumno.self, Curso.self], inMemory: true)
 }

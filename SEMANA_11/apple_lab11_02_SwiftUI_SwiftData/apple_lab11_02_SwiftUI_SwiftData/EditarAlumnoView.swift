@@ -11,13 +11,13 @@ struct EditarAlumnoView: View {
         NavigationStack {
             Form {
                 Section(header: Text("Datos del Alumno")) {
-                    TextField("Apellido", text: $alumno.apellido)
-                    TextField("Nombre", text: $alumno.nombre)
-                    TextField("DNI", text: $alumno.dni)
-                        .keyboardType(.numberPad)
+                    Label { TextField("Apellido", text: $alumno.apellido) } icon: { Image(systemName: "person") }
+                    Label { TextField("Nombre", text: $alumno.nombre) } icon: { Image(systemName: "person.fill") }
+                    Label { TextField("DNI", text: $alumno.dni).keyboardType(.numberPad) } icon: { Image(systemName: "person.text.rectangle") }
                 }
             }
             .navigationTitle("Editar Alumno")
+            .tint(.indigo)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Listo") { dismiss() }
@@ -25,4 +25,9 @@ struct EditarAlumnoView: View {
             }
         }
     }
+}
+
+#Preview {
+    EditarAlumnoView(alumno: Alumno(apellido: "García", nombre: "Ana", dni: "12345678"))
+        .modelContainer(for: [Alumno.self, Curso.self], inMemory: true)
 }

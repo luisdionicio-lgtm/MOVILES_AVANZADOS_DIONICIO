@@ -19,16 +19,35 @@ struct ContentView: View {
             List(selection: $alumnoSeleccionado) {
                 ForEach(alumnosFiltrados) { alumno in
                     NavigationLink(value: alumno) {
-                        VStack(alignment: .leading) {
-                            Text("\(alumno.apellido), \(alumno.nombre)").font(.headline)
-                            Text("DNI: \(alumno.dni)").font(.subheadline)
+                        HStack(spacing: 14) {
+                            Image(systemName: "person.fill")
+                                .font(.title3)
+                                .foregroundStyle(.indigo)
+                                .frame(width: 46, height: 46)
+                                .background(.indigo.opacity(0.12), in: RoundedRectangle(cornerRadius: 14))
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text("\(alumno.apellido), \(alumno.nombre)").font(.headline)
+                                Label(alumno.dni, systemImage: "person.text.rectangle")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                            }
                         }
+                        .padding(.vertical, 4)
                     }
                 }
                 .onDelete(perform: deleteAlumnos)
             }
             .searchable(text: $busqueda, prompt: "Buscar por apellido")
             .navigationTitle("Alumnos")
+            .overlay {
+                if alumnosFiltrados.isEmpty {
+                    ContentUnavailableView(
+                        busqueda.isEmpty ? "Aún no hay alumnos" : "Sin resultados",
+                        systemImage: busqueda.isEmpty ? "person.2.crop.square.stack" : "magnifyingglass",
+                        description: Text(busqueda.isEmpty ? "Agrega un alumno con el botón +." : "Prueba con otro apellido.")
+                    )
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) { EditButton() }
                 ToolbarItem {
@@ -44,23 +63,41 @@ struct ContentView: View {
             }
         } detail: {
             if let alumno = alumnoSeleccionado {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Detalles del Alumno").font(.title2)
-                    Text("Nombre: \(alumno.nombre)")
-                    Text("Apellido: \(alumno.apellido)")
-                    Text("DNI: \(alumno.dni)")
-                    Text("Curso: \(alumno.curso?.nombre ?? "Sin curso")")
-                    Button("Editar") { alumnoAEditar = alumno }
+                List {
+                    Section {
+                        VStack(spacing: 10) {
+                            Image(systemName: "person.crop.circle.fill")
+                                .font(.system(size: 70))
+                                .foregroundStyle(.indigo)
+                            Text("\(alumno.nombre) \(alumno.apellido)")
+                                .font(.title2.bold())
+                            Text("Alumno").font(.subheadline).foregroundStyle(.secondary)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                        .listRowBackground(Color.clear)
+                    }
+                    Section("Información") {
+                        Label(alumno.dni, systemImage: "person.text.rectangle")
+                        Label(alumno.curso?.nombre ?? "Sin curso", systemImage: "book.closed")
+                    }
+                    Section {
+                        Button { alumnoAEditar = alumno } label: {
+                            Label("Editar alumno", systemImage: "pencil")
+                        }
+                    }
                 }
-                .padding()
+                .navigationTitle("Detalle")
             } else {
-                Text("Selecciona un alumno")
+                ContentUnavailableView("Selecciona un alumno", systemImage: "person.crop.circle",
+                                       description: Text("Elige un alumno para ver sus datos."))
             }
         }
         .sheet(isPresented: $mostrarFormulario) { NuevoAlumnoView() }
         .sheet(item: $alumnoAEditar) { alumno in
             EditarAlumnoView(alumno: alumno)
         }
+        .tint(.indigo)
     }
 
     private func deleteAlumnos(offsets: IndexSet) {
