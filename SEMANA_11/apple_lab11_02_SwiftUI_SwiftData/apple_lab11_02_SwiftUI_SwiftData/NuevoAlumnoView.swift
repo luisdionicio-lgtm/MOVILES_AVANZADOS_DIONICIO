@@ -38,7 +38,7 @@ struct NuevoAlumnoView: View {
                 .disabled(apellido.isEmpty || nombre.isEmpty || dni.isEmpty) // Desactiva si hay campos vacíos
             }
             .navigationTitle("Nuevo Alumno")
-            .tint(.indigo)
+            .tint(.blue)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancelar") {

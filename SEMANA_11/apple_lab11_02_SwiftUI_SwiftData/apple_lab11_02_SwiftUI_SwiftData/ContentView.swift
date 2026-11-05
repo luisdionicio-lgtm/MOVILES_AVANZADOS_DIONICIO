@@ -22,14 +22,17 @@ struct ContentView: View {
                         HStack(spacing: 14) {
                             Image(systemName: "person.fill")
                                 .font(.title3)
-                                .foregroundStyle(.indigo)
+                                .foregroundStyle(.blue)
                                 .frame(width: 46, height: 46)
-                                .background(.indigo.opacity(0.12), in: RoundedRectangle(cornerRadius: 14))
+                                .background(.green.opacity(0.15), in: RoundedRectangle(cornerRadius: 14))
                             VStack(alignment: .leading, spacing: 5) {
                                 Text("\(alumno.apellido), \(alumno.nombre)").font(.headline)
-                                Label(alumno.dni, systemImage: "person.text.rectangle")
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
+                                Label {
+                                    Text(alumno.dni).foregroundStyle(.secondary)
+                                } icon: {
+                                    Image(systemName: "person.text.rectangle").foregroundStyle(.blue)
+                                }
+                                .font(.subheadline)
                             }
                         }
                         .padding(.vertical, 4)
@@ -68,7 +71,7 @@ struct ContentView: View {
                         VStack(spacing: 10) {
                             Image(systemName: "person.crop.circle.fill")
                                 .font(.system(size: 70))
-                                .foregroundStyle(.indigo)
+                                .foregroundStyle(.blue)
                             Text("\(alumno.nombre) \(alumno.apellido)")
                                 .font(.title2.bold())
                             Text("Alumno").font(.subheadline).foregroundStyle(.secondary)
@@ -97,7 +100,7 @@ struct ContentView: View {
         .sheet(item: $alumnoAEditar) { alumno in
             EditarAlumnoView(alumno: alumno)
         }
-        .tint(.indigo)
+        .tint(.blue)
     }
 
     private func deleteAlumnos(offsets: IndexSet) {

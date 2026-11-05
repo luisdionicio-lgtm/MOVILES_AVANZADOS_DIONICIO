@@ -17,7 +17,7 @@ struct EditarAlumnoView: View {
                 }
             }
             .navigationTitle("Editar Alumno")
-            .tint(.indigo)
+            .tint(.blue)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Listo") { dismiss() }
