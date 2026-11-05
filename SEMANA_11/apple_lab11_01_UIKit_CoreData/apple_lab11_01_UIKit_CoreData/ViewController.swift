@@ -94,4 +94,68 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alerta.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
         present(alerta, animated: true)
     }
+
+    // MARK: - UPDATE: editar un contacto
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let contacto = contactos[indexPath.row]
+        let alerta = UIAlertController(title: "Editar Contacto", message: "Modifica los datos", preferredStyle: .alert)
+        alerta.addTextField {
+            $0.placeholder = "Nombre"
+            $0.text = contacto.nombre
+        }
+        alerta.addTextField {
+            $0.placeholder = "Teléfono"
+            $0.text = contacto.telefono
+            $0.keyboardType = .phonePad
+        }
+        alerta.addTextField {
+            $0.placeholder = "Dirección"
+            $0.text = contacto.direccion
+        }
+
+        alerta.addAction(UIAlertAction(title: "Guardar", style: .default) { [weak self, weak alerta] _ in
+            guard let self, let campos = alerta?.textFields,
+                  let nombre = campos[0].text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                  !nombre.isEmpty else { return }
+
+            let contexto = self.conexion()
+            contacto.nombre = nombre
+            contacto.telefono = campos[1].text
+            contacto.direccion = campos[2].text
+            do {
+                try contexto.save()
+                self.cargarInfoCoreData()
+                self.TablaContacto.reloadData()
+            } catch {
+                contexto.rollback()
+                print("Error al actualizar: \(error)")
+            }
+        })
+        alerta.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+        present(alerta, animated: true)
+    }
+
+    // MARK: - DELETE: eliminar un contacto
+
+    func eliminarContacto(at indexPath: IndexPath) {
+        let contexto = conexion()
+        contexto.delete(contactos[indexPath.row])
+        do {
+            try contexto.save()
+            contactos.remove(at: indexPath.row)
+            TablaContacto.deleteRows(at: [indexPath], with: .automatic)
+        } catch {
+            contexto.rollback()
+            print("Error al eliminar: \(error)")
+        }
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            eliminarContacto(at: indexPath)
+        }
+    }
 }
