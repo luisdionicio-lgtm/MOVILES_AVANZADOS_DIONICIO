@@ -37,6 +37,8 @@ Categorías por compras no anuladas: Regular < S/ 1000; Frecuente desde S/ 1000;
 
 ## Validación realizada · 5 de noviembre de 2026
 
+Consulta el [detalle de pruebas y sus límites](PRUEBAS.md).
+
 - Build Debug para iPhone 16: correcto.
 - 13 comprobaciones automáticas: usuario único, claves, login, VIP, regular, stock insuficiente, aislamiento y permisos, motivo obligatorio, anulación y reporte, borrado protegido, regla Deny real, anulación única y cálculo reproducible. Resultado: [JSON](evidencias/pruebas-grupo-a.json).
 - Recorrido real en iPhone 16: acceso de ambos roles, Productos, Clientes, formulario, registro de venta, Mis ventas, ventas generales, anulación y Cuenta.
