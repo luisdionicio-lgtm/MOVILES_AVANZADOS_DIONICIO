@@ -24,7 +24,12 @@ final class SalesController: UITableViewController, UISearchResultsUpdating {
         let all = Store.shared.sales().filter { !$0.anulada }
         let today = all.filter { Calendar.current.isDateInToday($0.fecha) }.reduce(0) { $0+$1.total }
         let month = all.filter { Calendar.current.isDate($0.fecha, equalTo: Date(), toGranularity: .month) }.reduce(0) { $0+$1.total }
-        let total = Theme.label("HOY  \(Theme.money(today))    MES  \(Theme.money(month))", size: 14, bold: true)
+        let todayCount = all.filter { Calendar.current.isDateInToday($0.fecha) }.count
+        let monthCount = all.filter { Calendar.current.isDate($0.fecha, equalTo: Date(), toGranularity: .month) }.count
+        let left = Theme.card([Theme.label("Hoy", size: 13), Theme.label(Theme.money(today), size: 20, bold: true), Theme.label("\(todayCount) ventas", size: 12)], padding: 12)
+        let right = Theme.card([Theme.label("Mes", size: 13), Theme.label(Theme.money(month), size: 20, bold: true), Theme.label("\(monthCount) ventas", size: 12)], padding: 12)
+        let total = UIStackView(arrangedSubviews: [left, right]); total.axis = .horizontal; total.spacing = 10; total.distribution = .fillEqually
+        total.heightAnchor.constraint(equalToConstant: 95).isActive = true
         let pieces: [UIView]
         if Store.shared.supervisor {
             let users: [Usuario] = Store.shared.fetch("Usuario", predicate: NSPredicate(format: "rol == %@", Role.vendedor.rawValue), sort: "nombre")
@@ -35,7 +40,7 @@ final class SalesController: UITableViewController, UISearchResultsUpdating {
             pieces = [total,period,seller]
         } else { pieces = [total,period] }
         let stack = Theme.stack(pieces)
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: Store.shared.supervisor ? 148 : 104))
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: Store.shared.supervisor ? 222 : 175))
         stack.frame = header.bounds.insetBy(dx: 20, dy: 10)
         header.addSubview(stack); tableView.tableHeaderView = header
         tableView.reloadData()
@@ -55,7 +60,7 @@ final class SalesController: UITableViewController, UISearchResultsUpdating {
         cell.detailTextLabel?.text = "\(v.producto?.nombre ?? "") × \(v.cantidad) · \(date)\nVendedor · \(v.vendedor?.nombre ?? "")" +
             (v.anulada ? "\nANULADA · \(v.motivoAnulacion ?? "")" : "\nIGV · \(Theme.money(v.igv))")
         cell.imageView?.image = UIImage(systemName: v.anulada ? "xmark.circle.fill" : "checkmark.circle.fill")
-        cell.imageView?.tintColor = v.anulada ? .systemRed : Theme.copper
+        cell.imageView?.tintColor = v.anulada ? .systemRed : .systemGreen
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

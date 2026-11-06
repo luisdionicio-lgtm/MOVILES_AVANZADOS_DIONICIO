@@ -117,14 +117,14 @@ final class LoginController: UIViewController {
     let errorLabel = Theme.label("", size: 14)
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "VENTAS"
+        title = "Ventas Tecsup"
         let logo = UIImageView(image: UIImage(systemName: "bag.fill"))
         logo.tintColor = Theme.copper; logo.contentMode = .scaleAspectFit
         logo.heightAnchor.constraint(equalToConstant: 94).isActive = true
         errorLabel.textColor = .systemRed
         formLayout(Theme.stack([
-            logo, Theme.label("Control comercial", size: 32, bold: true),
-            Theme.label("Tu operación, en orden.", size: 18), Theme.label("ACCESO A TU ESPACIO", size: 12, bold: true),
+            logo, Theme.label("Ventas Tecsup", size: 32, bold: true),
+            Theme.label("Inicia sesión para continuar", size: 18), Theme.label("ACCESO A TU ESPACIO", size: 12, bold: true),
             Theme.card([Theme.label("Iniciar sesión", size: 20, bold: true), user, password, errorLabel]),
             Theme.button("Ingresar", action: UIAction { [weak self] _ in
                 guard let self else { return }
