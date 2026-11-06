@@ -118,8 +118,8 @@ final class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Ventas Tecsup"
-        let logo = UIImageView(image: UIImage(systemName: "bag.fill"))
-        logo.tintColor = Theme.copper; logo.contentMode = .scaleAspectFit
+        let logo = UIImageView(image: UIImage(named: "Tecsup"))
+        logo.contentMode = .scaleAspectFit
         logo.heightAnchor.constraint(equalToConstant: 94).isActive = true
         errorLabel.textColor = .systemRed
         formLayout(Theme.stack([
