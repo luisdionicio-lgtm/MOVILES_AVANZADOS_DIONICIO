@@ -9,7 +9,7 @@ final class SalesController: UITableViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundColor = Theme.background
-        tableView.rowHeight = 130
+        tableView.rowHeight = 105
         search.searchResultsUpdater = self; search.obscuresBackgroundDuringPresentation = false
         search.searchBar.placeholder = "Buscar por cliente"
         navigationItem.searchController = search
@@ -54,8 +54,8 @@ final class SalesController: UITableViewController, UISearchResultsUpdating {
         cell.detailTextLabel?.numberOfLines = 0
         cell.detailTextLabel?.text = "\(v.producto?.nombre ?? "") × \(v.cantidad) · \(date)\nVendedor · \(v.vendedor?.nombre ?? "")" +
             (v.anulada ? "\nANULADA · \(v.motivoAnulacion ?? "")" : "\nIGV · \(Theme.money(v.igv))")
-        cell.imageView?.image = UIImage(systemName: v.anulada ? "xmark.circle" : "receipt")
-        cell.imageView?.tintColor = Theme.copper
+        cell.imageView?.image = UIImage(systemName: v.anulada ? "xmark.circle.fill" : "checkmark.circle.fill")
+        cell.imageView?.tintColor = v.anulada ? .systemRed : Theme.copper
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -22,12 +22,18 @@ final class SaleController: UIViewController {
             button.showsMenuAsPrimaryAction = true
             button.backgroundColor = .white; button.layer.cornerRadius = 10
         }
+        let selection = Theme.stack([
+            Theme.label("CLIENTE", size: 12, bold: true), clientButton,
+            Theme.label("PRODUCTO", size: 12, bold: true), productButton, stockLabel, quantityLabel, quantity
+        ])
+        selection.backgroundColor = .white; selection.layer.cornerRadius = 18
+        selection.isLayoutMarginsRelativeArrangement = true
+        selection.layoutMargins = .init(top: 18, left: 18, bottom: 18, right: 18)
+        summary.backgroundColor = .white; summary.layer.cornerRadius = 16; summary.clipsToBounds = true
         formLayout(Theme.stack([
             Theme.label("Nueva operación", size: 30, bold: true),
             Theme.label("Vendedor · "+(Store.shared.current?.nombre ?? ""), bold: true),
-            Theme.label("Cliente", size: 13, bold: true), clientButton,
-            Theme.label("Producto", size: 13, bold: true), productButton, stockLabel,
-            quantityLabel, quantity, Theme.label("RESUMEN DE LA VENTA", size: 12, bold: true), summary,
+            selection, Theme.label("RESUMEN DE LA VENTA", size: 12, bold: true), summary,
             Theme.button("Registrar venta", action: UIAction { [weak self] _ in self?.register() })
         ]))
     }

@@ -37,10 +37,11 @@ final class DashboardController: UIViewController {
         let total = todaySales.reduce(0) { $0+$1.total }
         let tax = all.filter { calendar.isDate($0.fecha, equalTo: Date(), toGranularity: .month) }.reduce(0) { $0+$1.igv }
         let card = Theme.stack([
-            Theme.label("VENTAS DE HOY", size: 12, bold: true),
+            Theme.label("VENDIDO HOY", size: 12, bold: true),
             Theme.label(Theme.money(total), size: 35, bold: true),
             Theme.label("Variación diaria · \(Theme.money(total - previous))", size: 14),
-            Theme.label("\(todaySales.count) operaciones · IGV del mes \(Theme.money(tax))", size: 15)
+            Theme.label("\(todaySales.count) operaciones", size: 15),
+            Theme.label("IGV DEL MES   \(Theme.money(tax))", size: 16, bold: true)
         ])
         card.backgroundColor = .white; card.layer.cornerRadius = 16
         card.isLayoutMarginsRelativeArrangement = true; card.layoutMargins = .init(top: 20, left: 20, bottom: 20, right: 20)
@@ -51,6 +52,7 @@ final class DashboardController: UIViewController {
         let host = UIHostingController(rootView: WeekChart(days: days))
         chartHost = host
         addChild(host); host.didMove(toParent: self)
+        host.view.layer.cornerRadius = 16; host.view.clipsToBounds = true
         host.view.heightAnchor.constraint(equalToConstant: 220).isActive = true
         let stack = Theme.stack([
             Theme.label("Hola, "+(Store.shared.current?.nombre ?? ""), size: 27, bold: true),
@@ -78,5 +80,5 @@ final class DashboardController: UIViewController {
 }
 
 #Preview {
-    WeekChart(days: [DayAmount(id: Date(), total: 424.8)])
+    WeekChart(days: (0..<7).map { DayAmount(id: Calendar.current.date(byAdding: .day, value: $0 - 6, to: Date())!, total: [180, 275, 145, 350, 245, 210, 425][$0]) })
 }
