@@ -33,11 +33,23 @@ final class SalesController: UITableViewController, UISearchResultsUpdating {
         let pieces: [UIView]
         if Store.shared.supervisor {
             let users: [Usuario] = Store.shared.fetch("Usuario", predicate: NSPredicate(format: "rol == %@", Role.vendedor.rawValue), sort: "nombre")
-            seller.showsMenuAsPrimaryAction = true
-            seller.setTitle("Vendedor · "+(selectedSeller?.nombre ?? "Todos")+" ▾", for: .normal)
-            seller.menu = UIMenu(children: [UIAction(title: "Todos") { [weak self] _ in self?.selectedSeller = nil; self?.refresh() }] +
-                users.map { u in UIAction(title: u.nombre) { [weak self] _ in self?.selectedSeller = u; self?.refresh() } })
-            pieces = [total,period,seller]
+            let chips = UIStackView(); chips.axis = .horizontal; chips.spacing = 8
+            let choices: [(String, Usuario?)] = [("Todos", nil)] + users.map { ($0.nombre, Optional($0)) }
+            for (name, user) in choices {
+                let button = UIButton(type: .system)
+                var config = UIButton.Configuration.filled(); config.title = name
+                config.cornerStyle = .capsule
+                config.baseBackgroundColor = (selectedSeller == user) ? Theme.navy : .white
+                config.baseForegroundColor = (selectedSeller == user) ? .white : Theme.navy
+                button.configuration = config
+                button.addAction(UIAction { [weak self] _ in self?.selectedSeller = user; self?.refresh() }, for: .touchUpInside)
+                chips.addArrangedSubview(button)
+            }
+            let scroll = UIScrollView(); scroll.showsHorizontalScrollIndicator = false
+            chips.translatesAutoresizingMaskIntoConstraints = false; scroll.addSubview(chips)
+            NSLayoutConstraint.activate([chips.leadingAnchor.constraint(equalTo: scroll.contentLayoutGuide.leadingAnchor), chips.trailingAnchor.constraint(equalTo: scroll.contentLayoutGuide.trailingAnchor), chips.topAnchor.constraint(equalTo: scroll.contentLayoutGuide.topAnchor), chips.bottomAnchor.constraint(equalTo: scroll.contentLayoutGuide.bottomAnchor), chips.heightAnchor.constraint(equalTo: scroll.frameLayoutGuide.heightAnchor)])
+            scroll.heightAnchor.constraint(equalToConstant: 38).isActive = true
+            pieces = [total, period, scroll]
         } else { pieces = [total,period] }
         let stack = Theme.stack(pieces)
         let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: Store.shared.supervisor ? 222 : 175))
