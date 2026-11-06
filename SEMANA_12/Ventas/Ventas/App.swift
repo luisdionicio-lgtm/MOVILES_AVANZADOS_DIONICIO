@@ -35,6 +35,13 @@ enum Theme {
         l.textColor = navy
         return l
     }
+    static func card(_ items: [UIView], padding: CGFloat = 18) -> UIStackView {
+        let card = stack(items); card.spacing = 10
+        card.backgroundColor = .white; card.layer.cornerRadius = 18
+        card.isLayoutMarginsRelativeArrangement = true
+        card.layoutMargins = .init(top: padding, left: padding, bottom: padding, right: padding)
+        return card
+    }
     static func field(_ placeholder: String, secure: Bool = false) -> UITextField {
         let f = UITextField(); f.placeholder = placeholder; f.isSecureTextEntry = secure
         f.borderStyle = .roundedRect; f.backgroundColor = .white
@@ -118,7 +125,7 @@ final class LoginController: UIViewController {
         formLayout(Theme.stack([
             logo, Theme.label("Control comercial", size: 32, bold: true),
             Theme.label("Tu operación, en orden.", size: 18), Theme.label("ACCESO A TU ESPACIO", size: 12, bold: true),
-            user, password, errorLabel,
+            Theme.card([Theme.label("Iniciar sesión", size: 20, bold: true), user, password, errorLabel]),
             Theme.button("Ingresar", action: UIAction { [weak self] _ in
                 guard let self else { return }
                 do { try Store.shared.login(usuario: self.user.text ?? "", clave: self.password.text ?? ""); self.showApp() }

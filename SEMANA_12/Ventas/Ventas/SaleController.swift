@@ -11,14 +11,24 @@ final class SaleController: UIViewController {
     let quantity = UIStepper()
     let quantityLabel = Theme.label("Cantidad · 1", bold: true)
     let stockLabel = Theme.label("")
-    let summary = Theme.label("", size: 19)
+    let summary = Theme.label("", size: 16)
+    let subtotalValue = Theme.label("S/ 0.00", bold: true)
+    let discountValue = Theme.label("S/ 0.00", bold: true)
+    let taxValue = Theme.label("S/ 0.00", bold: true)
+    let totalValue = Theme.label("S/ 0.00", size: 19, bold: true)
+    func row(_ name: String, _ value: UILabel) -> UIStackView {
+        let label = Theme.label(name, size: 16); label.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        value.textAlignment = .right; value.setContentHuggingPriority(.required, for: .horizontal)
+        let row = UIStackView(arrangedSubviews: [label, value]); row.axis = .horizontal; row.distribution = .fill
+        return row
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         quantity.minimumValue = 1; quantity.maximumValue = 1_000_000; quantity.value = 1
         quantity.addTarget(self, action: #selector(update), for: .valueChanged)
         for button in [clientButton,productButton] {
             button.contentHorizontalAlignment = .leading
-            button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            button.heightAnchor.constraint(equalToConstant: 36).isActive = true
             button.showsMenuAsPrimaryAction = true
             button.backgroundColor = .white; button.layer.cornerRadius = 10
         }
@@ -26,14 +36,14 @@ final class SaleController: UIViewController {
             Theme.label("CLIENTE", size: 12, bold: true), clientButton,
             Theme.label("PRODUCTO", size: 12, bold: true), productButton, stockLabel, quantityLabel, quantity
         ])
+        selection.spacing = 6
         selection.backgroundColor = .white; selection.layer.cornerRadius = 18
         selection.isLayoutMarginsRelativeArrangement = true
-        selection.layoutMargins = .init(top: 18, left: 18, bottom: 18, right: 18)
-        summary.backgroundColor = .white; summary.layer.cornerRadius = 16; summary.clipsToBounds = true
+        selection.layoutMargins = .init(top: 12, left: 16, bottom: 12, right: 16)
+        let seller = Theme.card([Theme.label("VENDEDOR", size: 11, bold: true), Theme.label(Store.shared.current?.nombre ?? "", size: 17, bold: true), Theme.label("La venta se registrará a tu nombre", size: 13)], padding: 12)
+        let amounts = Theme.card([row("Subtotal", subtotalValue), row("Descuento VIP", discountValue), row("IGV 18 %", taxValue), row("Total", totalValue)])
         formLayout(Theme.stack([
-            Theme.label("Nueva operación", size: 30, bold: true),
-            Theme.label("Vendedor · "+(Store.shared.current?.nombre ?? ""), bold: true),
-            selection, Theme.label("RESUMEN DE LA VENTA", size: 12, bold: true), summary,
+            seller, selection, Theme.label("RESUMEN DE LA VENTA", size: 12, bold: true), amounts,
             Theme.button("Registrar venta", action: UIAction { [weak self] _ in self?.register() })
         ]))
     }
@@ -57,15 +67,12 @@ final class SaleController: UIViewController {
         quantity.maximumValue = max(1, Double(product?.stock ?? 1))
         stockLabel.text = "Stock disponible · \(product?.stock ?? 0)"
         quantityLabel.text = "Cantidad · \(Int(quantity.value))"
-        guard let product, let client else { summary.text = "Selecciona cliente y producto."; return }
+        guard let product, let client else {
+            [subtotalValue, discountValue, taxValue, totalValue].forEach { $0.text = Theme.money(0) }; return
+        }
         let a = Importe(precio: product.precio, cantidad: Int(quantity.value), vip: client.categoria == "VIP")
-        summary.text = """
-        Subtotal           \(Theme.money(a.subtotal))
-        Descuento          \(Theme.money(a.descuento))
-        IGV 18%            \(Theme.money(a.igv))
-
-        Total              \(Theme.money(a.total))
-        """
+        subtotalValue.text = Theme.money(a.subtotal); discountValue.text = Theme.money(a.descuento)
+        taxValue.text = Theme.money(a.igv); totalValue.text = Theme.money(a.total)
     }
     func register() {
         guard let client, let product else { message("Selecciona cliente y producto."); return }

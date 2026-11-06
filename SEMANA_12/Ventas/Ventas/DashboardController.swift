@@ -36,15 +36,9 @@ final class DashboardController: UIViewController {
         let previous = all.filter { calendar.isDate($0.fecha, inSameDayAs: yesterday) }.reduce(0) { $0+$1.total }
         let total = todaySales.reduce(0) { $0+$1.total }
         let tax = all.filter { calendar.isDate($0.fecha, equalTo: Date(), toGranularity: .month) }.reduce(0) { $0+$1.igv }
-        let card = Theme.stack([
-            Theme.label("VENDIDO HOY", size: 12, bold: true),
-            Theme.label(Theme.money(total), size: 35, bold: true),
-            Theme.label("Variación diaria · \(Theme.money(total - previous))", size: 14),
-            Theme.label("\(todaySales.count) operaciones", size: 15),
-            Theme.label("IGV DEL MES   \(Theme.money(tax))", size: 16, bold: true)
-        ])
-        card.backgroundColor = .white; card.layer.cornerRadius = 16
-        card.isLayoutMarginsRelativeArrangement = true; card.layoutMargins = .init(top: 20, left: 20, bottom: 20, right: 20)
+        let todayCard = Theme.card([Theme.label("VENDIDO HOY", size: 12, bold: true), Theme.label(Theme.money(total), size: 23, bold: true), Theme.label("Variación · " + Theme.money(total - previous), size: 13)])
+        let taxCard = Theme.card([Theme.label("IGV DEL MES", size: 12, bold: true), Theme.label(Theme.money(tax), size: 23, bold: true), Theme.label("\(todaySales.count) ventas hoy", size: 13)])
+        let card = UIStackView(arrangedSubviews: [todayCard, taxCard]); card.axis = .horizontal; card.spacing = 12; card.distribution = .fillEqually
         let days = (0..<7).map { index -> DayAmount in
             let day = calendar.date(byAdding: .day, value: index - 6, to: today)!
             return DayAmount(id: day, total: all.filter { calendar.isDate($0.fecha, inSameDayAs: day) }.reduce(0) { $0+$1.total })
@@ -68,7 +62,7 @@ final class DashboardController: UIViewController {
         }
         if ranking.isEmpty { stack.addArrangedSubview(Theme.label("Aún no hay vendedores.")) }
         stack.addArrangedSubview(Theme.label("Stock bajo", size: 21, bold: true))
-        let low: [Producto] = Store.shared.fetch("Producto", predicate: NSPredicate(format: "stock <= 10"), sort: "stock")
+        let low: [Producto] = Store.shared.fetch("Producto", predicate: NSPredicate(format: "stock <= 5"), sort: "stock")
         for p in low {
             let label = Theme.label("\(p.nombre) · \(p.stock) unidades")
             label.textColor = p.stock <= 5 ? .systemRed : .systemOrange
