@@ -126,7 +126,13 @@ final class LoginController: UIViewController {
             }),
             Theme.button("Crear cuenta", action: UIAction { [weak self] _ in
                 self?.navigationController?.pushViewController(RegisterController(), animated: true)
-            })
+            }),
+            Theme.button("Cargar demostración", action: UIAction { [weak self] _ in
+                do { try Demo.load(); self?.message("Datos de demostración listos. Usuario luis o andy. Clave Ventas123.") }
+                catch { self?.message(error.localizedDescription) }
+                Store.shared.current = nil
+            }),
+            Theme.label("Demo con nombres del equipo y documentos ficticios. Acceso luis o andy · Ventas123.", size: 12)
         ]))
     }
 }

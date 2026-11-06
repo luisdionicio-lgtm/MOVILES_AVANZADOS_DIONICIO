@@ -26,7 +26,9 @@ final class CatalogController: UITableViewController, UISearchResultsUpdating {
     func refresh() {
         if products {
             let list: [Producto] = Store.shared.fetch("Producto")
-            let selected = categories.titleForSegment(at: categories.selectedSegmentIndex) ?? "Todas"
+            let index = categories.selectedSegmentIndex
+            let selected = index >= 0 && index < categories.numberOfSegments
+                ? (categories.titleForSegment(at: index) ?? "Todas") : "Todas"
             categories.removeAllSegments()
             let names = ["Todas"] + Array(Set(list.map(\.categoria))).sorted()
             for (index,name) in names.enumerated() { categories.insertSegment(withTitle: name, at: index, animated: false) }

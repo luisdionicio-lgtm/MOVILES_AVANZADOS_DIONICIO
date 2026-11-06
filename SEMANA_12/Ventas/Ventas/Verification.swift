@@ -59,7 +59,7 @@ enum Verification {
             let a = Importe(precio: 200, cantidad: 2, vip: true)
             check(abs(a.total-424.8) < 0.001, "11 cálculo reproducible")
             let data = try JSONSerialization.data(withJSONObject: ["resultado":"PASS","pruebas":passed], options: .prettyPrinted)
-            let url = s.container.defaultDirectoryURL().appendingPathComponent("pruebas-grupo-a.json")
+            let url = NSPersistentContainer.defaultDirectoryURL().appendingPathComponent("pruebas-grupo-a.json")
             try data.write(to: url)
             print("VERIFICACION COMPLETA · \(passed.count) comprobaciones · \(url.path)")
         } catch { fatalError("Pruebas: \(error)") }

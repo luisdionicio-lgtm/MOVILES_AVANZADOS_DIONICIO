@@ -76,3 +76,7 @@ final class DashboardController: UIViewController {
         formLayout(stack)
     }
 }
+
+#Preview {
+    WeekChart(days: [DayAmount(id: Date(), total: 424.8)])
+}
