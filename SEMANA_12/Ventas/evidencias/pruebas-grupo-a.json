@@ -1,0 +1,18 @@
+{
+  "resultado" : "PASS",
+  "pruebas" : [
+    "1 usuario único e inicio directo",
+    "2 claves inválidas",
+    "3 login inválido",
+    "4 venta VIP",
+    "5 venta regular",
+    "6 stock insuficiente",
+    "7 visibilidad y permisos",
+    "8a motivo obligatorio",
+    "8b anulación y reporte",
+    "9 borrado protegido",
+    "9b regla Deny del modelo",
+    "10 anulación única",
+    "11 cálculo reproducible"
+  ]
+}

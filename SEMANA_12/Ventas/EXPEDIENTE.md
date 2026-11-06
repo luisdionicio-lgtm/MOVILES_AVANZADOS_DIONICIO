@@ -61,7 +61,7 @@ Los permisos se validan tanto en los controles como en las operaciones. El usuar
 | A8 Anulación | Página 23 | Alerta con venta, devolución de stock y motivo obligatorio |
 | A9 Resumen | Página 23 | Saludo, indicadores, comparación diaria, barras de siete días, ranking y stock bajo |
 
-Cuenta es una pantalla auxiliar con nombre, usuario, rol y Cerrar sesión. La navegación usa Storyboard, segues y UITabBarController según rol. Cada tabla se enlaza con su controlador y se fija al área segura con constraints de cero.
+Cuenta es una pantalla auxiliar con nombre, usuario, rol y Cerrar sesión. La implementación usa UIKit con UINavigationController y UITabBarController según rol; las vistas y Auto Layout se construyen en Swift. No contiene segues de Storyboard. Las tablas usan UITableViewController y los formularios se fijan al área segura.
 
 ## Casos de prueba
 
