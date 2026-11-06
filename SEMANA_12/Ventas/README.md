@@ -25,7 +25,7 @@ También puedes crear una cuenta. La sesión se cierra al terminar el proceso; C
 | A9 | `Ventas/DashboardController.swift` | Resumen, variación diaria, gráfico semanal, ranking mensual y stock bajo |
 | Datos y reglas | `Ventas/Store.swift` y `Ventas.xcdatamodeld` | Relaciones inversas, Deny, cálculos, permisos, stock y persistencia |
 
-La interfaz principal usa UIKit y Auto Layout en Swift, con UINavigationController y UITabBarController. El gráfico usa Swift Charts dentro de un UIHostingController y tiene `#Preview`. No se implementaron segues de Storyboard. El filtro de vendedor es un menú nativo.
+La interfaz principal usa UIKit y Auto Layout en Swift, con UINavigationController y UITabBarController. El gráfico usa Swift Charts dentro de un UIHostingController y tiene `#Preview`. No se implementaron segues de Storyboard. El supervisor filtra vendedores mediante botones desplazables.
 
 ## Fórmula para explicar
 
@@ -47,6 +47,38 @@ Categorías por compras no anuladas: Regular < S/ 1000; Frecuente desde S/ 1000;
 Para repetir las pruebas automáticas, ejecuta el build Debug con argumento `--verify`. Usan una base en memoria separada; el resultado se escribe en Application Support del contenedor del simulador. No modifican los datos guardados por el usuario.
 
 ## Evidencias reales del simulador
+
+Capturas del iPhone 16 tomadas durante el recorrido de los dos roles. Los nombres de clientes y montos corresponden a datos de prueba guardados en este simulador.
+
+### Acceso y registro
+
+![Inicio de sesión con logo Tecsup](evidencias/A1-login.png)
+
+![Registro y roles](evidencias/A2-registro.png)
+
+### Productos y clientes
+
+![Catálogo de productos](evidencias/A3-productos.png)
+
+![Clientes y categorías](evidencias/A4-clientes.png)
+
+### Nueva venta y ventas propias
+
+![Venta VIP con cálculo](evidencias/A5-nueva-venta.png)
+
+![Historial del vendedor](evidencias/A6-mis-ventas.png)
+
+### Supervisor: ventas, anulación y resumen
+
+![Ventas del equipo y filtros](evidencias/A7-ventas-supervisor.png)
+
+![Anulación con motivo obligatorio](evidencias/A8-anulacion.png)
+
+![Resumen del supervisor](evidencias/A9-resumen.png)
+
+### Cuenta
+
+![Cuenta del supervisor](evidencias/cuenta-supervisor.png)
 
 | Pantalla | Captura |
 |---|---|
