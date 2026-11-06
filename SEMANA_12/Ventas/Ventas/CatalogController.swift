@@ -43,7 +43,7 @@ final class CatalogController: UITableViewController, UISearchResultsUpdating {
     func load() {
         var filters = [NSPredicate]()
         if let text = search.searchBar.text, !text.isEmpty {
-            filters.append(NSPredicate(format: "nombre CONTAINS[cd] %@", text))
+            filters.append(products ? NSPredicate(format: "nombre CONTAINS[cd] %@", text) : NSPredicate(format: "nombre CONTAINS[cd] %@ OR documento CONTAINS[cd] %@", text, text))
         }
         if products, categories.selectedSegmentIndex > 0,
            let selected = categories.titleForSegment(at: categories.selectedSegmentIndex) {
@@ -96,7 +96,9 @@ final class CatalogController: UITableViewController, UISearchResultsUpdating {
             cell.textLabel?.text = p.nombre
             cell.detailTextLabel?.text = "\(p.categoria) · \(Theme.money(p.precio))\nStock disponible · \(p.stock)"
             cell.detailTextLabel?.textColor = p.stock > 10 ? .systemGreen : p.stock >= 6 ? .systemOrange : .systemRed
-            cell.imageView?.image = UIImage(systemName: "shippingbox.fill")
+            let name = p.nombre.lowercased()
+            let icon = name.contains("laptop") ? "laptopcomputer" : name.contains("mouse") ? "computermouse.fill" : name.contains("monitor") ? "display" : name.contains("teclado") ? "keyboard" : "shippingbox.fill"
+            cell.imageView?.image = UIImage(systemName: icon)
         } else if let c = object as? Cliente {
             let initials = c.nombre.split(separator: " ").prefix(2).compactMap(\.first).map(String.init).joined()
             cell.textLabel?.text = "\(initials)  ·  \(c.nombre)"

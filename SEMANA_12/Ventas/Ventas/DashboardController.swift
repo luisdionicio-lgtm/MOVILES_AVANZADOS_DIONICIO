@@ -35,12 +35,12 @@ final class DashboardController: UIViewController {
         let todaySales = all.filter { calendar.isDate($0.fecha, inSameDayAs: today) }
         let previous = all.filter { calendar.isDate($0.fecha, inSameDayAs: yesterday) }.reduce(0) { $0+$1.total }
         let total = todaySales.reduce(0) { $0+$1.total }
-        let tax = todaySales.reduce(0) { $0+$1.igv }
+        let tax = all.filter { calendar.isDate($0.fecha, equalTo: Date(), toGranularity: .month) }.reduce(0) { $0+$1.igv }
         let card = Theme.stack([
             Theme.label("VENTAS DE HOY", size: 12, bold: true),
             Theme.label(Theme.money(total), size: 35, bold: true),
             Theme.label("Variación diaria · \(Theme.money(total - previous))", size: 14),
-            Theme.label("\(todaySales.count) operaciones · IGV \(Theme.money(tax))", size: 15)
+            Theme.label("\(todaySales.count) operaciones · IGV del mes \(Theme.money(tax))", size: 15)
         ])
         card.backgroundColor = .white; card.layer.cornerRadius = 16
         card.isLayoutMarginsRelativeArrangement = true; card.layoutMargins = .init(top: 20, left: 20, bottom: 20, right: 20)
