@@ -64,7 +64,7 @@ final class SaleController: UIViewController {
     @objc func update() {
         clientButton.setTitle("  "+(client?.nombre ?? "Selecciona un cliente  ▾"), for: .normal)
         productButton.setTitle("  "+(product?.nombre ?? "Selecciona un producto  ▾"), for: .normal)
-        quantity.maximumValue = max(1, Double(product?.stock ?? 1))
+        quantity.maximumValue = 1_000_000
         stockLabel.text = "Stock disponible · \(product?.stock ?? 0)"
         quantityLabel.text = "Cantidad · \(Int(quantity.value))"
         guard let product, let client else {
