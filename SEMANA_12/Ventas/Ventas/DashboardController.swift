@@ -48,7 +48,10 @@ final class DashboardController: UIViewController {
         addChild(host); host.didMove(toParent: self)
         host.view.layer.cornerRadius = 16; host.view.clipsToBounds = true
         host.view.heightAnchor.constraint(equalToConstant: 220).isActive = true
+        let date = Theme.label(Date().formatted(Date.FormatStyle(date: .complete, time: .omitted).locale(Locale(identifier: "es_PE"))).uppercased(), size: 11, bold: true)
+        date.textColor = Theme.copper
         let stack = Theme.stack([
+            date,
             Theme.label("Hola, "+(Store.shared.current?.nombre ?? ""), size: 27, bold: true),
             Theme.label("Supervisor · Vista de la operación", size: 14),
             card, Theme.label("Últimos siete días", size: 21, bold: true), host.view,
@@ -57,9 +60,16 @@ final class DashboardController: UIViewController {
         let month = all.filter { calendar.isDate($0.fecha, equalTo: Date(), toGranularity: .month) }
         let users: [Usuario] = Store.shared.fetch("Usuario", predicate: NSPredicate(format: "rol == %@", Role.vendedor.rawValue))
         let ranking = users.map { user in (user.nombre, month.filter { $0.vendedor == user }.reduce(0) { $0+$1.total }) }.sorted { $0.1 > $1.1 }
+        let rankingCard = Theme.card([])
         for (i,item) in ranking.enumerated() {
-            stack.addArrangedSubview(Theme.label("\(i+1). \(item.0)   ·   \(Theme.money(item.1))"))
+            let line = Theme.label("\(i+1).  \(item.0)   ·   \(Theme.money(item.1))", size: 15, bold: true)
+            rankingCard.addArrangedSubview(line)
+            let bar = UIProgressView(progressViewStyle: .default); bar.progressTintColor = Theme.copper
+            bar.trackTintColor = Theme.background
+            bar.progress = Float(item.1 / max(ranking.first?.1 ?? 0, 1))
+            rankingCard.addArrangedSubview(bar)
         }
+        if !ranking.isEmpty { stack.addArrangedSubview(rankingCard) }
         if ranking.isEmpty { stack.addArrangedSubview(Theme.label("Aún no hay vendedores.")) }
         stack.addArrangedSubview(Theme.label("Stock bajo", size: 21, bold: true))
         let low: [Producto] = Store.shared.fetch("Producto", predicate: NSPredicate(format: "stock <= 5"), sort: "stock")

@@ -105,3 +105,5 @@ Las capturas corresponden a distintos momentos de prueba; sus totales pueden var
 **Ajuste final solicitado:** se retiraron el botón, textos y generador de demostración. Los datos de las capturas son exclusivamente de prueba; las instalaciones nuevas empiezan vacías.
 
 Iconos de productos: [Font Awesome Free](https://github.com/FortAwesome/Font-Awesome), SVG bajo licencia [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); se muestran como plantillas coloreadas.
+
+Las fotografías ilustrativas de laptop, monitor, mouse y teclado proceden de [Unsplash](https://unsplash.com/license); se guardan en Assets para funcionar sin conexión. No representan modelos específicos del inventario.

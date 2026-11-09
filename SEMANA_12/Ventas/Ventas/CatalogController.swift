@@ -109,7 +109,7 @@ final class CatalogController: UITableViewController, UISearchResultsUpdating {
             layout.topAnchor.constraint(equalTo: cell.contentView.topAnchor, constant: 12), layout.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor, constant: -12),
             badge.widthAnchor.constraint(equalToConstant: 48), badge.heightAnchor.constraint(equalToConstant: 48),
             iconView.centerXAnchor.constraint(equalTo: badge.centerXAnchor), iconView.centerYAnchor.constraint(equalTo: badge.centerYAnchor),
-            iconView.widthAnchor.constraint(equalToConstant: 23), iconView.heightAnchor.constraint(equalToConstant: 23)
+            iconView.widthAnchor.constraint(equalToConstant: 44), iconView.heightAnchor.constraint(equalToConstant: 44)
         ])
         if let p = object as? Producto {
             name.text = p.nombre; detail.text = p.categoria
@@ -119,7 +119,11 @@ final class CatalogController: UITableViewController, UISearchResultsUpdating {
             rightBottom.textColor = color; rightBottom.backgroundColor = color.withAlphaComponent(0.12)
             let n = p.nombre.lowercased()
             let icon = n.contains("laptop") ? "fa-laptop" : n.contains("mouse") ? "fa-computer-mouse" : n.contains("monitor") ? "fa-desktop" : n.contains("teclado") ? "fa-keyboard" : "fa-box-open"
-            iconView.image = UIImage(named: icon)?.withRenderingMode(.alwaysTemplate)
+            let photo = n.contains("laptop") ? "foto-laptop" : n.contains("mouse") ? "foto-mouse" : n.contains("monitor") ? "foto-monitor" : n.contains("teclado") ? "foto-teclado" : ""
+            if let image = UIImage(named: photo) {
+                iconView.image = image; iconView.contentMode = .scaleAspectFill
+                iconView.layer.cornerRadius = 10; iconView.clipsToBounds = true
+            } else { iconView.image = UIImage(named: icon)?.withRenderingMode(.alwaysTemplate) }
         } else if let c = object as? Cliente {
             name.text = c.nombre; detail.text = c.documento
             rightTop.text = Theme.money(c.comprado); rightBottom.text = "  \(c.categoria)  "

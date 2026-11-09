@@ -38,6 +38,7 @@ enum Theme {
     static func card(_ items: [UIView], padding: CGFloat = 18) -> UIStackView {
         let card = stack(items); card.spacing = 10
         card.backgroundColor = .white; card.layer.cornerRadius = 18
+        card.layer.borderWidth = 1; card.layer.borderColor = UIColor.black.withAlphaComponent(0.035).cgColor
         card.isLayoutMarginsRelativeArrangement = true
         card.layoutMargins = .init(top: padding, left: padding, bottom: padding, right: padding)
         return card
