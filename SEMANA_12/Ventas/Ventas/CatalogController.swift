@@ -87,31 +87,46 @@ final class CatalogController: UITableViewController, UISearchResultsUpdating {
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { rows.count }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        let object = rows[indexPath.row]
-        cell.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
-        cell.textLabel?.textColor = Theme.navy
-        cell.detailTextLabel?.numberOfLines = 2
-        if let p = object as? Producto {
-            cell.textLabel?.text = p.nombre
-            cell.detailTextLabel?.text = "\(p.categoria) · \(Theme.money(p.precio))\nStock disponible · \(p.stock)"
-            cell.detailTextLabel?.textColor = p.stock > 10 ? .systemGreen : p.stock >= 6 ? .systemOrange : .systemRed
-            let name = p.nombre.lowercased()
-            let icon = name.contains("laptop") ? "fa-laptop" : name.contains("mouse") ? "fa-computer-mouse" : name.contains("monitor") ? "fa-desktop" : name.contains("teclado") ? "fa-keyboard" : "fa-box-open"
-            if let source = UIImage(named: icon) {
-                let renderer = UIGraphicsImageRenderer(size: CGSize(width: 32, height: 32))
-                let image = renderer.image { _ in source.draw(in: CGRect(x: 2, y: 2, width: 28, height: 28)) }
-                cell.imageView?.image = image.withRenderingMode(.alwaysTemplate)
-            }
-        } else if let c = object as? Cliente {
-            let initials = c.nombre.split(separator: " ").prefix(2).compactMap(\.first).map(String.init).joined()
-            cell.textLabel?.text = "\(initials)  ·  \(c.nombre)"
-            cell.detailTextLabel?.text = "\(c.documento) · \(c.categoria)\nComprado · \(Theme.money(c.comprado))"
-            cell.imageView?.image = UIImage(systemName: "person.crop.circle.fill")
-        }
-        cell.imageView?.tintColor = Theme.copper
-        cell.imageView?.contentMode = .scaleAspectFit
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.backgroundColor = .white
+        cell.selectionStyle = .default
+        let object = rows[indexPath.row]
+        let badge = UIView(); badge.backgroundColor = Theme.navy.withAlphaComponent(0.06); badge.layer.cornerRadius = 13
+        let iconView = UIImageView(); iconView.contentMode = .scaleAspectFit; iconView.tintColor = Theme.navy
+        badge.translatesAutoresizingMaskIntoConstraints = false; iconView.translatesAutoresizingMaskIntoConstraints = false
+        badge.addSubview(iconView)
+        let name = Theme.label("", size: 16, bold: true)
+        let detail = Theme.label("", size: 13); detail.textColor = .secondaryLabel
+        let rightTop = Theme.label("", size: 15, bold: true); rightTop.textAlignment = .right
+        let rightBottom = Theme.label("", size: 11, bold: true); rightBottom.textAlignment = .center
+        rightBottom.layer.cornerRadius = 9; rightBottom.clipsToBounds = true
+        let labels = UIStackView(arrangedSubviews: [name, detail]); labels.axis = .vertical; labels.spacing = 5
+        let values = UIStackView(arrangedSubviews: [rightTop, rightBottom]); values.axis = .vertical; values.spacing = 6; values.alignment = .trailing
+        let layout = UIStackView(arrangedSubviews: [badge, labels, values]); layout.axis = .horizontal; layout.alignment = .center; layout.spacing = 12
+        layout.translatesAutoresizingMaskIntoConstraints = false; cell.contentView.addSubview(layout)
+        NSLayoutConstraint.activate([
+            layout.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 16), layout.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -16),
+            layout.topAnchor.constraint(equalTo: cell.contentView.topAnchor, constant: 12), layout.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor, constant: -12),
+            badge.widthAnchor.constraint(equalToConstant: 48), badge.heightAnchor.constraint(equalToConstant: 48),
+            iconView.centerXAnchor.constraint(equalTo: badge.centerXAnchor), iconView.centerYAnchor.constraint(equalTo: badge.centerYAnchor),
+            iconView.widthAnchor.constraint(equalToConstant: 23), iconView.heightAnchor.constraint(equalToConstant: 23)
+        ])
+        if let p = object as? Producto {
+            name.text = p.nombre; detail.text = p.categoria
+            rightTop.text = Theme.money(p.precio)
+            rightBottom.text = "  \(p.stock) en stock  "
+            let color: UIColor = p.stock > 10 ? .systemGreen : p.stock >= 6 ? .systemOrange : .systemRed
+            rightBottom.textColor = color; rightBottom.backgroundColor = color.withAlphaComponent(0.12)
+            let n = p.nombre.lowercased()
+            let icon = n.contains("laptop") ? "fa-laptop" : n.contains("mouse") ? "fa-computer-mouse" : n.contains("monitor") ? "fa-desktop" : n.contains("teclado") ? "fa-keyboard" : "fa-box-open"
+            iconView.image = UIImage(named: icon)?.withRenderingMode(.alwaysTemplate)
+        } else if let c = object as? Cliente {
+            name.text = c.nombre; detail.text = c.documento
+            rightTop.text = Theme.money(c.comprado); rightBottom.text = "  \(c.categoria)  "
+            rightBottom.textColor = Theme.copper; rightBottom.backgroundColor = Theme.copper.withAlphaComponent(0.12)
+            iconView.image = UIImage(systemName: "person.fill")
+        }
+        cell.accessibilityLabel = "\(name.text ?? ""), \(detail.text ?? ""), \(rightTop.text ?? ""), \(rightBottom.text ?? "")"
         cell.accessoryType = products && !Store.shared.supervisor ? .none : .disclosureIndicator
         return cell
     }
