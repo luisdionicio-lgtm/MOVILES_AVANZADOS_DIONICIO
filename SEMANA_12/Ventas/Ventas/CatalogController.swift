@@ -97,8 +97,12 @@ final class CatalogController: UITableViewController, UISearchResultsUpdating {
             cell.detailTextLabel?.text = "\(p.categoria) · \(Theme.money(p.precio))\nStock disponible · \(p.stock)"
             cell.detailTextLabel?.textColor = p.stock > 10 ? .systemGreen : p.stock >= 6 ? .systemOrange : .systemRed
             let name = p.nombre.lowercased()
-            let icon = name.contains("laptop") ? "laptopcomputer" : name.contains("mouse") ? "computermouse.fill" : name.contains("monitor") ? "display" : name.contains("teclado") ? "keyboard" : "shippingbox.fill"
-            cell.imageView?.image = UIImage(systemName: icon)
+            let icon = name.contains("laptop") ? "fa-laptop" : name.contains("mouse") ? "fa-computer-mouse" : name.contains("monitor") ? "fa-desktop" : name.contains("teclado") ? "fa-keyboard" : "fa-box-open"
+            if let source = UIImage(named: icon) {
+                let renderer = UIGraphicsImageRenderer(size: CGSize(width: 32, height: 32))
+                let image = renderer.image { _ in source.draw(in: CGRect(x: 2, y: 2, width: 28, height: 28)) }
+                cell.imageView?.image = image.withRenderingMode(.alwaysTemplate)
+            }
         } else if let c = object as? Cliente {
             let initials = c.nombre.split(separator: " ").prefix(2).compactMap(\.first).map(String.init).joined()
             cell.textLabel?.text = "\(initials)  ·  \(c.nombre)"
@@ -106,6 +110,8 @@ final class CatalogController: UITableViewController, UISearchResultsUpdating {
             cell.imageView?.image = UIImage(systemName: "person.crop.circle.fill")
         }
         cell.imageView?.tintColor = Theme.copper
+        cell.imageView?.contentMode = .scaleAspectFit
+        cell.backgroundColor = .white
         cell.accessoryType = products && !Store.shared.supervisor ? .none : .disclosureIndicator
         return cell
     }

@@ -25,9 +25,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 enum Theme {
-    static let navy = UIColor(red: 0.07, green: 0.11, blue: 0.18, alpha: 1)
-    static let copper = UIColor(red: 0.61, green: 0.34, blue: 0.17, alpha: 1)
-    static let background = UIColor(red: 0.95, green: 0.95, blue: 0.96, alpha: 1)
+    static let navy = UIColor(red: 0.07, green: 0.13, blue: 0.23, alpha: 1)
+    static let copper = UIColor(red: 0.69, green: 0.36, blue: 0.17, alpha: 1)
+    static let background = UIColor(red: 0.94, green: 0.95, blue: 0.97, alpha: 1)
     static func money(_ n: Double) -> String { String(format: "S/ %.2f", n) }
     static func label(_ text: String, size: CGFloat = 16, bold: Bool = false) -> UILabel {
         let l = UILabel(); l.text = text; l.numberOfLines = 0
@@ -103,7 +103,7 @@ extension UIViewController {
             nav.tabBarItem = UITabBarItem(title: title, image: UIImage(systemName: icon), selectedImage: nil)
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground(); appearance.backgroundColor = .white
-            appearance.titleTextAttributes = [.foregroundColor: Theme.navy]
+            appearance.titleTextAttributes = [.foregroundColor: Theme.navy, .font: UIFont.systemFont(ofSize: 18, weight: .bold)]
             nav.navigationBar.standardAppearance = appearance; nav.navigationBar.scrollEdgeAppearance = appearance
             return nav
         }

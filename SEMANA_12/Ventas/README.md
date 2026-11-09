@@ -103,3 +103,5 @@ Las capturas corresponden a distintos momentos de prueba; sus totales pueden var
 [Expediente](EXPEDIENTE.md) y [registro de prompts](PROMPTS.md). La revisión/firma del docente es una gestión académica pendiente; no se presenta como aprobada. Se conserva la rama `Ejercicio` por instrucción expresa del usuario, aunque el flujo de ramas propuesto por la guía es distinto.
 
 **Ajuste final solicitado:** se retiraron el botón, textos y generador de demostración. Los datos de las capturas son exclusivamente de prueba; las instalaciones nuevas empiezan vacías.
+
+Iconos de productos: [Font Awesome Free](https://github.com/FortAwesome/Font-Awesome), SVG bajo licencia [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); se muestran como plantillas coloreadas.
