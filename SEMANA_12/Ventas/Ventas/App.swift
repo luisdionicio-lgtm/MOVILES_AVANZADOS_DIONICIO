@@ -91,14 +91,14 @@ extension UIViewController {
     func showApp() {
         let tabs = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AppTabs") as! UITabBarController
 
-        let order = Store.shared.supervisor ? ["Resumen", "VentasEquipo", "Productos", "Clientes", "Cuenta"] : ["Productos", "Clientes", "NuevaVentaNav", "VentasEquipo", "Cuenta"]
+        let order = Store.shared.supervisor ? ["Resumen", "VentasEquipo", "Productos", "Clientes", "Cuenta"] : ["Productos", "Clientes", "NuevaVenta", "VentasEquipo", "Cuenta"]
         let all = tabs.viewControllers ?? []
-        tabs.viewControllers = order.compactMap { id in all.first { $0.restorationIdentifier == id } }
-        if !Store.shared.supervisor, let nav = tabs.viewControllers?[3] as? UINavigationController {
-            nav.tabBarItem.title = "Mis ventas"; nav.topViewController?.title = "Mis ventas"
+        tabs.viewControllers = order.compactMap { id in all.first { $0.restorationIdentifier == id || $0.storyboardSceneID == id } }
+        if !Store.shared.supervisor, let history = tabs.viewControllers?[3] {
+            history.tabBarItem.title = "Mis ventas"; history.title = "Mis ventas"
         }
         tabs.tabBar.tintColor = Theme.copper
-        view.window?.rootViewController = tabs
+        view.window?.rootViewController = UINavigationController(rootViewController: tabs)
     }
 }
 final class LoginController: UIViewController {
@@ -136,5 +136,27 @@ final class AccountController: UIViewController {
     @IBAction func logout(_ sender: Any) {
         Store.shared.current = nil
         view.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()!
+    }
+}
+
+extension UIViewController {
+    var storyboardSceneID: String {
+        if self is DashboardController { return "Resumen" }
+        if self is SaleController { return "NuevaVenta" }
+        if self is AccountController { return "Cuenta" }
+        return restorationIdentifier ?? ""
+    }
+}
+final class VentasTabController: UITabBarController, UITabBarControllerDelegate {
+    override func viewDidLoad() { super.viewDidLoad(); delegate = self }
+    override func viewWillAppear(_ animated: Bool) { super.viewWillAppear(animated); synchronizeNavigation() }
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) { synchronizeNavigation() }
+    private func synchronizeNavigation() {
+        guard let selected = selectedViewController else { return }
+        selected.loadViewIfNeeded()
+        title = selected.title ?? selected.navigationItem.title
+        navigationItem.rightBarButtonItems = selected.navigationItem.rightBarButtonItems
+        navigationItem.searchController = selected.navigationItem.searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 }

@@ -15,7 +15,7 @@ final class CatalogController: UITableViewController, UISearchResultsUpdating {
         tableView.rowHeight = 94
         search.searchResultsUpdater = self; search.obscuresBackgroundDuringPresentation = false
         search.searchBar.placeholder = products ? "Buscar producto" : "Buscar cliente"
-        navigationItem.searchController = search
+        // La búsqueda se mantiene arriba, dentro de la cabecera de la tabla.
         navigationItem.hidesSearchBarWhenScrolling = false
         if !products || Store.shared.supervisor {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
@@ -34,10 +34,12 @@ final class CatalogController: UITableViewController, UISearchResultsUpdating {
             let names = ["Todas"] + Array(Set(list.map(\.categoria))).sorted()
             for (index,name) in names.enumerated() { categories.insertSegment(withTitle: name, at: index, animated: false) }
             categories.selectedSegmentIndex = names.firstIndex(of: selected) ?? 0
-            categories.frame = CGRect(x: 16, y: 12, width: tableView.bounds.width - 32, height: 34)
-            let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 58))
-            header.addSubview(categories); tableView.tableHeaderView = header
+            categories.frame = CGRect(x: 16, y: 66, width: tableView.bounds.width - 32, height: 34)
+            let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 112))
+            search.searchBar.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 56)
+            header.addSubview(search.searchBar); header.addSubview(categories); tableView.tableHeaderView = header
         }
+        if !products { search.searchBar.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 56); tableView.tableHeaderView = search.searchBar }
         load()
     }
     @objc func filter() { load() }
@@ -88,30 +90,11 @@ final class CatalogController: UITableViewController, UISearchResultsUpdating {
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { rows.count }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.backgroundColor = .white
-        cell.selectionStyle = .default
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RegistroCell", for: indexPath) as! RegistroTableViewCell
         let object = rows[indexPath.row]
-        let badge = UIView(); badge.backgroundColor = Theme.navy.withAlphaComponent(0.06); badge.layer.cornerRadius = 13
-        let iconView = UIImageView(); iconView.contentMode = .scaleAspectFit; iconView.tintColor = Theme.navy
-        badge.translatesAutoresizingMaskIntoConstraints = false; iconView.translatesAutoresizingMaskIntoConstraints = false
-        badge.addSubview(iconView)
-        let name = Theme.label("", size: 16, bold: true)
-        let detail = Theme.label("", size: 13); detail.textColor = .secondaryLabel
-        let rightTop = Theme.label("", size: 15, bold: true); rightTop.textAlignment = .right
-        let rightBottom = Theme.label("", size: 11, bold: true); rightBottom.textAlignment = .center
-        rightBottom.layer.cornerRadius = 9; rightBottom.clipsToBounds = true
-        let labels = UIStackView(arrangedSubviews: [name, detail]); labels.axis = .vertical; labels.spacing = 5
-        let values = UIStackView(arrangedSubviews: [rightTop, rightBottom]); values.axis = .vertical; values.spacing = 6; values.alignment = .trailing
-        let layout = UIStackView(arrangedSubviews: [badge, labels, values]); layout.axis = .horizontal; layout.alignment = .center; layout.spacing = 12
-        layout.translatesAutoresizingMaskIntoConstraints = false; cell.contentView.addSubview(layout)
-        NSLayoutConstraint.activate([
-            layout.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 16), layout.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -16),
-            layout.topAnchor.constraint(equalTo: cell.contentView.topAnchor, constant: 12), layout.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor, constant: -12),
-            badge.widthAnchor.constraint(equalToConstant: 48), badge.heightAnchor.constraint(equalToConstant: 48),
-            iconView.centerXAnchor.constraint(equalTo: badge.centerXAnchor), iconView.centerYAnchor.constraint(equalTo: badge.centerYAnchor),
-            iconView.widthAnchor.constraint(equalToConstant: 44), iconView.heightAnchor.constraint(equalToConstant: 44)
-        ])
+        let name = cell.nameLabel!, detail = cell.detailLabel!, rightTop = cell.amountLabel!, rightBottom = cell.badgeLabel!
+        let iconView = cell.photo!
+        iconView.contentMode = .scaleAspectFit
         if let p = object as? Producto {
             name.text = p.nombre; detail.text = p.categoria
             rightTop.text = Theme.money(p.precio)

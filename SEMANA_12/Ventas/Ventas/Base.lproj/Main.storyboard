@@ -9,7 +9,7 @@
   <scenes>
     <scene sceneID="scene-Login">
       <objects>
-        <viewController id="Login" storyboardIdentifier="Login" sceneMemberID="viewController" customClass="LoginController" customModule="Ventas" customModuleProvider="target">
+        <viewController id="Login" storyboardIdentifier="Login" sceneMemberID="viewController" customClass="LoginController" customModule="Ventas" customModuleProvider="target" title="Ventas Tecsup">
           <navigationItem key="navigationItem" title="Ventas Tecsup" id="navitem-Login" />
           <view key="view" contentMode="scaleToFill" id="Login-view">
             <rect key="frame" x="0" y="0" width="393" height="852" />
@@ -161,7 +161,7 @@
     </scene>
     <scene sceneID="scene-Registro">
       <objects>
-        <viewController id="Registro" storyboardIdentifier="Registro" sceneMemberID="viewController" customClass="RegisterController" customModule="Ventas" customModuleProvider="target">
+        <viewController id="Registro" storyboardIdentifier="Registro" sceneMemberID="viewController" customClass="RegisterController" customModule="Ventas" customModuleProvider="target" title="Crear cuenta">
           <navigationItem key="navigationItem" title="Crear cuenta" id="navitem-Registro" />
           <view key="view" contentMode="scaleToFill" id="Registro-view">
             <rect key="frame" x="0" y="0" width="393" height="852" />
@@ -306,7 +306,7 @@
     </scene>
     <scene sceneID="scene-Cuenta">
       <objects>
-        <viewController id="Cuenta" storyboardIdentifier="Cuenta" sceneMemberID="viewController" customClass="AccountController" customModule="Ventas" customModuleProvider="target">
+        <viewController id="Cuenta" storyboardIdentifier="Cuenta" sceneMemberID="viewController" customClass="AccountController" customModule="Ventas" customModuleProvider="target" title="Cuenta">
           <navigationItem key="navigationItem" title="Cuenta" id="navitem-Cuenta" />
           <view key="view" contentMode="scaleToFill" id="Cuenta-view">
             <rect key="frame" x="0" y="0" width="393" height="852" />
@@ -398,6 +398,7 @@
             <outlet property="userLabel" destination="Cuenta-2" id="Cuenta-2-outlet" />
             <outlet property="roleLabel" destination="Cuenta-3" id="Cuenta-3-outlet" />
           </connections>
+          <tabBarItem key="tabBarItem" title="Cuenta" id="tab-Supervisor-Cuenta" image="person.crop.circle" catalog="system" />
         </viewController>
         <placeholder placeholderIdentifier="IBFirstResponder" id="first-Cuenta" sceneMemberID="firstResponder" />
       </objects>
@@ -405,7 +406,7 @@
     </scene>
     <scene sceneID="scene-NuevaVenta">
       <objects>
-        <viewController id="NuevaVenta" storyboardIdentifier="NuevaVenta" sceneMemberID="viewController" customClass="SaleController" customModule="Ventas" customModuleProvider="target">
+        <viewController id="NuevaVenta" storyboardIdentifier="NuevaVenta" sceneMemberID="viewController" customClass="SaleController" customModule="Ventas" customModuleProvider="target" title="Nueva venta">
           <navigationItem key="navigationItem" title="Nueva venta" id="navitem-NuevaVenta" />
           <view key="view" contentMode="scaleToFill" id="NuevaVenta-view">
             <rect key="frame" x="0" y="0" width="393" height="852" />
@@ -582,6 +583,7 @@
             <outlet property="taxValue" destination="NuevaVenta-9" id="NuevaVenta-9-outlet" />
             <outlet property="totalValue" destination="NuevaVenta-10" id="NuevaVenta-10-outlet" />
           </connections>
+          <tabBarItem key="tabBarItem" title="Venta" id="tab-NuevaVentaNav" image="plus.circle" catalog="system" />
         </viewController>
         <placeholder placeholderIdentifier="IBFirstResponder" id="first-NuevaVenta" sceneMemberID="firstResponder" />
       </objects>
@@ -589,7 +591,7 @@
     </scene>
     <scene sceneID="scene-Productos">
       <objects>
-        <tableViewController id="Productos" storyboardIdentifier="Productos" sceneMemberID="viewController" customClass="CatalogController" customModule="Ventas" customModuleProvider="target" restorationIdentifier="Productos">
+        <tableViewController id="Productos" storyboardIdentifier="Productos" sceneMemberID="viewController" customClass="CatalogController" customModule="Ventas" customModuleProvider="target" restorationIdentifier="Productos" title="Productos">
           <navigationItem key="navigationItem" title="Productos" id="navitem-Productos" />
           <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" rowHeight="94" sectionHeaderHeight="18" sectionFooterHeight="18" id="Productos-table">
             <rect key="frame" x="0" y="0" width="393" height="852" />
@@ -599,7 +601,69 @@
               <outlet property="dataSource" destination="Productos" id="Productos-dataSource" />
               <outlet property="delegate" destination="Productos" id="Productos-delegate" />
             </connections>
+            <prototypes>
+              <tableViewCell contentMode="scaleToFill" reuseIdentifier="RegistroCell" rowHeight="94" id="Productos-table-cell" customClass="RegistroTableViewCell" customModule="Ventas" customModuleProvider="target">
+                <rect key="frame" x="0" y="0" width="393" height="94" />
+                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Productos-table-cell" id="Productos-table-content">
+                  <rect key="frame" x="0" y="0" width="393" height="94" />
+                  <subviews>
+                    <stackView axis="horizontal" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Productos-table-row">
+                      <subviews>
+                        <imageView contentMode="scaleAspectFill" image="foto-laptop" translatesAutoresizingMaskIntoConstraints="NO" id="Productos-table-photo">
+                          <constraints>
+                            <constraint firstAttribute="width" constant="44" id="Productos-table-photo-width" />
+                            <constraint firstAttribute="height" constant="44" id="Productos-table-photo-height" />
+                          </constraints>
+                        </imageView>
+                        <stackView axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Productos-table-names">
+                          <subviews>
+                            <label text="Laptop" numberOfLines="1" translatesAutoresizingMaskIntoConstraints="NO" id="Productos-table-nameLabel">
+                              <fontDescription key="fontDescription" type="boldSystem" pointSize="16" />
+                              <color key="textColor" red=".07" green=".13" blue=".23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                              <color key="backgroundColor" white="0" alpha="0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                            </label>
+                            <label text="Tecnología" numberOfLines="1" translatesAutoresizingMaskIntoConstraints="NO" id="Productos-table-detailLabel">
+                              <fontDescription key="fontDescription" type="system" pointSize="12" />
+                              <color key="textColor" red=".07" green=".13" blue=".23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                              <color key="backgroundColor" white="0" alpha="0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                            </label>
+                          </subviews>
+                        </stackView>
+                        <stackView axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Productos-table-values">
+                          <subviews>
+                            <label text="S/ 200.00" numberOfLines="1" translatesAutoresizingMaskIntoConstraints="NO" id="Productos-table-amountLabel">
+                              <fontDescription key="fontDescription" type="boldSystem" pointSize="15" />
+                              <color key="textColor" red=".07" green=".13" blue=".23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                              <color key="backgroundColor" white="0" alpha="0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                            </label>
+                            <label text="40 en stock" numberOfLines="1" translatesAutoresizingMaskIntoConstraints="NO" id="Productos-table-badgeLabel">
+                              <fontDescription key="fontDescription" type="boldSystem" pointSize="11" />
+                              <color key="textColor" red=".07" green=".13" blue=".23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                              <color key="backgroundColor" white="0" alpha="0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                            </label>
+                          </subviews>
+                        </stackView>
+                      </subviews>
+                    </stackView>
+                  </subviews>
+                  <constraints>
+                    <constraint firstItem="Productos-table-row" firstAttribute="leading" secondItem="Productos-table-content" secondAttribute="leading" constant="16" id="Productos-table-leading" />
+                    <constraint firstItem="Productos-table-row" firstAttribute="trailing" secondItem="Productos-table-content" secondAttribute="trailing" constant="-16" id="Productos-table-trailing" />
+                    <constraint firstItem="Productos-table-row" firstAttribute="top" secondItem="Productos-table-content" secondAttribute="top" constant="12" id="Productos-table-top" />
+                    <constraint firstItem="Productos-table-row" firstAttribute="bottom" secondItem="Productos-table-content" secondAttribute="bottom" constant="-12" id="Productos-table-bottom" />
+                  </constraints>
+                </tableViewCellContentView>
+                <connections>
+                  <outlet property="photo" destination="Productos-table-photo" id="Productos-table-photo-outlet" />
+                  <outlet property="nameLabel" destination="Productos-table-nameLabel" id="Productos-table-nameLabel-outlet" />
+                  <outlet property="detailLabel" destination="Productos-table-detailLabel" id="Productos-table-detailLabel-outlet" />
+                  <outlet property="amountLabel" destination="Productos-table-amountLabel" id="Productos-table-amountLabel-outlet" />
+                  <outlet property="badgeLabel" destination="Productos-table-badgeLabel" id="Productos-table-badgeLabel-outlet" />
+                </connections>
+              </tableViewCell>
+            </prototypes>
           </tableView>
+          <tabBarItem key="tabBarItem" title="Productos" id="tab-Supervisor-Productos" image="shippingbox" catalog="system" />
         </tableViewController>
         <placeholder placeholderIdentifier="IBFirstResponder" id="first-Productos" sceneMemberID="firstResponder" />
       </objects>
@@ -607,7 +671,7 @@
     </scene>
     <scene sceneID="scene-Clientes">
       <objects>
-        <tableViewController id="Clientes" storyboardIdentifier="Clientes" sceneMemberID="viewController" customClass="CatalogController" customModule="Ventas" customModuleProvider="target" restorationIdentifier="Clientes">
+        <tableViewController id="Clientes" storyboardIdentifier="Clientes" sceneMemberID="viewController" customClass="CatalogController" customModule="Ventas" customModuleProvider="target" restorationIdentifier="Clientes" title="Clientes">
           <navigationItem key="navigationItem" title="Clientes" id="navitem-Clientes" />
           <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" rowHeight="94" sectionHeaderHeight="18" sectionFooterHeight="18" id="Clientes-table">
             <rect key="frame" x="0" y="0" width="393" height="852" />
@@ -617,7 +681,69 @@
               <outlet property="dataSource" destination="Clientes" id="Clientes-dataSource" />
               <outlet property="delegate" destination="Clientes" id="Clientes-delegate" />
             </connections>
+            <prototypes>
+              <tableViewCell contentMode="scaleToFill" reuseIdentifier="RegistroCell" rowHeight="94" id="Clientes-table-cell" customClass="RegistroTableViewCell" customModule="Ventas" customModuleProvider="target">
+                <rect key="frame" x="0" y="0" width="393" height="94" />
+                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Clientes-table-cell" id="Clientes-table-content">
+                  <rect key="frame" x="0" y="0" width="393" height="94" />
+                  <subviews>
+                    <stackView axis="horizontal" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Clientes-table-row">
+                      <subviews>
+                        <imageView contentMode="scaleAspectFill" image="foto-laptop" translatesAutoresizingMaskIntoConstraints="NO" id="Clientes-table-photo">
+                          <constraints>
+                            <constraint firstAttribute="width" constant="44" id="Clientes-table-photo-width" />
+                            <constraint firstAttribute="height" constant="44" id="Clientes-table-photo-height" />
+                          </constraints>
+                        </imageView>
+                        <stackView axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Clientes-table-names">
+                          <subviews>
+                            <label text="Laptop" numberOfLines="1" translatesAutoresizingMaskIntoConstraints="NO" id="Clientes-table-nameLabel">
+                              <fontDescription key="fontDescription" type="boldSystem" pointSize="16" />
+                              <color key="textColor" red=".07" green=".13" blue=".23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                              <color key="backgroundColor" white="0" alpha="0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                            </label>
+                            <label text="Tecnología" numberOfLines="1" translatesAutoresizingMaskIntoConstraints="NO" id="Clientes-table-detailLabel">
+                              <fontDescription key="fontDescription" type="system" pointSize="12" />
+                              <color key="textColor" red=".07" green=".13" blue=".23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                              <color key="backgroundColor" white="0" alpha="0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                            </label>
+                          </subviews>
+                        </stackView>
+                        <stackView axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Clientes-table-values">
+                          <subviews>
+                            <label text="S/ 200.00" numberOfLines="1" translatesAutoresizingMaskIntoConstraints="NO" id="Clientes-table-amountLabel">
+                              <fontDescription key="fontDescription" type="boldSystem" pointSize="15" />
+                              <color key="textColor" red=".07" green=".13" blue=".23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                              <color key="backgroundColor" white="0" alpha="0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                            </label>
+                            <label text="40 en stock" numberOfLines="1" translatesAutoresizingMaskIntoConstraints="NO" id="Clientes-table-badgeLabel">
+                              <fontDescription key="fontDescription" type="boldSystem" pointSize="11" />
+                              <color key="textColor" red=".07" green=".13" blue=".23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                              <color key="backgroundColor" white="0" alpha="0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                            </label>
+                          </subviews>
+                        </stackView>
+                      </subviews>
+                    </stackView>
+                  </subviews>
+                  <constraints>
+                    <constraint firstItem="Clientes-table-row" firstAttribute="leading" secondItem="Clientes-table-content" secondAttribute="leading" constant="16" id="Clientes-table-leading" />
+                    <constraint firstItem="Clientes-table-row" firstAttribute="trailing" secondItem="Clientes-table-content" secondAttribute="trailing" constant="-16" id="Clientes-table-trailing" />
+                    <constraint firstItem="Clientes-table-row" firstAttribute="top" secondItem="Clientes-table-content" secondAttribute="top" constant="12" id="Clientes-table-top" />
+                    <constraint firstItem="Clientes-table-row" firstAttribute="bottom" secondItem="Clientes-table-content" secondAttribute="bottom" constant="-12" id="Clientes-table-bottom" />
+                  </constraints>
+                </tableViewCellContentView>
+                <connections>
+                  <outlet property="photo" destination="Clientes-table-photo" id="Clientes-table-photo-outlet" />
+                  <outlet property="nameLabel" destination="Clientes-table-nameLabel" id="Clientes-table-nameLabel-outlet" />
+                  <outlet property="detailLabel" destination="Clientes-table-detailLabel" id="Clientes-table-detailLabel-outlet" />
+                  <outlet property="amountLabel" destination="Clientes-table-amountLabel" id="Clientes-table-amountLabel-outlet" />
+                  <outlet property="badgeLabel" destination="Clientes-table-badgeLabel" id="Clientes-table-badgeLabel-outlet" />
+                </connections>
+              </tableViewCell>
+            </prototypes>
           </tableView>
+          <tabBarItem key="tabBarItem" title="Clientes" id="tab-Supervisor-Clientes" image="person.2" catalog="system" />
         </tableViewController>
         <placeholder placeholderIdentifier="IBFirstResponder" id="first-Clientes" sceneMemberID="firstResponder" />
       </objects>
@@ -625,7 +751,7 @@
     </scene>
     <scene sceneID="scene-VentasEquipo">
       <objects>
-        <tableViewController id="VentasEquipo" storyboardIdentifier="VentasEquipo" sceneMemberID="viewController" customClass="SalesController" customModule="Ventas" customModuleProvider="target" restorationIdentifier="VentasEquipo">
+        <tableViewController id="VentasEquipo" storyboardIdentifier="VentasEquipo" sceneMemberID="viewController" customClass="SalesController" customModule="Ventas" customModuleProvider="target" restorationIdentifier="VentasEquipo" title="Ventas">
           <navigationItem key="navigationItem" title="Ventas" id="navitem-VentasEquipo" />
           <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" rowHeight="94" sectionHeaderHeight="18" sectionFooterHeight="18" id="VentasEquipo-table">
             <rect key="frame" x="0" y="0" width="393" height="852" />
@@ -635,7 +761,69 @@
               <outlet property="dataSource" destination="VentasEquipo" id="VentasEquipo-dataSource" />
               <outlet property="delegate" destination="VentasEquipo" id="VentasEquipo-delegate" />
             </connections>
+            <prototypes>
+              <tableViewCell contentMode="scaleToFill" reuseIdentifier="RegistroCell" rowHeight="94" id="VentasEquipo-table-cell" customClass="RegistroTableViewCell" customModule="Ventas" customModuleProvider="target">
+                <rect key="frame" x="0" y="0" width="393" height="94" />
+                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VentasEquipo-table-cell" id="VentasEquipo-table-content">
+                  <rect key="frame" x="0" y="0" width="393" height="94" />
+                  <subviews>
+                    <stackView axis="horizontal" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="VentasEquipo-table-row">
+                      <subviews>
+                        <imageView contentMode="scaleAspectFill" image="foto-laptop" translatesAutoresizingMaskIntoConstraints="NO" id="VentasEquipo-table-photo">
+                          <constraints>
+                            <constraint firstAttribute="width" constant="44" id="VentasEquipo-table-photo-width" />
+                            <constraint firstAttribute="height" constant="44" id="VentasEquipo-table-photo-height" />
+                          </constraints>
+                        </imageView>
+                        <stackView axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="VentasEquipo-table-names">
+                          <subviews>
+                            <label text="Laptop" numberOfLines="1" translatesAutoresizingMaskIntoConstraints="NO" id="VentasEquipo-table-nameLabel">
+                              <fontDescription key="fontDescription" type="boldSystem" pointSize="16" />
+                              <color key="textColor" red=".07" green=".13" blue=".23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                              <color key="backgroundColor" white="0" alpha="0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                            </label>
+                            <label text="Tecnología" numberOfLines="1" translatesAutoresizingMaskIntoConstraints="NO" id="VentasEquipo-table-detailLabel">
+                              <fontDescription key="fontDescription" type="system" pointSize="12" />
+                              <color key="textColor" red=".07" green=".13" blue=".23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                              <color key="backgroundColor" white="0" alpha="0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                            </label>
+                          </subviews>
+                        </stackView>
+                        <stackView axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="VentasEquipo-table-values">
+                          <subviews>
+                            <label text="S/ 200.00" numberOfLines="1" translatesAutoresizingMaskIntoConstraints="NO" id="VentasEquipo-table-amountLabel">
+                              <fontDescription key="fontDescription" type="boldSystem" pointSize="15" />
+                              <color key="textColor" red=".07" green=".13" blue=".23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                              <color key="backgroundColor" white="0" alpha="0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                            </label>
+                            <label text="40 en stock" numberOfLines="1" translatesAutoresizingMaskIntoConstraints="NO" id="VentasEquipo-table-badgeLabel">
+                              <fontDescription key="fontDescription" type="boldSystem" pointSize="11" />
+                              <color key="textColor" red=".07" green=".13" blue=".23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                              <color key="backgroundColor" white="0" alpha="0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                            </label>
+                          </subviews>
+                        </stackView>
+                      </subviews>
+                    </stackView>
+                  </subviews>
+                  <constraints>
+                    <constraint firstItem="VentasEquipo-table-row" firstAttribute="leading" secondItem="VentasEquipo-table-content" secondAttribute="leading" constant="16" id="VentasEquipo-table-leading" />
+                    <constraint firstItem="VentasEquipo-table-row" firstAttribute="trailing" secondItem="VentasEquipo-table-content" secondAttribute="trailing" constant="-16" id="VentasEquipo-table-trailing" />
+                    <constraint firstItem="VentasEquipo-table-row" firstAttribute="top" secondItem="VentasEquipo-table-content" secondAttribute="top" constant="12" id="VentasEquipo-table-top" />
+                    <constraint firstItem="VentasEquipo-table-row" firstAttribute="bottom" secondItem="VentasEquipo-table-content" secondAttribute="bottom" constant="-12" id="VentasEquipo-table-bottom" />
+                  </constraints>
+                </tableViewCellContentView>
+                <connections>
+                  <outlet property="photo" destination="VentasEquipo-table-photo" id="VentasEquipo-table-photo-outlet" />
+                  <outlet property="nameLabel" destination="VentasEquipo-table-nameLabel" id="VentasEquipo-table-nameLabel-outlet" />
+                  <outlet property="detailLabel" destination="VentasEquipo-table-detailLabel" id="VentasEquipo-table-detailLabel-outlet" />
+                  <outlet property="amountLabel" destination="VentasEquipo-table-amountLabel" id="VentasEquipo-table-amountLabel-outlet" />
+                  <outlet property="badgeLabel" destination="VentasEquipo-table-badgeLabel" id="VentasEquipo-table-badgeLabel-outlet" />
+                </connections>
+              </tableViewCell>
+            </prototypes>
           </tableView>
+          <tabBarItem key="tabBarItem" title="Ventas" id="tab-Supervisor-VentasEquipo" image="receipt" catalog="system" />
         </tableViewController>
         <placeholder placeholderIdentifier="IBFirstResponder" id="first-VentasEquipo" sceneMemberID="firstResponder" />
       </objects>
@@ -643,7 +831,7 @@
     </scene>
     <scene sceneID="scene-Resumen">
       <objects>
-        <viewController id="Resumen" storyboardIdentifier="Resumen" sceneMemberID="viewController" customClass="DashboardController" customModule="Ventas" customModuleProvider="target">
+        <viewController id="Resumen" storyboardIdentifier="Resumen" sceneMemberID="viewController" customClass="DashboardController" customModule="Ventas" customModuleProvider="target" title="Resumen">
           <navigationItem key="navigationItem" title="Resumen" id="navitem-Resumen" />
           <view key="view" contentMode="scaleToFill" id="Resumen-view">
             <rect key="frame" x="0" y="0" width="393" height="852" />
@@ -807,6 +995,7 @@
             <outlet property="rankingLabel" destination="Resumen-7" id="Resumen-7-outlet" />
             <outlet property="stockLabel" destination="Resumen-9" id="Resumen-9-outlet" />
           </connections>
+          <tabBarItem key="tabBarItem" title="Resumen" id="tab-Supervisor-Resumen" image="chart.bar.fill" catalog="system" />
         </viewController>
         <placeholder placeholderIdentifier="IBFirstResponder" id="first-Resumen" sceneMemberID="firstResponder" />
       </objects>
@@ -814,116 +1003,20 @@
     </scene>
     <scene sceneID="scene-SupervisorTabs">
       <objects>
-        <tabBarController id="SupervisorTabs" storyboardIdentifier="AppTabs" sceneMemberID="viewController">
+        <tabBarController id="SupervisorTabs" storyboardIdentifier="AppTabs" sceneMemberID="viewController" customClass="VentasTabController" customModule="Ventas" customModuleProvider="target">
           <tabBar key="tabBar" contentMode="scaleToFill" id="Supervisor-bar" />
           <connections>
-            <segue destination="Supervisor-Resumen" kind="relationship" id="segue-3" relationship="viewControllers" />
-            <segue destination="Supervisor-VentasEquipo" kind="relationship" id="segue-5" relationship="viewControllers" />
-            <segue destination="Supervisor-Productos" kind="relationship" id="segue-7" relationship="viewControllers" />
-            <segue destination="Supervisor-Clientes" kind="relationship" id="segue-9" relationship="viewControllers" />
-            <segue destination="Supervisor-Cuenta" kind="relationship" id="segue-11" relationship="viewControllers" />
-            <segue destination="NuevaVentaNav" kind="relationship" relationship="viewControllers" id="sale-tab" />
+            <segue destination="Resumen" kind="relationship" id="segue-3" relationship="viewControllers" />
+            <segue destination="VentasEquipo" kind="relationship" id="segue-5" relationship="viewControllers" />
+            <segue destination="Productos" kind="relationship" id="segue-7" relationship="viewControllers" />
+            <segue destination="Clientes" kind="relationship" id="segue-9" relationship="viewControllers" />
+            <segue destination="Cuenta" kind="relationship" id="segue-11" relationship="viewControllers" />
+            <segue destination="NuevaVenta" kind="relationship" relationship="viewControllers" id="sale-tab" />
           </connections>
         </tabBarController>
         <placeholder placeholderIdentifier="IBFirstResponder" id="first-SupervisorTabs" sceneMemberID="firstResponder" />
       </objects>
       <point key="canvasLocation" x="0" y="2000" />
-    </scene>
-    <scene sceneID="scene-Supervisor-Resumen">
-      <objects>
-        <navigationController id="Supervisor-Resumen" storyboardIdentifier="Supervisor-Resumen" sceneMemberID="viewController" restorationIdentifier="Resumen">
-          <tabBarItem key="tabBarItem" title="Resumen" id="tab-Supervisor-Resumen" image="chart.bar.fill" catalog="system" />
-          <navigationBar key="navigationBar" contentMode="scaleToFill" id="bar-Supervisor-Resumen">
-            <rect key="frame" x="0" y="0" width="393" height="44" />
-            <autoresizingMask key="autoresizingMask" />
-          </navigationBar>
-          <connections>
-            <segue destination="Resumen" kind="relationship" id="segue-2" relationship="rootViewController" />
-          </connections>
-        </navigationController>
-        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Supervisor-Resumen" sceneMemberID="firstResponder" />
-      </objects>
-      <point key="canvasLocation" x="520" y="2000" />
-    </scene>
-    <scene sceneID="scene-Supervisor-VentasEquipo">
-      <objects>
-        <navigationController id="Supervisor-VentasEquipo" storyboardIdentifier="Supervisor-VentasEquipo" sceneMemberID="viewController" restorationIdentifier="VentasEquipo">
-          <tabBarItem key="tabBarItem" title="Ventas" id="tab-Supervisor-VentasEquipo" image="receipt" catalog="system" />
-          <navigationBar key="navigationBar" contentMode="scaleToFill" id="bar-Supervisor-VentasEquipo">
-            <rect key="frame" x="0" y="0" width="393" height="44" />
-            <autoresizingMask key="autoresizingMask" />
-          </navigationBar>
-          <connections>
-            <segue destination="VentasEquipo" kind="relationship" id="segue-4" relationship="rootViewController" />
-          </connections>
-        </navigationController>
-        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Supervisor-VentasEquipo" sceneMemberID="firstResponder" />
-      </objects>
-      <point key="canvasLocation" x="1040" y="2000" />
-    </scene>
-    <scene sceneID="scene-Supervisor-Productos">
-      <objects>
-        <navigationController id="Supervisor-Productos" storyboardIdentifier="Supervisor-Productos" sceneMemberID="viewController" restorationIdentifier="Productos">
-          <tabBarItem key="tabBarItem" title="Productos" id="tab-Supervisor-Productos" image="shippingbox" catalog="system" />
-          <navigationBar key="navigationBar" contentMode="scaleToFill" id="bar-Supervisor-Productos">
-            <rect key="frame" x="0" y="0" width="393" height="44" />
-            <autoresizingMask key="autoresizingMask" />
-          </navigationBar>
-          <connections>
-            <segue destination="Productos" kind="relationship" id="segue-6" relationship="rootViewController" />
-          </connections>
-        </navigationController>
-        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Supervisor-Productos" sceneMemberID="firstResponder" />
-      </objects>
-      <point key="canvasLocation" x="1560" y="2000" />
-    </scene>
-    <scene sceneID="scene-Supervisor-Clientes">
-      <objects>
-        <navigationController id="Supervisor-Clientes" storyboardIdentifier="Supervisor-Clientes" sceneMemberID="viewController" restorationIdentifier="Clientes">
-          <tabBarItem key="tabBarItem" title="Clientes" id="tab-Supervisor-Clientes" image="person.2" catalog="system" />
-          <navigationBar key="navigationBar" contentMode="scaleToFill" id="bar-Supervisor-Clientes">
-            <rect key="frame" x="0" y="0" width="393" height="44" />
-            <autoresizingMask key="autoresizingMask" />
-          </navigationBar>
-          <connections>
-            <segue destination="Clientes" kind="relationship" id="segue-8" relationship="rootViewController" />
-          </connections>
-        </navigationController>
-        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Supervisor-Clientes" sceneMemberID="firstResponder" />
-      </objects>
-      <point key="canvasLocation" x="2080" y="2000" />
-    </scene>
-    <scene sceneID="scene-Supervisor-Cuenta">
-      <objects>
-        <navigationController id="Supervisor-Cuenta" storyboardIdentifier="Supervisor-Cuenta" sceneMemberID="viewController" restorationIdentifier="Cuenta">
-          <tabBarItem key="tabBarItem" title="Cuenta" id="tab-Supervisor-Cuenta" image="person.crop.circle" catalog="system" />
-          <navigationBar key="navigationBar" contentMode="scaleToFill" id="bar-Supervisor-Cuenta">
-            <rect key="frame" x="0" y="0" width="393" height="44" />
-            <autoresizingMask key="autoresizingMask" />
-          </navigationBar>
-          <connections>
-            <segue destination="Cuenta" kind="relationship" id="segue-10" relationship="rootViewController" />
-          </connections>
-        </navigationController>
-        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Supervisor-Cuenta" sceneMemberID="firstResponder" />
-      </objects>
-      <point key="canvasLocation" x="0" y="3000" />
-    </scene>
-    <scene sceneID="scene-NuevaVentaNav">
-      <objects>
-        <navigationController id="NuevaVentaNav" storyboardIdentifier="NuevaVentaNav" sceneMemberID="viewController" restorationIdentifier="NuevaVentaNav">
-          <tabBarItem key="tabBarItem" title="Venta" id="tab-NuevaVentaNav" image="plus.circle" catalog="system" />
-          <navigationBar key="navigationBar" contentMode="scaleToFill" id="bar-NuevaVentaNav">
-            <rect key="frame" x="0" y="0" width="393" height="44" />
-            <autoresizingMask key="autoresizingMask" />
-          </navigationBar>
-          <connections>
-            <segue destination="NuevaVenta" kind="relationship" id="segue-10-unique-525" relationship="rootViewController" />
-          </connections>
-        </navigationController>
-        <placeholder placeholderIdentifier="IBFirstResponder" id="first-NuevaVentaNav" sceneMemberID="firstResponder" />
-      </objects>
-      <point key="canvasLocation" x="0" y="3000" />
     </scene>
   </scenes>
   <resources>
@@ -934,5 +1027,6 @@
     <image name="person.2" catalog="system" width="128" height="128" />
     <image name="person.crop.circle" catalog="system" width="128" height="128" />
     <image name="plus.circle" catalog="system" width="128" height="128" />
+    <image name="foto-laptop" width="360" height="360" />
   </resources>
 </document>

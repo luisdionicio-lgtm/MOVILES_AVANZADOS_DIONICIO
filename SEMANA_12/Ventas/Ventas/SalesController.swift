@@ -12,7 +12,7 @@ final class SalesController: UITableViewController, UISearchResultsUpdating {
         tableView.rowHeight = 105
         search.searchResultsUpdater = self; search.obscuresBackgroundDuringPresentation = false
         search.searchBar.placeholder = "Buscar por cliente"
-        navigationItem.searchController = search
+        // Búsqueda visible en la cabecera de la tabla.
         navigationItem.hidesSearchBarWhenScrolling = false
         period.selectedSegmentIndex = 0
         period.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -49,10 +49,10 @@ final class SalesController: UITableViewController, UISearchResultsUpdating {
             chips.translatesAutoresizingMaskIntoConstraints = false; scroll.addSubview(chips)
             NSLayoutConstraint.activate([chips.leadingAnchor.constraint(equalTo: scroll.contentLayoutGuide.leadingAnchor), chips.trailingAnchor.constraint(equalTo: scroll.contentLayoutGuide.trailingAnchor), chips.topAnchor.constraint(equalTo: scroll.contentLayoutGuide.topAnchor), chips.bottomAnchor.constraint(equalTo: scroll.contentLayoutGuide.bottomAnchor), chips.heightAnchor.constraint(equalTo: scroll.frameLayoutGuide.heightAnchor)])
             scroll.heightAnchor.constraint(equalToConstant: 38).isActive = true
-            pieces = [total, period, scroll]
-        } else { pieces = [total,period] }
+            pieces = [total, period, scroll, search.searchBar]
+        } else { pieces = [total,period, search.searchBar] }
         let stack = Theme.stack(pieces)
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: Store.shared.supervisor ? 222 : 175))
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: Store.shared.supervisor ? 280 : 235))
         stack.frame = header.bounds.insetBy(dx: 20, dy: 10)
         header.addSubview(stack); tableView.tableHeaderView = header
         tableView.reloadData()
@@ -60,19 +60,20 @@ final class SalesController: UITableViewController, UISearchResultsUpdating {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { rows.count }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let v = rows[indexPath.row]
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.font = .systemFont(ofSize: 17, weight: .bold)
-        let heading = "\(v.cliente?.nombre ?? "") · \(Theme.money(v.total))"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RegistroCell", for: indexPath) as! RegistroTableViewCell
+        cell.nameLabel.text = v.cliente?.nombre
+        cell.detailLabel.text = "\(v.vendedor?.nombre ?? "") · \(v.producto?.nombre ?? "") × \(v.cantidad)"
+        cell.amountLabel.attributedText = nil
+        let amount = Theme.money(v.total)
         if v.anulada {
-            cell.textLabel?.attributedText = NSAttributedString(string: heading, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
-            cell.textLabel?.textColor = .secondaryLabel
-        } else { cell.textLabel?.text = heading; cell.textLabel?.textColor = Theme.navy }
-        let date = v.fecha.formatted(date: .abbreviated, time: .shortened)
-        cell.detailTextLabel?.numberOfLines = 0
-        cell.detailTextLabel?.text = "\(v.producto?.nombre ?? "") × \(v.cantidad) · \(date)\nVendedor · \(v.vendedor?.nombre ?? "")" +
-            (v.anulada ? "\nANULADA · \(v.motivoAnulacion ?? "")" : "\nIGV · \(Theme.money(v.igv))")
-        cell.imageView?.image = UIImage(systemName: v.anulada ? "xmark.circle.fill" : "checkmark.circle.fill")
-        cell.imageView?.tintColor = v.anulada ? .systemRed : .systemGreen
+            cell.amountLabel.attributedText = NSAttributedString(string: amount, attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
+        } else { cell.amountLabel.text = amount }
+        cell.badgeLabel.text = v.anulada ? "Anulada" : v.fecha.formatted(date: .numeric, time: .omitted)
+        cell.badgeLabel.textColor = v.anulada ? .systemRed : .secondaryLabel
+        cell.photo.contentMode = .scaleAspectFit
+        cell.photo.image = UIImage(systemName: v.anulada ? "xmark.circle.fill" : "checkmark.circle.fill")
+        cell.photo.tintColor = v.anulada ? .systemRed : .systemGreen
+        cell.accessibilityLabel = "\(v.cliente?.nombre ?? "") · \(amount) · \(cell.detailLabel.text ?? "") · \(v.anulada ? "Anulada" : "Vigente")"
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
