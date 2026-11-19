@@ -62,6 +62,7 @@ final class SalesController: UITableViewController, UISearchResultsUpdating {
         let v = rows[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "RegistroCell", for: indexPath) as! RegistroTableViewCell
         cell.nameLabel.text = v.cliente?.nombre
+        cell.nameLabel.textColor = v.anulada ? .secondaryLabel : Theme.navy
         cell.detailLabel.text = "\(v.vendedor?.nombre ?? "") · \(v.producto?.nombre ?? "") × \(v.cantidad)"
         cell.amountLabel.attributedText = nil
         let amount = Theme.money(v.total)

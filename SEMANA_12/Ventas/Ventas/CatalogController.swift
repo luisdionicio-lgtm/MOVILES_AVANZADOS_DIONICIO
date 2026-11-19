@@ -14,7 +14,7 @@ final class CatalogController: UITableViewController, UISearchResultsUpdating {
         tableView.backgroundColor = Theme.background
         tableView.rowHeight = 94
         search.searchResultsUpdater = self; search.obscuresBackgroundDuringPresentation = false
-        search.searchBar.placeholder = products ? "Buscar producto" : "Buscar cliente"
+        search.searchBar.placeholder = products ? "Buscar producto" : "Buscar por nombre o documento"
         // La búsqueda se mantiene arriba, dentro de la cabecera de la tabla.
         navigationItem.hidesSearchBarWhenScrolling = false
         if !products || Store.shared.supervisor {

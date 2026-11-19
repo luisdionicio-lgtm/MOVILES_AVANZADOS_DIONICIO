@@ -118,6 +118,9 @@ final class RegisterController: UIViewController {
     @IBOutlet weak var role: UISegmentedControl!
     @IBOutlet weak var errorLabel: UILabel!
     @IBAction func register(_ sender: Any) {
+        guard Role.allCases.indices.contains(role.selectedSegmentIndex) else {
+            errorLabel.text = "Selecciona Vendedor o Supervisor."; return
+        }
         do {
             _ = try Store.shared.register(nombre: name.text ?? "", usuario: user.text ?? "", clave: password.text ?? "", confirmacion: confirm.text ?? "", rol: Role.allCases[role.selectedSegmentIndex])
             showApp()
