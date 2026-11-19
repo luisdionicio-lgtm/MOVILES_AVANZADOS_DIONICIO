@@ -123,3 +123,46 @@ La migración compila y se verificó el acceso y la navegación de ambos roles. 
 Se agruparon los controles del acceso, registro, nueva venta, Cuenta y resumen en tarjetas dentro del Storyboard, con desplazamiento y constraints para el área segura. Se conserva el logo Tecsup, las fotografías de productos y los iconos. El historial se reutiliza según el rol; la anulación se presenta como alerta, sin escena extra.
 
 ![Nueva venta con tarjetas del Storyboard](evidencias/venta-tarjetas-storyboard.png)
+
+## Migración compacta verificada · 19 de noviembre
+
+`Main.storyboard` contiene exactamente **10 escenas**: Login, Registro, Productos, Clientes, Nueva venta, Historial, Resumen, Cuenta, Navigation Controller y Tab Bar Controller. El historial se adapta al rol; la anulación sigue siendo una alerta. Los formularios tienen controles con outlets/acciones y las tablas usan celdas prototipo `RegistroTableViewCell` con fotografías y etiquetas enlazadas. Los filtros dinámicos, menús y alertas se configuran desde los controladores. `Store.swift` conserva las reglas y Core Data.
+
+Se compiló para iPhone 16 y se recorrieron el acceso, registro, Cuenta, Productos, Clientes, Resumen e historial de ambos roles.
+
+### Acceso
+
+![Acceso](evidencias/migracion/login.png)
+
+### Registro
+
+![Registro](evidencias/migracion/registro.png)
+
+### Productos
+
+![Productos](evidencias/migracion/productos.png)
+
+### Clientes
+
+![Clientes](evidencias/migracion/clientes.png)
+
+### Nueva venta
+
+![Nueva venta](evidencias/migracion/nueva-venta.png)
+
+### Mis ventas
+
+![Mis ventas](evidencias/migracion/mis-ventas.png)
+
+### Ventas del equipo
+
+![Ventas del equipo](evidencias/migracion/ventas-equipo.png)
+
+### Resumen
+
+![Resumen](evidencias/migracion/resumen.png)
+
+### Cuenta
+
+![Cuenta](evidencias/migracion/cuenta.png)
+
