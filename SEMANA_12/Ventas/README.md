@@ -117,3 +117,9 @@ Se reutilizan escenas de Productos, Clientes, Cuenta e Historial según el rol; 
 ![Formulario conectado al Storyboard](evidencias/venta-storyboard.png)
 
 La migración compila y se verificó el acceso y la navegación de ambos roles. El acabado visual todavía requiere unificar tarjetas y distribución con la versión previa; esta captura documenta el estado actual.
+
+### Tarjetas en Interface Builder
+
+Se agruparon los controles del acceso, registro, nueva venta, Cuenta y resumen en tarjetas dentro del Storyboard, con desplazamiento y constraints para el área segura. Se conserva el logo Tecsup, las fotografías de productos y los iconos. El historial se reutiliza según el rol; la anulación se presenta como alerta, sin escena extra.
+
+![Nueva venta con tarjetas del Storyboard](evidencias/venta-tarjetas-storyboard.png)
