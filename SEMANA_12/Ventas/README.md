@@ -166,3 +166,20 @@ Se compiló para iPhone 16 y se recorrieron el acceso, registro, Cuenta, Product
 
 ![Cuenta](evidencias/migracion/cuenta.png)
 
+
+## Evidencias de estructura en Xcode · 19 de noviembre
+
+Capturas proporcionadas por Luis: muestran el diseño del Storyboard, las celdas prototipo y las conexiones del Tab Bar Controller. Son evidencias del editor; no sustituyen las pruebas de ejecución. Las advertencias visibles corresponden al estado de Xcode al tomar las capturas.
+
+**Acceso, registro, Cuenta y nueva venta**
+
+![Acceso, registro, Cuenta y nueva venta](evidencias/migracion/storyboard-acceso-registro-venta.png)
+
+**Tablas y resumen**
+
+![Tablas y resumen](evidencias/migracion/storyboard-tablas-resumen.png)
+
+**Conexiones del Tab Bar Controller**
+
+![Conexiones del Tab Bar Controller](evidencias/migracion/storyboard-conexiones-tabbar.png)
+
