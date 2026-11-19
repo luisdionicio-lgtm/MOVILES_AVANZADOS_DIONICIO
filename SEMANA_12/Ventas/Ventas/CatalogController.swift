@@ -2,14 +2,15 @@ import UIKit
 import CoreData
 
 final class CatalogController: UITableViewController, UISearchResultsUpdating {
-    let products: Bool
+    var products = true
     var rows = [NSManagedObject]()
     let search = UISearchController(searchResultsController: nil)
     let categories = UISegmentedControl(items: ["Todas"])
     init(products: Bool) { self.products = products; super.init(style: .insetGrouped) }
-    required init?(coder: NSCoder) { fatalError() }
+    required init?(coder: NSCoder) { super.init(coder: coder) }
     override func viewDidLoad() {
         super.viewDidLoad()
+        products = restorationIdentifier == "Productos"
         tableView.backgroundColor = Theme.background
         tableView.rowHeight = 94
         search.searchResultsUpdater = self; search.obscuresBackgroundDuringPresentation = false

@@ -107,3 +107,13 @@ Las capturas corresponden a distintos momentos de prueba; sus totales pueden var
 Iconos de productos: [Font Awesome Free](https://github.com/FortAwesome/Font-Awesome), SVG bajo licencia [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); se muestran como plantillas coloreadas.
 
 Las fotografías ilustrativas de laptop, monitor, mouse y teclado proceden de [Unsplash](https://unsplash.com/license); se guardan en Assets para funcionar sin conexión. No representan modelos específicos del inventario.
+
+## Migración a Main.storyboard
+
+El flujo de acceso, registro, pestañas por rol, formularios de nueva venta, Cuenta y controles del resumen se define en `Ventas/Base.lproj/Main.storyboard`, con outlets y acciones hacia sus controladores. Productos, Clientes y Ventas usan escenas UITableViewController; el contenido de las filas, filtros y alertas continúa construido dinámicamente en Swift. La gráfica se incorpora al espacio del Storyboard con UIHostingController.
+
+Se reutilizan escenas de Productos, Clientes, Cuenta e Historial según el rol; la anulación es una alerta, no una escena adicional.
+
+![Formulario conectado al Storyboard](evidencias/venta-storyboard.png)
+
+La migración compila y se verificó el acceso y la navegación de ambos roles. El acabado visual todavía requiere unificar tarjetas y distribución con la versión previa; esta captura documenta el estado actual.

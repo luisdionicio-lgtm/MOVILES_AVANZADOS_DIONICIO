@@ -6,46 +6,20 @@ final class SaleController: UIViewController {
     var products = [Producto]()
     var client: Cliente?
     var product: Producto?
-    let clientButton = UIButton(type: .system)
-    let productButton = UIButton(type: .system)
-    let quantity = UIStepper()
-    let quantityLabel = Theme.label("Cantidad · 1", bold: true)
-    let stockLabel = Theme.label("")
-    let summary = Theme.label("", size: 16)
-    let subtotalValue = Theme.label("S/ 0.00", bold: true)
-    let discountValue = Theme.label("S/ 0.00", bold: true)
-    let taxValue = Theme.label("S/ 0.00", bold: true)
-    let totalValue = Theme.label("S/ 0.00", size: 19, bold: true)
-    func row(_ name: String, _ value: UILabel) -> UIStackView {
-        let label = Theme.label(name, size: 16); label.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        value.textAlignment = .right; value.setContentHuggingPriority(.required, for: .horizontal)
-        let row = UIStackView(arrangedSubviews: [label, value]); row.axis = .horizontal; row.distribution = .fill
-        return row
-    }
+    @IBOutlet weak var clientButton: UIButton!
+    @IBOutlet weak var productButton: UIButton!
+    @IBOutlet weak var quantity: UIStepper!
+    @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var stockLabel: UILabel!
+    @IBOutlet weak var subtotalValue: UILabel!
+    @IBOutlet weak var discountValue: UILabel!
+    @IBOutlet weak var taxValue: UILabel!
+    @IBOutlet weak var totalValue: UILabel!
+    @IBOutlet weak var sellerLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        quantity.minimumValue = 1; quantity.maximumValue = 1_000_000; quantity.value = 1
-        quantity.addTarget(self, action: #selector(update), for: .valueChanged)
-        for button in [clientButton,productButton] {
-            button.contentHorizontalAlignment = .leading
-            button.heightAnchor.constraint(equalToConstant: 36).isActive = true
-            button.showsMenuAsPrimaryAction = true
-            button.backgroundColor = .white; button.layer.cornerRadius = 10
-        }
-        let selection = Theme.stack([
-            Theme.label("CLIENTE", size: 12, bold: true), clientButton,
-            Theme.label("PRODUCTO", size: 12, bold: true), productButton, stockLabel, quantityLabel, quantity
-        ])
-        selection.spacing = 6
-        selection.backgroundColor = .white; selection.layer.cornerRadius = 18
-        selection.isLayoutMarginsRelativeArrangement = true
-        selection.layoutMargins = .init(top: 12, left: 16, bottom: 12, right: 16)
-        let seller = Theme.card([Theme.label("VENDEDOR", size: 11, bold: true), Theme.label(Store.shared.current?.nombre ?? "", size: 17, bold: true), Theme.label("La venta se registrará a tu nombre", size: 13)], padding: 12)
-        let amounts = Theme.card([row("Subtotal", subtotalValue), row("Descuento VIP", discountValue), row("IGV 18 %", taxValue), row("Total", totalValue)])
-        formLayout(Theme.stack([
-            seller, selection, Theme.label("RESUMEN DE LA VENTA", size: 12, bold: true), amounts,
-            Theme.button("Registrar venta", action: UIAction { [weak self] _ in self?.register() })
-        ]))
+        clientButton.showsMenuAsPrimaryAction = true; productButton.showsMenuAsPrimaryAction = true
+        sellerLabel.text = Store.shared.current?.nombre
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -61,20 +35,20 @@ final class SaleController: UIViewController {
         })
         update()
     }
-    @objc func update() {
+    @IBAction func update(_ sender: Any? = nil) {
         clientButton.setTitle("  "+(client?.nombre ?? "Selecciona un cliente  ▾"), for: .normal)
         productButton.setTitle("  "+(product?.nombre ?? "Selecciona un producto  ▾"), for: .normal)
         quantity.maximumValue = 1_000_000
         stockLabel.text = "Stock disponible · \(product?.stock ?? 0)"
         quantityLabel.text = "Cantidad · \(Int(quantity.value))"
         guard let product, let client else {
-            [subtotalValue, discountValue, taxValue, totalValue].forEach { $0.text = Theme.money(0) }; return
+            subtotalValue.text = "Subtotal · S/ 0.00"; discountValue.text = "Descuento · S/ 0.00"; taxValue.text = "IGV · S/ 0.00"; totalValue.text = "Total · S/ 0.00"; return
         }
         let a = Importe(precio: product.precio, cantidad: Int(quantity.value), vip: client.categoria == "VIP")
-        subtotalValue.text = Theme.money(a.subtotal); discountValue.text = Theme.money(a.descuento)
-        taxValue.text = Theme.money(a.igv); totalValue.text = Theme.money(a.total)
+        subtotalValue.text = "Subtotal · " + Theme.money(a.subtotal); discountValue.text = "Descuento · " + Theme.money(a.descuento)
+        taxValue.text = "IGV 18 % · " + Theme.money(a.igv); totalValue.text = "Total · " + Theme.money(a.total)
     }
-    func register() {
+    @IBAction func register(_ sender: Any) {
         guard let client, let product else { message("Selecciona cliente y producto."); return }
         do {
             let v = try Store.shared.sell(cliente: client, producto: product, cantidad: Int(quantity.value))

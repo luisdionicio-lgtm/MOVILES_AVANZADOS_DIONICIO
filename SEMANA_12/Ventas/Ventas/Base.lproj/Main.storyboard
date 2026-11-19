@@ -1,0 +1,766 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23501" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LoginNav">
+  <device id="retina6_12" orientation="portrait" appearance="light" />
+  <dependencies>
+    <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23501" />
+    <capability name="Safe area layout guides" minToolsVersion="9.0" />
+    <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0" />
+  </dependencies>
+  <scenes>
+    <scene sceneID="scene-Login">
+      <objects>
+        <viewController id="Login" storyboardIdentifier="Login" sceneMemberID="viewController" customClass="LoginController" customModule="Ventas" customModuleProvider="target">
+          <navigationItem key="navigationItem" title="Ventas Tecsup" id="navitem-Login" />
+          <view key="view" contentMode="scaleToFill" id="Login-view">
+            <rect key="frame" x="0" y="0" width="393" height="852" />
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+            <color key="backgroundColor" red="0.94" green="0.95" blue="0.97" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+            <subviews>
+              <stackView axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Login-stack">
+                <rect key="frame" x="24" y="110" width="345" height="600" />
+                <subviews>
+                  <imageView image="Tecsup" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Login-0">
+                    <rect key="frame" x="0" y="0" width="345" height="42" />
+                    <constraints>
+                      <constraint firstAttribute="height" constant="80" id="Login-0-height" />
+                    </constraints>
+                  </imageView>
+                  <label text="Ventas Tecsup" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Login-1" opaque="NO">
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="55" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <textField placeholder="Usuario" borderStyle="roundedRect" translatesAutoresizingMaskIntoConstraints="NO" id="Login-2">
+                    <textInputTraits key="textInputTraits" autocapitalizationType="none" autocorrectionType="no" secureTextEntry="NO" />
+                    <rect key="frame" x="0" y="110" width="345" height="42" />
+                    <constraints>
+                      <constraint firstAttribute="height" constant="44" id="Login-2-height" />
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                      <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                        <real key="value" value="12" />
+                      </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                  </textField>
+                  <textField placeholder="Clave" borderStyle="roundedRect" translatesAutoresizingMaskIntoConstraints="NO" id="Login-3">
+                    <textInputTraits key="textInputTraits" autocapitalizationType="none" autocorrectionType="no" secureTextEntry="YES" />
+                    <rect key="frame" x="0" y="165" width="345" height="42" />
+                    <constraints>
+                      <constraint firstAttribute="height" constant="44" id="Login-3-height" />
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                      <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                        <real key="value" value="12" />
+                      </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                  </textField>
+                  <label text="" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Login-4" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="220" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <button buttonType="system" translatesAutoresizingMaskIntoConstraints="NO" id="Login-5">
+                    <state key="normal" title="Ingresar">
+                      <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                    </state>
+                    <color key="backgroundColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <connections>
+                      <action selector="login:" destination="Login" eventType="touchUpInside" id="Login-5-action" />
+                    </connections>
+                    <rect key="frame" x="0" y="275" width="345" height="42" />
+                    <constraints>
+                      <constraint firstAttribute="height" constant="44" id="Login-5-height" />
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                      <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                        <real key="value" value="12" />
+                      </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17" />
+                  </button>
+                  <button buttonType="system" translatesAutoresizingMaskIntoConstraints="NO" id="Login-6">
+                    <state key="normal" title="Crear cuenta">
+                      <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                    </state>
+                    <color key="backgroundColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <connections>
+                      <segue destination="Registro" kind="show" id="segue-0" identifier="crearCuenta" />
+                    </connections>
+                    <rect key="frame" x="0" y="330" width="345" height="42" />
+                    <constraints>
+                      <constraint firstAttribute="height" constant="44" id="Login-6-height" />
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                      <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                        <real key="value" value="12" />
+                      </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17" />
+                  </button>
+                </subviews>
+              </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Login-safe" />
+            <constraints>
+              <constraint firstItem="Login-stack" firstAttribute="top" secondItem="Login-safe" secondAttribute="top" constant="20" id="Login-top" />
+              <constraint firstItem="Login-stack" firstAttribute="leading" secondItem="Login-safe" secondAttribute="leading" constant="24" id="Login-leading" />
+              <constraint firstItem="Login-safe" firstAttribute="trailing" secondItem="Login-stack" secondAttribute="trailing" constant="24" id="Login-trailing" />
+            </constraints>
+          </view>
+          <connections>
+            <outlet property="user" destination="Login-2" id="Login-2-outlet" />
+            <outlet property="password" destination="Login-3" id="Login-3-outlet" />
+            <outlet property="errorLabel" destination="Login-4" id="Login-4-outlet" />
+          </connections>
+        </viewController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Login" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="0" y="0" />
+    </scene>
+    <scene sceneID="scene-LoginNav">
+      <objects>
+        <navigationController id="LoginNav" storyboardIdentifier="LoginNav" sceneMemberID="viewController">
+          <tabBarItem key="tabBarItem" title="" id="tab-LoginNav" />
+          <navigationBar key="navigationBar" contentMode="scaleToFill" id="bar-LoginNav">
+            <rect key="frame" x="0" y="0" width="393" height="44" />
+            <autoresizingMask key="autoresizingMask" />
+          </navigationBar>
+          <connections>
+            <segue destination="Login" kind="relationship" id="segue-1" relationship="rootViewController" />
+          </connections>
+        </navigationController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-LoginNav" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="520" y="0" />
+    </scene>
+    <scene sceneID="scene-Registro">
+      <objects>
+        <viewController id="Registro" storyboardIdentifier="Registro" sceneMemberID="viewController" customClass="RegisterController" customModule="Ventas" customModuleProvider="target">
+          <navigationItem key="navigationItem" title="Crear cuenta" id="navitem-Registro" />
+          <view key="view" contentMode="scaleToFill" id="Registro-view">
+            <rect key="frame" x="0" y="0" width="393" height="852" />
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+            <color key="backgroundColor" red="0.94" green="0.95" blue="0.97" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+            <subviews>
+              <stackView axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Registro-stack">
+                <rect key="frame" x="24" y="110" width="345" height="600" />
+                <subviews>
+                  <label text="Crea tu acceso al equipo comercial" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Registro-0" opaque="NO">
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="0" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <textField placeholder="Nombre completo" borderStyle="roundedRect" translatesAutoresizingMaskIntoConstraints="NO" id="Registro-1">
+                    <textInputTraits key="textInputTraits" autocapitalizationType="none" autocorrectionType="no" secureTextEntry="NO" />
+                    <rect key="frame" x="0" y="55" width="345" height="42" />
+                    <constraints>
+                      <constraint firstAttribute="height" constant="44" id="Registro-1-height" />
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                      <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                        <real key="value" value="12" />
+                      </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                  </textField>
+                  <textField placeholder="Usuario" borderStyle="roundedRect" translatesAutoresizingMaskIntoConstraints="NO" id="Registro-2">
+                    <textInputTraits key="textInputTraits" autocapitalizationType="none" autocorrectionType="no" secureTextEntry="NO" />
+                    <rect key="frame" x="0" y="110" width="345" height="42" />
+                    <constraints>
+                      <constraint firstAttribute="height" constant="44" id="Registro-2-height" />
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                      <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                        <real key="value" value="12" />
+                      </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                  </textField>
+                  <textField placeholder="Clave (mínimo 6 caracteres)" borderStyle="roundedRect" translatesAutoresizingMaskIntoConstraints="NO" id="Registro-3">
+                    <textInputTraits key="textInputTraits" autocapitalizationType="none" autocorrectionType="no" secureTextEntry="YES" />
+                    <rect key="frame" x="0" y="165" width="345" height="42" />
+                    <constraints>
+                      <constraint firstAttribute="height" constant="44" id="Registro-3-height" />
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                      <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                        <real key="value" value="12" />
+                      </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                  </textField>
+                  <textField placeholder="Confirmar clave" borderStyle="roundedRect" translatesAutoresizingMaskIntoConstraints="NO" id="Registro-4">
+                    <textInputTraits key="textInputTraits" autocapitalizationType="none" autocorrectionType="no" secureTextEntry="YES" />
+                    <rect key="frame" x="0" y="220" width="345" height="42" />
+                    <constraints>
+                      <constraint firstAttribute="height" constant="44" id="Registro-4-height" />
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                      <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                        <real key="value" value="12" />
+                      </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                  </textField>
+                  <segmentedControl selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Registro-5">
+                    <segments>
+                      <segment title="Vendedor" />
+                      <segment title="Supervisor" />
+                    </segments>
+                    <rect key="frame" x="0" y="275" width="345" height="42" />
+                  </segmentedControl>
+                  <label text="" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Registro-6" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="330" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <button buttonType="system" translatesAutoresizingMaskIntoConstraints="NO" id="Registro-7">
+                    <state key="normal" title="Registrarme">
+                      <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                    </state>
+                    <color key="backgroundColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <connections>
+                      <action selector="register:" destination="Registro" eventType="touchUpInside" id="Registro-7-action" />
+                    </connections>
+                    <rect key="frame" x="0" y="385" width="345" height="42" />
+                    <constraints>
+                      <constraint firstAttribute="height" constant="44" id="Registro-7-height" />
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                      <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                        <real key="value" value="12" />
+                      </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17" />
+                  </button>
+                </subviews>
+              </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Registro-safe" />
+            <constraints>
+              <constraint firstItem="Registro-stack" firstAttribute="top" secondItem="Registro-safe" secondAttribute="top" constant="20" id="Registro-top" />
+              <constraint firstItem="Registro-stack" firstAttribute="leading" secondItem="Registro-safe" secondAttribute="leading" constant="24" id="Registro-leading" />
+              <constraint firstItem="Registro-safe" firstAttribute="trailing" secondItem="Registro-stack" secondAttribute="trailing" constant="24" id="Registro-trailing" />
+            </constraints>
+          </view>
+          <connections>
+            <outlet property="name" destination="Registro-1" id="Registro-1-outlet" />
+            <outlet property="user" destination="Registro-2" id="Registro-2-outlet" />
+            <outlet property="password" destination="Registro-3" id="Registro-3-outlet" />
+            <outlet property="confirm" destination="Registro-4" id="Registro-4-outlet" />
+            <outlet property="role" destination="Registro-5" id="Registro-5-outlet" />
+            <outlet property="errorLabel" destination="Registro-6" id="Registro-6-outlet" />
+          </connections>
+        </viewController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Registro" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="1040" y="0" />
+    </scene>
+    <scene sceneID="scene-Cuenta">
+      <objects>
+        <viewController id="Cuenta" storyboardIdentifier="Cuenta" sceneMemberID="viewController" customClass="AccountController" customModule="Ventas" customModuleProvider="target">
+          <navigationItem key="navigationItem" title="Cuenta" id="navitem-Cuenta" />
+          <view key="view" contentMode="scaleToFill" id="Cuenta-view">
+            <rect key="frame" x="0" y="0" width="393" height="852" />
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+            <color key="backgroundColor" red="0.94" green="0.95" blue="0.97" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+            <subviews>
+              <stackView axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Cuenta-stack">
+                <rect key="frame" x="24" y="110" width="345" height="600" />
+                <subviews>
+                  <label text="Mi espacio" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Cuenta-0" opaque="NO">
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="0" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="Nombre completo" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Cuenta-1" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="55" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="Usuario" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Cuenta-2" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="110" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="Rol" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Cuenta-3" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="165" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <button buttonType="system" translatesAutoresizingMaskIntoConstraints="NO" id="Cuenta-4">
+                    <state key="normal" title="Cerrar sesión">
+                      <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                    </state>
+                    <color key="backgroundColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <connections>
+                      <action selector="logout:" destination="Cuenta" eventType="touchUpInside" id="Cuenta-4-action" />
+                    </connections>
+                    <rect key="frame" x="0" y="220" width="345" height="42" />
+                    <constraints>
+                      <constraint firstAttribute="height" constant="44" id="Cuenta-4-height" />
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                      <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                        <real key="value" value="12" />
+                      </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17" />
+                  </button>
+                </subviews>
+              </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Cuenta-safe" />
+            <constraints>
+              <constraint firstItem="Cuenta-stack" firstAttribute="top" secondItem="Cuenta-safe" secondAttribute="top" constant="20" id="Cuenta-top" />
+              <constraint firstItem="Cuenta-stack" firstAttribute="leading" secondItem="Cuenta-safe" secondAttribute="leading" constant="24" id="Cuenta-leading" />
+              <constraint firstItem="Cuenta-safe" firstAttribute="trailing" secondItem="Cuenta-stack" secondAttribute="trailing" constant="24" id="Cuenta-trailing" />
+            </constraints>
+          </view>
+          <connections>
+            <outlet property="nameLabel" destination="Cuenta-1" id="Cuenta-1-outlet" />
+            <outlet property="userLabel" destination="Cuenta-2" id="Cuenta-2-outlet" />
+            <outlet property="roleLabel" destination="Cuenta-3" id="Cuenta-3-outlet" />
+          </connections>
+        </viewController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Cuenta" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="1560" y="0" />
+    </scene>
+    <scene sceneID="scene-NuevaVenta">
+      <objects>
+        <viewController id="NuevaVenta" storyboardIdentifier="NuevaVenta" sceneMemberID="viewController" customClass="SaleController" customModule="Ventas" customModuleProvider="target">
+          <navigationItem key="navigationItem" title="Nueva venta" id="navitem-NuevaVenta" />
+          <view key="view" contentMode="scaleToFill" id="NuevaVenta-view">
+            <rect key="frame" x="0" y="0" width="393" height="852" />
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+            <color key="backgroundColor" red="0.94" green="0.95" blue="0.97" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+            <subviews>
+              <stackView axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="NuevaVenta-stack">
+                <rect key="frame" x="24" y="110" width="345" height="600" />
+                <subviews>
+                  <label text="Vendedor de la sesión" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="NuevaVenta-0" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="0" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <button buttonType="system" translatesAutoresizingMaskIntoConstraints="NO" id="NuevaVenta-1">
+                    <state key="normal" title="Selecciona un cliente">
+                      <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                    </state>
+                    <color key="backgroundColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="55" width="345" height="42" />
+                    <userDefinedRuntimeAttributes>
+                      <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                        <real key="value" value="12" />
+                      </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17" />
+                  </button>
+                  <button buttonType="system" translatesAutoresizingMaskIntoConstraints="NO" id="NuevaVenta-2">
+                    <state key="normal" title="Selecciona un producto">
+                      <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                    </state>
+                    <color key="backgroundColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="110" width="345" height="42" />
+                    <userDefinedRuntimeAttributes>
+                      <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                        <real key="value" value="12" />
+                      </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17" />
+                  </button>
+                  <label text="Stock disponible" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="NuevaVenta-3" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="165" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="Cantidad · 1" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="NuevaVenta-4" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="220" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <stepper value="1" minimumValue="1" maximumValue="1000000" translatesAutoresizingMaskIntoConstraints="NO" id="NuevaVenta-5">
+                    <connections>
+                      <action selector="update:" destination="NuevaVenta" eventType="valueChanged" id="NuevaVenta-5-action" />
+                    </connections>
+                    <rect key="frame" x="0" y="275" width="345" height="42" />
+                  </stepper>
+                  <label text="Resumen calculado" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="NuevaVenta-6" opaque="NO">
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="330" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="Subtotal · S/ 0.00" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="NuevaVenta-7" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="385" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="Descuento · S/ 0.00" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="NuevaVenta-8" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="440" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="IGV · S/ 0.00" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="NuevaVenta-9" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="495" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="Total · S/ 0.00" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="NuevaVenta-10" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="550" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <button buttonType="system" translatesAutoresizingMaskIntoConstraints="NO" id="NuevaVenta-11">
+                    <state key="normal" title="Registrar venta">
+                      <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                    </state>
+                    <color key="backgroundColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <connections>
+                      <action selector="register:" destination="NuevaVenta" eventType="touchUpInside" id="NuevaVenta-11-action" />
+                    </connections>
+                    <rect key="frame" x="0" y="605" width="345" height="42" />
+                    <constraints>
+                      <constraint firstAttribute="height" constant="44" id="NuevaVenta-11-height" />
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                      <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                        <real key="value" value="12" />
+                      </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17" />
+                  </button>
+                </subviews>
+              </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="NuevaVenta-safe" />
+            <constraints>
+              <constraint firstItem="NuevaVenta-stack" firstAttribute="top" secondItem="NuevaVenta-safe" secondAttribute="top" constant="20" id="NuevaVenta-top" />
+              <constraint firstItem="NuevaVenta-stack" firstAttribute="leading" secondItem="NuevaVenta-safe" secondAttribute="leading" constant="24" id="NuevaVenta-leading" />
+              <constraint firstItem="NuevaVenta-safe" firstAttribute="trailing" secondItem="NuevaVenta-stack" secondAttribute="trailing" constant="24" id="NuevaVenta-trailing" />
+            </constraints>
+          </view>
+          <connections>
+            <outlet property="sellerLabel" destination="NuevaVenta-0" id="NuevaVenta-0-outlet" />
+            <outlet property="clientButton" destination="NuevaVenta-1" id="NuevaVenta-1-outlet" />
+            <outlet property="productButton" destination="NuevaVenta-2" id="NuevaVenta-2-outlet" />
+            <outlet property="stockLabel" destination="NuevaVenta-3" id="NuevaVenta-3-outlet" />
+            <outlet property="quantityLabel" destination="NuevaVenta-4" id="NuevaVenta-4-outlet" />
+            <outlet property="quantity" destination="NuevaVenta-5" id="NuevaVenta-5-outlet" />
+            <outlet property="subtotalValue" destination="NuevaVenta-7" id="NuevaVenta-7-outlet" />
+            <outlet property="discountValue" destination="NuevaVenta-8" id="NuevaVenta-8-outlet" />
+            <outlet property="taxValue" destination="NuevaVenta-9" id="NuevaVenta-9-outlet" />
+            <outlet property="totalValue" destination="NuevaVenta-10" id="NuevaVenta-10-outlet" />
+          </connections>
+        </viewController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-NuevaVenta" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="2080" y="0" />
+    </scene>
+    <scene sceneID="scene-Productos">
+      <objects>
+        <tableViewController id="Productos" storyboardIdentifier="Productos" sceneMemberID="viewController" customClass="CatalogController" customModule="Ventas" customModuleProvider="target" restorationIdentifier="Productos">
+          <navigationItem key="navigationItem" title="Productos" id="navitem-Productos" />
+          <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" rowHeight="94" sectionHeaderHeight="18" sectionFooterHeight="18" id="Productos-table">
+            <rect key="frame" x="0" y="0" width="393" height="852" />
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+            <color key="backgroundColor" red="0.94" green="0.95" blue="0.97" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+            <connections>
+              <outlet property="dataSource" destination="Productos" id="Productos-dataSource" />
+              <outlet property="delegate" destination="Productos" id="Productos-delegate" />
+            </connections>
+          </tableView>
+        </tableViewController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Productos" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="0" y="1000" />
+    </scene>
+    <scene sceneID="scene-Clientes">
+      <objects>
+        <tableViewController id="Clientes" storyboardIdentifier="Clientes" sceneMemberID="viewController" customClass="CatalogController" customModule="Ventas" customModuleProvider="target" restorationIdentifier="Clientes">
+          <navigationItem key="navigationItem" title="Clientes" id="navitem-Clientes" />
+          <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" rowHeight="94" sectionHeaderHeight="18" sectionFooterHeight="18" id="Clientes-table">
+            <rect key="frame" x="0" y="0" width="393" height="852" />
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+            <color key="backgroundColor" red="0.94" green="0.95" blue="0.97" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+            <connections>
+              <outlet property="dataSource" destination="Clientes" id="Clientes-dataSource" />
+              <outlet property="delegate" destination="Clientes" id="Clientes-delegate" />
+            </connections>
+          </tableView>
+        </tableViewController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Clientes" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="520" y="1000" />
+    </scene>
+    <scene sceneID="scene-MisVentas">
+      <objects>
+        <tableViewController id="MisVentas" storyboardIdentifier="MisVentas" sceneMemberID="viewController" customClass="SalesController" customModule="Ventas" customModuleProvider="target" restorationIdentifier="MisVentas">
+          <navigationItem key="navigationItem" title="Mis ventas" id="navitem-MisVentas" />
+          <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" rowHeight="94" sectionHeaderHeight="18" sectionFooterHeight="18" id="MisVentas-table">
+            <rect key="frame" x="0" y="0" width="393" height="852" />
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+            <color key="backgroundColor" red="0.94" green="0.95" blue="0.97" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+            <connections>
+              <outlet property="dataSource" destination="MisVentas" id="MisVentas-dataSource" />
+              <outlet property="delegate" destination="MisVentas" id="MisVentas-delegate" />
+            </connections>
+          </tableView>
+        </tableViewController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-MisVentas" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="1040" y="1000" />
+    </scene>
+    <scene sceneID="scene-VentasEquipo">
+      <objects>
+        <tableViewController id="VentasEquipo" storyboardIdentifier="VentasEquipo" sceneMemberID="viewController" customClass="SalesController" customModule="Ventas" customModuleProvider="target" restorationIdentifier="VentasEquipo">
+          <navigationItem key="navigationItem" title="Ventas" id="navitem-VentasEquipo" />
+          <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" rowHeight="94" sectionHeaderHeight="18" sectionFooterHeight="18" id="VentasEquipo-table">
+            <rect key="frame" x="0" y="0" width="393" height="852" />
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+            <color key="backgroundColor" red="0.94" green="0.95" blue="0.97" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+            <connections>
+              <outlet property="dataSource" destination="VentasEquipo" id="VentasEquipo-dataSource" />
+              <outlet property="delegate" destination="VentasEquipo" id="VentasEquipo-delegate" />
+            </connections>
+          </tableView>
+        </tableViewController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-VentasEquipo" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="1560" y="1000" />
+    </scene>
+    <scene sceneID="scene-Resumen">
+      <objects>
+        <viewController id="Resumen" storyboardIdentifier="Resumen" sceneMemberID="viewController" customClass="DashboardController" customModule="Ventas" customModuleProvider="target">
+          <navigationItem key="navigationItem" title="Resumen" id="navitem-Resumen" />
+          <view key="view" contentMode="scaleToFill" id="Resumen-view">
+            <rect key="frame" x="0" y="0" width="393" height="852" />
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+            <color key="backgroundColor" red="0.94" green="0.95" blue="0.97" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+            <subviews>
+              <stackView axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Resumen-stack">
+                <rect key="frame" x="24" y="110" width="345" height="600" />
+                <subviews>
+                  <label text="Hola, supervisor" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Resumen-0" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="0" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="Vendido hoy · S/ 0.00" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Resumen-1" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="55" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="IGV del mes · S/ 0.00" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Resumen-2" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="110" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="Variación diaria" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Resumen-3" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="165" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="Ventas de los últimos siete días" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Resumen-4" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="220" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="Gráfico de ventas" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Resumen-5" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="275" width="345" height="42" />
+                    <constraints>
+                      <constraint firstAttribute="height" constant="180" id="chart-height" />
+                    </constraints>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="Ranking del mes" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Resumen-6" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="330" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="Vendedores" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Resumen-7" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="385" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="Stock bajo" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Resumen-8" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="440" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                  <label text="Productos" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="Resumen-9" opaque="NO">
+                    <fontDescription key="fontDescription" type="system" pointSize="18" />
+                    <color key="textColor" red="0.07" green="0.13" blue="0.23" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                    <rect key="frame" x="0" y="495" width="345" height="42" />
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                  </label>
+                </subviews>
+              </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Resumen-safe" />
+            <constraints>
+              <constraint firstItem="Resumen-stack" firstAttribute="top" secondItem="Resumen-safe" secondAttribute="top" constant="20" id="Resumen-top" />
+              <constraint firstItem="Resumen-stack" firstAttribute="leading" secondItem="Resumen-safe" secondAttribute="leading" constant="24" id="Resumen-leading" />
+              <constraint firstItem="Resumen-safe" firstAttribute="trailing" secondItem="Resumen-stack" secondAttribute="trailing" constant="24" id="Resumen-trailing" />
+            </constraints>
+          </view>
+          <connections>
+            <outlet property="greeting" destination="Resumen-0" id="Resumen-0-outlet" />
+            <outlet property="todayLabel" destination="Resumen-1" id="Resumen-1-outlet" />
+            <outlet property="taxLabel" destination="Resumen-2" id="Resumen-2-outlet" />
+            <outlet property="variationLabel" destination="Resumen-3" id="Resumen-3-outlet" />
+            <outlet property="chartLabel" destination="Resumen-5" id="Resumen-5-outlet" />
+            <outlet property="rankingLabel" destination="Resumen-7" id="Resumen-7-outlet" />
+            <outlet property="stockLabel" destination="Resumen-9" id="Resumen-9-outlet" />
+          </connections>
+        </viewController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Resumen" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="2080" y="1000" />
+    </scene>
+    <scene sceneID="scene-SupervisorTabs">
+      <objects>
+        <tabBarController id="SupervisorTabs" storyboardIdentifier="AppTabs" sceneMemberID="viewController">
+          <tabBar key="tabBar" contentMode="scaleToFill" id="Supervisor-bar" />
+          <connections>
+            <segue destination="Supervisor-Resumen" kind="relationship" id="segue-3" relationship="viewControllers" />
+            <segue destination="Supervisor-VentasEquipo" kind="relationship" id="segue-5" relationship="viewControllers" />
+            <segue destination="Supervisor-Productos" kind="relationship" id="segue-7" relationship="viewControllers" />
+            <segue destination="Supervisor-Clientes" kind="relationship" id="segue-9" relationship="viewControllers" />
+            <segue destination="Supervisor-Cuenta" kind="relationship" id="segue-11" relationship="viewControllers" />
+            <segue destination="NuevaVentaNav" kind="relationship" relationship="viewControllers" id="sale-tab" />
+          </connections>
+        </tabBarController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-SupervisorTabs" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="0" y="2000" />
+    </scene>
+    <scene sceneID="scene-Supervisor-Resumen">
+      <objects>
+        <navigationController id="Supervisor-Resumen" storyboardIdentifier="Supervisor-Resumen" sceneMemberID="viewController" restorationIdentifier="Resumen">
+          <tabBarItem key="tabBarItem" title="Resumen" id="tab-Supervisor-Resumen" image="chart.bar.fill" catalog="system" />
+          <navigationBar key="navigationBar" contentMode="scaleToFill" id="bar-Supervisor-Resumen">
+            <rect key="frame" x="0" y="0" width="393" height="44" />
+            <autoresizingMask key="autoresizingMask" />
+          </navigationBar>
+          <connections>
+            <segue destination="Resumen" kind="relationship" id="segue-2" relationship="rootViewController" />
+          </connections>
+        </navigationController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Supervisor-Resumen" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="520" y="2000" />
+    </scene>
+    <scene sceneID="scene-Supervisor-VentasEquipo">
+      <objects>
+        <navigationController id="Supervisor-VentasEquipo" storyboardIdentifier="Supervisor-VentasEquipo" sceneMemberID="viewController" restorationIdentifier="VentasEquipo">
+          <tabBarItem key="tabBarItem" title="Ventas" id="tab-Supervisor-VentasEquipo" image="receipt" catalog="system" />
+          <navigationBar key="navigationBar" contentMode="scaleToFill" id="bar-Supervisor-VentasEquipo">
+            <rect key="frame" x="0" y="0" width="393" height="44" />
+            <autoresizingMask key="autoresizingMask" />
+          </navigationBar>
+          <connections>
+            <segue destination="VentasEquipo" kind="relationship" id="segue-4" relationship="rootViewController" />
+          </connections>
+        </navigationController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Supervisor-VentasEquipo" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="1040" y="2000" />
+    </scene>
+    <scene sceneID="scene-Supervisor-Productos">
+      <objects>
+        <navigationController id="Supervisor-Productos" storyboardIdentifier="Supervisor-Productos" sceneMemberID="viewController" restorationIdentifier="Productos">
+          <tabBarItem key="tabBarItem" title="Productos" id="tab-Supervisor-Productos" image="shippingbox" catalog="system" />
+          <navigationBar key="navigationBar" contentMode="scaleToFill" id="bar-Supervisor-Productos">
+            <rect key="frame" x="0" y="0" width="393" height="44" />
+            <autoresizingMask key="autoresizingMask" />
+          </navigationBar>
+          <connections>
+            <segue destination="Productos" kind="relationship" id="segue-6" relationship="rootViewController" />
+          </connections>
+        </navigationController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Supervisor-Productos" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="1560" y="2000" />
+    </scene>
+    <scene sceneID="scene-Supervisor-Clientes">
+      <objects>
+        <navigationController id="Supervisor-Clientes" storyboardIdentifier="Supervisor-Clientes" sceneMemberID="viewController" restorationIdentifier="Clientes">
+          <tabBarItem key="tabBarItem" title="Clientes" id="tab-Supervisor-Clientes" image="person.2" catalog="system" />
+          <navigationBar key="navigationBar" contentMode="scaleToFill" id="bar-Supervisor-Clientes">
+            <rect key="frame" x="0" y="0" width="393" height="44" />
+            <autoresizingMask key="autoresizingMask" />
+          </navigationBar>
+          <connections>
+            <segue destination="Clientes" kind="relationship" id="segue-8" relationship="rootViewController" />
+          </connections>
+        </navigationController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Supervisor-Clientes" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="2080" y="2000" />
+    </scene>
+    <scene sceneID="scene-Supervisor-Cuenta">
+      <objects>
+        <navigationController id="Supervisor-Cuenta" storyboardIdentifier="Supervisor-Cuenta" sceneMemberID="viewController" restorationIdentifier="Cuenta">
+          <tabBarItem key="tabBarItem" title="Cuenta" id="tab-Supervisor-Cuenta" image="person.crop.circle" catalog="system" />
+          <navigationBar key="navigationBar" contentMode="scaleToFill" id="bar-Supervisor-Cuenta">
+            <rect key="frame" x="0" y="0" width="393" height="44" />
+            <autoresizingMask key="autoresizingMask" />
+          </navigationBar>
+          <connections>
+            <segue destination="Cuenta" kind="relationship" id="segue-10" relationship="rootViewController" />
+          </connections>
+        </navigationController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-Supervisor-Cuenta" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="0" y="3000" />
+    </scene>
+    <scene sceneID="scene-NuevaVentaNav">
+      <objects>
+        <navigationController id="NuevaVentaNav" storyboardIdentifier="NuevaVentaNav" sceneMemberID="viewController" restorationIdentifier="NuevaVentaNav">
+          <tabBarItem key="tabBarItem" title="Venta" id="tab-NuevaVentaNav" image="plus.circle" catalog="system" />
+          <navigationBar key="navigationBar" contentMode="scaleToFill" id="bar-NuevaVentaNav">
+            <rect key="frame" x="0" y="0" width="393" height="44" />
+            <autoresizingMask key="autoresizingMask" />
+          </navigationBar>
+          <connections>
+            <segue destination="NuevaVenta" kind="relationship" id="segue-10-unique-525" relationship="rootViewController" />
+          </connections>
+        </navigationController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="first-NuevaVentaNav" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="0" y="3000" />
+    </scene>
+  </scenes>
+  <resources>
+    <image name="Tecsup" width="900" height="237" />
+    <image name="chart.bar.fill" catalog="system" width="128" height="128" />
+    <image name="receipt" catalog="system" width="128" height="128" />
+    <image name="shippingbox" catalog="system" width="128" height="128" />
+    <image name="person.2" catalog="system" width="128" height="128" />
+    <image name="person.crop.circle" catalog="system" width="128" height="128" />
+    <image name="plus.circle" catalog="system" width="128" height="128" />
+  </resources>
+</document>
