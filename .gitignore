@@ -2,3 +2,4 @@
 **/*.xcuserstate
 DerivedData/
 .DS_Store
+**/GoogleService-Info.plist
